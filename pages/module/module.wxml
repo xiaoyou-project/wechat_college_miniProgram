@@ -1,0 +1,4 @@
+<!--pages/module/module.wxml-->
+<view>
+  <text>模块页面</text>
+</view>

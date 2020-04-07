@@ -1,0 +1,4 @@
+<!--pages/card/card.wxml-->
+<view>
+  <text>打卡页面</text>
+</view>
