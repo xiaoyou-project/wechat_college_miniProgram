@@ -1,4 +1,5 @@
-// pages/card/card.js
+// pages/test/test.js
+var app = getApp();
 Page({
 
   /**
@@ -7,12 +8,13 @@ Page({
   data: {
 
   },
-  toTest: function(){
-    wx.navigateTo({
-      url: '/pages/test/test'
+  testfun: function () {
+    wx.showToast({
+      title: "登录失败",
+      image: '../../image/登录失败.png'
     });
+    console.log(app.globalData);
   },
-
   /**
    * 生命周期函数--监听页面加载
    */

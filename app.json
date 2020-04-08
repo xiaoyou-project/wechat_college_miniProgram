@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/card/card",
     "pages/login/login",
-    "pages/module/module"
+    "pages/module/module",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",

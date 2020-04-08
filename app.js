@@ -4,14 +4,11 @@ App({
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
+    wx.setStorageSync('logs', logs);
+    console.log("取缓存openid：",wx.getStorageSync("openid"));
+    console.log("取缓存userID：", wx.getStorageSync("userID"));
+    console.log("取缓存isLogin：", wx.getStorageSync("isLogin"));
+    this.globalData.isLogin = wx.getStorageSync("isLogin");
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -21,7 +18,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-              console.log("用户信息：", res.userInfo );
+              console.log("已经授权过了用户信息为：", res.userInfo );
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -32,94 +29,137 @@ App({
           })
         }
       }
-    })
+    });
   },
   wxLogin: function () {
-    console.log("调用登录方法", this.globalData);
-    wx.showLoading({
-      title: '加载中...',
-    });
-    // 登录
-    wx.login({
-      success: res => {
-        console.log(res);
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // console.log(res);
-        wx.request({
-          url: 'https://www.yunshangshuge.cn/userinform/getOpenId',
-          data: {
-            code: res.code
-          },
-          method: 'GET',
-          success: res => {
-            console.log("信息", res);
-            //获取用户的openid
-            // console.log(res.data);
-            console.log("用户数据：", res.data);
-            this.globalData.openid = res.data.openid;
-            this.globalData.session_key = res.data.session_key;
-            // 获取用户信息
-            wx.getSetting({
-              success: res => {
-                if (res.authSetting['scope.userInfo']) {
-                  // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-                  wx.getUserInfo({
-                    success: res => {
-                      // 可以将 res 发送给后台解码出 unionId
-                      this.globalData.userInfo = res.userInfo;
-                      // console.log(res.userInfo);
-                      //用户信息初始化
-                      wx.request({
-                        header: { "Content-Type": "application/x-www-form-urlencoded" },
-                        url: 'https://www.yunshangshuge.cn/initinform',
-                        data: {
-                          openid: this.globalData.openid,
-                          wxName: res.userInfo.nickName
-                        },
-                        method: 'POST',
-                        success: () => {
-                          console.log("发送成功");
-                          this.globalData.isLogin = "true";
-                        },
-                        fail: () => {
-                          console.log("发送失败");
-                        },
-                        complete: () => {
-                          console.log("完成了");
-                          wx.switchTab({
-                            url: "/pages/index/index",
-                            success: () => {
-                              console.log("跳转成功");
-                              wx.hideLoading()
+    if (this.globalData.isLogin == true){
+      //本地已经缓存了
+      this.globalData.openid = wx.getStorageSync("openid");
+      this.globalData.userID = wx.getStorageSync("userID");
+    }else{
+      //本地还没有缓存
+      console.log("调用登录方法", this.globalData);
+      wx.showLoading({
+        title: '加载中...',
+      });
+      // 登录
+      wx.login({
+        success: res => {
+          console.log("调用获取openid的方法",res);
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          // console.log(res);
+          wx.request({
+            //和获取oepnid
+            url: 'https://college.xiaoyou66.com/api/user/get/openid',
+            data: {
+              code: res.code
+            },
+            method: 'GET',
+            success: (res) => {
+              if(res.data.code == 0){
+                //获取用户数据失败
+                wx.showToast({
+                  title: "登录失败,请重新登录",
+                  image: './image/登录失败.png'
+                });
+              }else{
+                //获取用户openid数据成功
+                console.log("获取用户openid数据成功", res.data);
+                this.globalData.openid = res.data.data.openid;
+                // 获取用户信息
+
+                wx.getSetting({
+                  success: (res) => {
+                    if (res.authSetting['scope.userInfo']) {
+                      // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                      wx.getUserInfo({
+                        success: res => {
+                          // 可以将 res 发送给后台解码出 unionId
+                          this.globalData.userInfo = res.userInfo;
+
+                          wx.request({
+                            //注册用户信息
+                            header: { "Content-Type": "application/x-www-form-urlencoded" },
+                            url: 'https://college.xiaoyou66.com/api/user/registered',
+                            data: {
+                              openid: this.globalData.openid,
+                              nickname: res.userInfo.nickName,
+                              imgUrl: res.userInfo.avatarUrl
+                            },
+                            method: 'POST',
+                            success: (res) => {
+                              if(res.data.code == 1){
+                                //注册用户成功
+                                wx.hideLoading();//将加载icon隐藏
+                                console.log("注册用户发送成功", res);
+                                //将数据存到本地缓存中
+                                this.globalData.isLogin = true;
+                                wx.setStorageSync('openid', this.globalData.openid);
+                                wx.setStorageSync('userID', res.data.data.userID);
+                                wx.setStorageSync('isLogin', true);
+                              }else{
+                                wx.hideLoading();
+                                wx.showToast({
+                                  title: "登录失败,请重新登录",
+                                  image: './image/登录失败.png'
+                                });
+                              }
+                              
                             },
                             fail: () => {
-                              console.log("跳转失败");
+                              console.log("发送失败");
+                              wx.hideLoading();
+                              wx.showToast({
+                                title: "登录失败",
+                                image: './image/登录失败.png'
+                              });
+                            },
+                            complete: () => {
+                              console.log("完成了");
+                              wx.switchTab({
+                                url: "/pages/index/index",
+                                success: () => {
+                                  console.log("跳转成功");
+                                  wx.hideLoading();
+                                },
+                                fail: () => {
+                                  console.log("跳转失败");
+                                  wx.hideLoading();
+                                  wx.showToast({
+                                    title: "登录失败",
+                                    image: './image/登录失败.png'
+                                  });
+                                }
+                              });
                             }
-                          });
-                        }
 
+                          })
+                          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                          // 所以此处加入 callback 以防止这种情况
+                          if (this.userInfoReadyCallback) {
+                            this.userInfoReadyCallback(res)
+                          }
+                        }
                       })
-                      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                      // 所以此处加入 callback 以防止这种情况
-                      if (this.userInfoReadyCallback) {
-                        this.userInfoReadyCallback(res)
-                      }
                     }
-                  })
-                }
+                  }
+                });
               }
-            })
-          }
-        })
-      }
-    })
+            }
+          })
+        }
+      })
+    }
   },
   globalData: {
     userInfo: null,
     openid: '',//用户的openid
     userID: '',//用户的id
-    session_key: '',
-    sameUrl: 'https://www.yunshangshuge.cn',//域名前面的那些相同的部分
+    isLogin: false,//判断用户是否登录
+    name: '',//个人中心的存用户自己填的名字
+    college: '',//个人中心的学院
+    sex: '',//个人中心的用户自己填的性别
+    sameUrl: 'https://college.xiaoyou66.com',//域名前面的那些相同的部分
     userOpenId: '/api/user/get/openid',//1、获取用户openid
     userRegistered: '/api/user/registered',//2、用户注册
     userUserInfo: '/api/user/get/userInfo',//3、进入个人中心，获取用户信息
