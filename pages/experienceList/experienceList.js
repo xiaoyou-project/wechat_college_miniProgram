@@ -1,5 +1,4 @@
-// pages/index/index.js
-//我的界面
+// pages/experienceList/experienceList.js
 Page({
 
   /**
@@ -9,12 +8,6 @@ Page({
 
   },
 
-  //跳转到登录界面
-  toLogin: function () {
-    wx.navigateTo({
-      url: '/pages/login/login'
-    });
-  },
   /**
    * 生命周期函数--监听页面加载
    */

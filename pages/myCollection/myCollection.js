@@ -1,4 +1,4 @@
-// pages/module/module.js
+// pages/myCollection/myCollection.js
 Page({
 
   /**

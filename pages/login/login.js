@@ -1,3 +1,4 @@
+// 登录界面
 var app = getApp();
 Page({
 

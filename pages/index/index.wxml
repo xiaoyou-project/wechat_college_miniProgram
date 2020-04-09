@@ -1,5 +1,11 @@
 <!--index.wxml-->
 <view>
-  <text>我的页面</text>
   <button bindtap="toLogin">跳转到登录界面</button>
+  <button class="cu-btn round bg-{{blue}}" >圆角</button>
+  
+  <view class="grid col-5 padding-sm">
+    <view class="margin-tb-sm text-center">
+      <button class="cu-btn round bg-blue ">蓝色</button>
+    </view>
+  </view>
 </view>

@@ -1,4 +1,5 @@
 // pages/test/test.js
+// 测试界面
 var app = getApp();
 Page({
 

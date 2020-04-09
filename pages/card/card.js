@@ -1,4 +1,5 @@
 // pages/card/card.js
+//打卡界面
 Page({
 
   /**

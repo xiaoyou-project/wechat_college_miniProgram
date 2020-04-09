@@ -1,4 +1,7 @@
 /**app.wxss**/
+/* 引入colorUi */
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
 .container {
   height: 100%;
   display: flex;
@@ -8,3 +11,4 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+

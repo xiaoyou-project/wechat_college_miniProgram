@@ -1,9 +1,27 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/card/card",
     "pages/login/login",
-    "pages/module/module",
+
+    "pages/index/index",
+    "pages/personCenter/personCenter",
+    "pages/myCollection/myCollection",
+    "pages/myMessage/myMessage",
+    "pages/service/service",
+
+    "pages/card/card",
+    "pages/myCard/myCard",
+    "pages/allCard/allCard",
+    "pages/initiateCard/initiateCard",
+
+    "pages/plate/plate",
+    "pages/topicList/topicList",
+    "pages/publishTopic/publishTopic",
+    "pages/topicContent/topicContent",
+    "pages/plateList/plateList",
+    "pages/applyPlate/applyPlate",
+    "pages/experienceList/experienceList",
+    "pages/experienceContent/experienceContent",
+    
     "pages/test/test"
   ],
   "window": {
@@ -24,8 +42,8 @@
         "selectedIconPath": "image/打卡active.png"
       },
       {
-        "pagePath": "pages/module/module",
-        "text": "模块",
+        "pagePath": "pages/plate/plate",
+        "text": "版块",
         "iconPath": "image/分类.png",
         "selectedIconPath": "image/分类active.png"
       },

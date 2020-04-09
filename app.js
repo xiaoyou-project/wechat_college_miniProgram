@@ -31,11 +31,34 @@ App({
       }
     });
   },
+  getUserInfo: function (id) {//初始化用户信息，获取college，name，sex
+    wx.request({
+      url: 'https://college.xiaoyou66.com/api/user/get/userInfo',
+      data: {
+        userId: id
+      },
+      method: 'GET',
+      success: (res) => {
+        if(res.data.code == 1){
+          //获取成功
+          this.globalData.college = res.data.data.college;
+          this.globalData.name = res.data.data.name;
+          this.globalData.sex = res.data.data.sex;
+        }else{
+          wx.showToast({
+            title: "获取用户信息失败，请重试",
+            image: './image/登录失败.png'
+          });
+        }
+      }
+    })
+  },
   wxLogin: function () {
     if (this.globalData.isLogin == true){
       //本地已经缓存了
       this.globalData.openid = wx.getStorageSync("openid");
       this.globalData.userID = wx.getStorageSync("userID");
+      this.getUserInfo(this.globalData.userID);//初始化用户信息，获取college，name，sex
     }else{
       //本地还没有缓存
       console.log("调用登录方法", this.globalData);
@@ -94,6 +117,7 @@ App({
                                 console.log("注册用户发送成功", res);
                                 //将数据存到本地缓存中
                                 this.globalData.isLogin = true;
+                                this.getUserInfo(this.globalData.userID);//初始化用户信息，获取college，name，sex
                                 wx.setStorageSync('openid', this.globalData.openid);
                                 wx.setStorageSync('userID', res.data.data.userID);
                                 wx.setStorageSync('isLogin', true);
@@ -104,7 +128,6 @@ App({
                                   image: './image/登录失败.png'
                                 });
                               }
-                              
                             },
                             fail: () => {
                               console.log("发送失败");
