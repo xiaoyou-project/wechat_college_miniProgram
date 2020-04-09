@@ -1,11 +1,48 @@
 <!--index.wxml-->
-<view>
-  <button bindtap="toLogin">跳转到登录界面</button>
-  <button class="cu-btn round bg-{{blue}}" >圆角</button>
-  
-  <view class="grid col-5 padding-sm">
-    <view class="margin-tb-sm text-center">
-      <button class="cu-btn round bg-blue ">蓝色</button>
+<!-- 我的界面 -->
+<view class="mainView">
+  <!-- 上面显示个人信息的面板 -->
+  <view class="cu-card case">
+    <view class="cu-item padding-xl radius shadow-warp bg-white margin-top">
+      <view>
+        <!-- 头像 -->
+        <view class="cu-avatar xl round margin-left" style="background-image:url({{imgUrl}});">
+        </view>
+        <!-- 名字 -->
+        <view class="content wxNickName">
+          {{nickName}}
+        </view>
+      </view>
+
+      <view class="personalCenter" bindtap="toPersonalCenter">
+        <!-- 进入个人中心 -->
+        <text>个人中心</text>
+        <text class="cuIcon-playfill lg text-gray"></text>
+      </view>
     </view>
   </view>
+
+  <!-- 下面的列表 -->
+  <view class="cu-list menu sm-border card-menu margin-top">  
+    <view class="cu-item arrow myDetail">
+      <view class="content"> 
+        <text class="cuIcon-favor text-green"></text>
+        <text class="text-grey">我的收藏</text>
+      </view>
+    </view>
+    <view class="cu-item arrow myDetail">
+      <view class="content"> 
+        <text class="cuIcon-comment text-green"></text>
+        <text class="text-grey">我的消息</text>
+      </view>
+    </view>
+    <view class="cu-item arrow myDetail">
+      <view class="content"> 
+        <text class="cuIcon-service text-green"></text>
+        <text class="text-grey">联系客服</text>
+      </view>
+    </view>
+  </view>
+
+
 </view>

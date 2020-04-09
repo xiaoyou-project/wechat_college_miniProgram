@@ -1,21 +1,29 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.mainView{
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  background-color: #EFF8FE;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.cu-item{
+  background: linear-gradient(to right, #87CEEB , #1cbbb4);
+  height: 300rpx;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.cu-avatar{
+  float: left;
 }
-
-.usermotto {
-  margin-top: 200px;
+.wxNickName {
+  float: left;
+  margin-top: 45rpx;
+  margin-left: 20rpx;
+  color: black;
+}
+.personalCenter{
+  margin-top: 150rpx;
+  margin-left: 400rpx;
+  font-size: 30rpx;
+}
+.myDetail{
+  height: 100rpx;
 }

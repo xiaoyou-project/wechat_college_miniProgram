@@ -1,12 +1,14 @@
 // pages/index/index.js
 //我的界面
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imgUrl: '',
+    nickName: '',
   },
 
   //跳转到登录界面
@@ -15,11 +17,27 @@ Page({
       url: '/pages/login/login'
     });
   },
+  //进入个人中心
+  toPersonalCenter:function(){
+    wx.navigateTo({
+      url: '/pages/personCenter/personCenter?userID=' + app.globalData.userID
+    });
+  },
+  // 进入我的收藏
+  toMyCollection: function(){
+    wx.navigateTo({
+      url: '/pages/myCollection/myCollection'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //获取微信头像以及微信名称
+    this.setData({
+      imgUrl: app.globalData.userInfo.avatarUrl,
+      nickName: app.globalData.userInfo.nickName
+    });
   },
 
   /**
