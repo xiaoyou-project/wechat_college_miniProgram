@@ -9,6 +9,9 @@ App({
     console.log("取缓存userID：", wx.getStorageSync("userID"));
     console.log("取缓存isLogin：", wx.getStorageSync("isLogin"));
     this.globalData.isLogin = wx.getStorageSync("isLogin");
+    if (this.globalData.isLogin == true){
+      this.wxLogin();
+    }
     // 获取用户信息
     wx.getSetting({
       success: res => {

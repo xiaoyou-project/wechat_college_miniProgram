@@ -1,2 +1,153 @@
 <!--pages/personCenter/personCenter.wxml-->
-<text>pages/personCenter/personCenter.wxml</text>
+<view>
+  <!-- 上面显示信息的 -->
+  <view class="cu-card case">
+    <view class="light bg-cyan cu-item padding-xl radius shadow-warp bg-white margin-top">
+      <view>
+        <!-- 头像 -->
+        <view class="cu-avatar xl round margin-left headImgView" style="background-image:url({{imgUrl}});">
+        </view>
+        <!-- 名字，性别，学院 -->
+        <view class="detailView">
+          <!-- 名字 -->
+          <view style="padding: 0 0 11px 0;" class="content">
+            <text style="font-weight: bold;">名字：</text>
+            <text wx:if="{{isEdit == false}}" style="color: black;">{{name}}</text>
+            <input wx:if="{{isEdit == true}}" 
+                            bindinput="nameChange" 
+                            style="color: black; display: inline-block; position: absolute; top: 25rpx;width: 250rpx; " 
+                            value="{{name}}"                                          
+                            maxlength="8" />
+          </view>
+          <!-- 性别 -->
+          <view style="padding:0 0 11px 0;" class="content">
+            <text style="font-weight: bold;">性别：</text>
+            <text wx:if="{{isEdit == false}}" style="color: black;">{{sex}}</text>
+            <picker wx:if="{{isEdit == true}}" style="display: inline-block;" bindchange="sexChange" range="{{sexRange}}" 
+                                                value="{{sexIndex}}">
+              <text style="color: black;">{{sexRange[sexIndex]}}</text>
+            </picker>
+          </view>
+          <!-- 学院 -->
+          <view style="padding: 0 0 11px 0;" class="content">
+            <text style="font-weight: bold;">学院：</text>
+            <text wx:if="{{isEdit == false}}" style="color: black;">{{college}}</text>
+            <picker wx:if="{{isEdit == true}}" style="display: inline-block;" bindchange="collegeChange" range="{{collegeRange}}" value="{{collegeIndex}}">
+              <text style="color: black;">{{collegeRange[collegeIndex]}}</text>
+            </picker>
+          </view>
+        </view>
+        <!-- 修改按钮 -->
+        <view wx:if="{{isSelf == true}}" class="changeView">
+          <!-- 进入修改模式 -->
+          <button wx:if="{{isEdit == false}}" bindtap="toEdit" style="width: 150rpx;" class="cu-btn round bg-white shadow changeBtn" 
+          role="button" 
+          aria-disabled="false">
+            修改
+          </button>
+          <!-- 保存修改 -->
+          <button wx:else bindtap="saveEdit" style="width: 150rpx;" class="cu-btn round bg-white shadow changeBtn" 
+          role="button" 
+          aria-disabled="false">
+            保存
+          </button>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+  <!-- 下面显示个人经验，话题，打卡 -->
+  <view class="cu-card case">
+    <view class="cu-item shadow">
+      <scroll-view scroll-x class="bg-green nav text-center">
+        <view class="cu-item {{0==myShare?'text-white cur':''}}" bindtap="myExperience" data-id="0">
+          <text class="cuIcon-creative"></text> 经验
+        </view>
+        <view class="cu-item {{1==myShare?'text-white cur':''}}" bindtap="myTopic" data-id="1">
+          <text class="cuIcon-message"></text> 话题
+        </view>
+        <view class="cu-item {{2==myShare?'text-white cur':''}}" bindtap="myCard" data-id="2">
+          <text class="cuIcon-roundcheck"></text> 打卡
+        </view>
+      </scroll-view>
+      <!-- 下面显示列表内容 -->
+      <view wx:if="{{myShare == 0}}"><!--显示个人经验界面-->
+        <view wx:for="{{object1}}" wx:key="index" class="cu-card article">
+          <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
+            <view class="cu-tag bg-blue" style="position: absolute;right: 0rpx;">{{item.plate}}</view>
+            <view class="title">
+              <view class="text-cut">{{item.title}}</view>
+            </view>
+            <view class="content">
+              <image src="{{item.img}}" mode="aspectFill"></image>
+              <view class="desc">
+                <view class="text-content">{{item.description}}</view>
+                <view>
+                  <view class="text-gray text-sm flex justify-between">
+                    {{item.time}}
+                    <view class="text-gray text-sm">
+                      <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 这里 -->
+      </view>
+      <!--222-->
+      <view wx:if="{{myShare == 1}}"><!--显示个人话题界面-->
+        <view wx:for="{{object2}}" wx:key="index" class="cu-card article">
+          <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
+            <view class="title">
+              <view class="text-cut">{{item.name}}</view>
+            </view>
+            <view class="content">
+              <view class="desc">
+                <view class="text-content">{{item.description}}</view>
+                <view>
+                  <view class="text-gray text-sm flex justify-between">
+                    {{item.time}}
+                    <view class="text-gray text-sm">
+                      <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--222-->
+      <!--333-->
+      <view wx:if="{{myShare == 2}}"><!--显示个人打卡界面-->
+        <view wx:for="{{object3}}" wx:key="index" class="cu-card article">
+          <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="cardDetail">
+            <view class="title">
+              <view class="text-cut">{{item.title}}</view>
+            </view>
+            <view class="content">
+              <view class="desc">
+                <view class="text-content">{{item.description}}</view>
+                <view>
+                  <view class="text-gray text-sm flex justify-between">
+                    <view class="cu-tag bg-red light lg">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
+                    <!-- <view class="text-gray text-sm">
+                      <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+                    </view> -->
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--333-->
+    </view>
+  </view>
+</view>

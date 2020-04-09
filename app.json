@@ -1,18 +1,5 @@
 {
   "pages": [
-    "pages/login/login",
-
-    "pages/index/index",
-    "pages/personCenter/personCenter",
-    "pages/myCollection/myCollection",
-    "pages/myMessage/myMessage",
-    "pages/service/service",
-
-    "pages/card/card",
-    "pages/myCard/myCard",
-    "pages/allCard/allCard",
-    "pages/initiateCard/initiateCard",
-
     "pages/plate/plate",
     "pages/topicList/topicList",
     "pages/publishTopic/publishTopic",
@@ -21,6 +8,20 @@
     "pages/applyPlate/applyPlate",
     "pages/experienceList/experienceList",
     "pages/experienceContent/experienceContent",
+
+    "pages/index/index",
+    "pages/personCenter/personCenter",
+    "pages/myCollection/myCollection",
+    "pages/myMessage/myMessage",
+    "pages/service/service",
+
+    "pages/login/login",
+
+    "pages/card/card",
+    "pages/myCard/myCard",
+    "pages/allCard/allCard",
+    "pages/initiateCard/initiateCard",
+    "pages/cardDetail/cardDetail",
     
     "pages/test/test"
   ],

@@ -29,6 +29,18 @@ Page({
       url: '/pages/myCollection/myCollection'
     });
   },
+  // 进入我的消息
+  toMyMessage: function () {
+    wx.navigateTo({
+      url: '/pages/myMessage/myMessage'
+    });
+  },
+  // 进入联系客服
+  toService: function () {
+    wx.navigateTo({
+      url: '/pages/service/service'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

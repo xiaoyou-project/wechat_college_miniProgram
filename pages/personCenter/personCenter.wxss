@@ -1,1 +1,21 @@
 /* pages/personCenter/personCenter.wxss */
+.headImgView{
+  margin-top: -20rpx;
+  margin-left: -20rpx;
+  float: left;
+}
+.detailView{
+  float:left;
+  margin-left: 40rpx;
+  margin-top: -20rpx;
+}
+.changeView{
+  float: left;
+  margin-left: 120rpx;
+}
+.changeBtn{
+  width: 82px;
+  position: absolute;
+  right: 20rpx;
+  top: 10rpx;
+}
