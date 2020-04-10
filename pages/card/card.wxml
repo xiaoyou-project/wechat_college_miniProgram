@@ -1,1 +1,128 @@
 
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <scroll-view scroll-x class="bg-green nav text-center">
+      <view class="cu-item {{0==myCard?'text-white cur':''}}" bindtap="toMyCard" data-id="0">
+        <text class="cuIcon-creative"></text> 我的打卡
+      </view>
+      <view class="cu-item {{1==myCard?'text-white cur':''}}" bindtap="toAllCard" data-id="1">
+        <text class="cuIcon-message"></text> 所有打卡
+      </view>
+      <view class="cu-item {{2==myCard?'text-white cur':''}}" bindtap="toApplyCard" data-id="2">
+        <text class="cuIcon-roundcheck"></text> 发起打卡
+      </view>
+    </scroll-view>
+    <!--我的打卡-->
+    <view wx:if="{{0 == myCard}}">
+      <view wx:for="{{myObject11}}" wx:key="index" class="cu-card article">
+        <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="cardDetail">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item solids-bottom">
+              <view class="cu-avatar round lg" style="background-image:url({{item.imgUrl}});"></view>
+              <view class="content flex justify-between" style="width: 70%;">
+                <view style="margin-left: -15rpx;">{{item.name}}</view>
+                <view class="text-gray text-sm">
+                  {{item.time}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="title text-center">
+            <view class="text-cut">{{item.title}}</view>
+          </view>
+          <view class="content">
+            <view class="desc">
+              <view class="text-content">{{item.description}}</view>
+              <view>
+                <view class="text-gray text-sm flex justify-between">
+                  <view class="cu-tag bg-red light lg">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
+                  <view class="cu-tag bg-blue light lg">已加入{{item.peoples}}人</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--我的打卡End-->
+
+    <!--所有打卡-->
+    <view wx:if="{{1 == myCard}}">
+      <view wx:for="{{object11}}" wx:key="index" class="cu-card article">
+        <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="cardDetail">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item solids-bottom">
+              <view class="cu-avatar round lg" style="background-image:url({{item.imgUrl}});"></view>
+              <view class="content flex justify-between" style="width: 70%;">
+                <view style="margin-left: -15rpx;">{{item.name}}</view>
+                <view class="text-gray text-sm">
+                  {{item.time}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="title text-center">
+            <view class="text-cut">{{item.title}}</view>
+          </view>
+          <view class="content">
+            <view class="desc">
+              <view class="text-content">{{item.description}}</view>
+              <view>
+                <view class="text-gray text-sm flex justify-between">
+                  <view class="cu-tag bg-red light lg">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
+                  <view class="cu-tag bg-blue light lg">已加入{{item.peoples}}人</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--所有打卡End-->
+
+    <!--发起打卡-->
+    <view wx:if="{{2 == myCard}}">
+      <vtu-input-group title="发起打卡">
+        <vtu-input border 
+          v-class="titleInput"
+          placeholder="请输入标题"
+          adjust-position="{{true}}"
+          value="" 
+          type="input"   
+          maxlength="20"
+          text-align="center"
+          bind:input="titleChange"
+          >
+         </vtu-input>
+        <vtu-input
+          border placeholder="请输入内容" 
+          value="" 
+          type="textarea" 
+          text-align="left" 
+          text-height="500rpx"
+          maxlength="300"
+          bind:input="contentChange"
+          >
+        </vtu-input>
+        <vtu-input 
+          title="总的天数："
+          title-color="red"
+          border 
+          placeholder="请输入总的天数"
+          value="" 
+          type="input"
+          input-type="number"
+          maxlength="5"
+          text-align="left"
+          bind:input="totalDayChange"
+          >
+        </vtu-input>
+        <vtu-btn bind:click="submitCard" disabled="{{myCardName==''?true:myCardContent==''?true:myCardTotalDay==0?true:false}}"
+         v-class="submitBtn" type="success" shadow="{{true}}" >
+         确认
+        </vtu-btn>
+      </vtu-input-group>
+    </view>
+    <!--发起打卡End-->
+  </view>
+</view>
