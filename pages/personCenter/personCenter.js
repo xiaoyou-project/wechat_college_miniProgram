@@ -205,19 +205,19 @@ Page({
   experienceArticle: function(e){//点击经验去经验页面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({
-      url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object1[index].id
+      url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object1[index].id + '&userID=' + app.globalData.userID
     });
   },
   topicArticle: function (e) {//点击话题去话题页面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({
-      url: '/pages/topicContent/topicContent?topicID=' + this.data.object2[index].id
+      url: '/pages/topicContent/topicContent?topicID=' + this.data.object2[index].id + '&userID=' + app.globalData.userID
     });
   },
   cardDetail: function (e) {//点击打卡去打卡详细页面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({
-      url: '/pages/cardDetail/cardDetail?cardID=' + this.data.object3[index].id
+      url: '/pages/cardDetail/cardDetail?cardID=' + this.data.object3[index].id + '&userID=' + app.globalData.userID
     });
   },
   /**

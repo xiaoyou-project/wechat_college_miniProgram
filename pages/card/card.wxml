@@ -1,5 +1,1 @@
-<!--pages/card/card.wxml-->
-<view>
-  <text>打卡页面</text>
-  <button bindtap="toTest">进入测试页面</button>
-</view>
+

@@ -53,6 +53,9 @@ App({
             image: './image/登录失败.png'
           });
         }
+      },
+      fail: () => {
+        console.log("获取用户信息失败，请重试");
       }
     })
   },
@@ -182,9 +185,9 @@ App({
     openid: '',//用户的openid
     userID: '',//用户的id
     isLogin: false,//判断用户是否登录
-    name: '',//个人中心的存用户自己填的名字
-    college: '',//个人中心的学院
-    sex: '',//个人中心的用户自己填的性别
+    name: '错误',//个人中心的存用户自己填的名字
+    college: '保密',//个人中心的学院
+    sex: '保密',//个人中心的用户自己填的性别
     sameUrl: 'https://college.xiaoyou66.com',//域名前面的那些相同的部分
     userOpenId: '/api/user/get/openid',//1、获取用户openid
     userRegistered: '/api/user/registered',//2、用户注册

@@ -136,10 +136,6 @@
                 <view>
                   <view class="text-gray text-sm flex justify-between">
                     <view class="cu-tag bg-red light lg">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
-                    <!-- <view class="text-gray text-sm">
-                      <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
-                      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
-                    </view> -->
                   </view>
                 </view>
               </view>

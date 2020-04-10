@@ -1,2 +1,107 @@
 <!--pages/plate/plate.wxml-->
-<text>pages/plate/plate.wxml</text>
+<view>
+  <!-- 话题 -->
+  <view class="cu-card case">
+    <view class="cu-item radius shadow-warp bg-white margin-top">
+      <view class="cu-list padding-xs">
+        <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
+          <view class="flex-treble padding-xs margin-xs radius">
+            话题
+          </view>
+          <view class="flex-sub padding-xs margin-xs radius" bindtap="toTopicList">
+            查看更多
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="flex" style="flex-wrap: wrap;">
+            <view  wx:for="{{object7}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
+                    bindtap="toTopicContent"
+                    class="flex-sub radius bg-grey padding-xs margin-xs text-cut"   
+                    style="width: 30%;min-width: 30%;max-width: 30%;">
+              {{item.title}}
+            </view>
+            <view class="flex-sub radius bg-grey padding-xs margin-xs text-cut" 
+                  bindtap="toPublishTopic"
+                  style="width: 30%;min-width: 30%;max-width: 30%;">
+              发布话题
+            </view> 
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 话题End -->
+  <!-- 热门板块 -->
+  <view class="cu-card case">
+    <view class="cu-item radius shadow-warp bg-white margin-top">
+      <view class="cu-list padding-xs">
+        <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
+          <view class="flex-treble padding-xs margin-xs radius">
+            热门板块
+          </view>
+          <view class="flex-sub padding-xs margin-xs radius" bindtap="toPlateList">
+            查看更多
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="flex" style="flex-wrap: wrap;">
+            <view  wx:for="{{object9}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
+                    bindtap="toExperienceContent"
+                    class="flex-sub radius bg-grey margin-xs text-cut"   
+                    style="width: 30%;min-width: 30%;max-width: 30%;">
+              <view class="image">
+                <image mode="widthFix" src="{{item.imgUrl}}" />
+                <view class="cu-bar bg-shadeBottom">
+                  <text class="text-cut">
+                    {{item.name}}
+                  </text>
+                </view>
+              </view>
+            </view>
+            <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
+                  bindtap="toApplyPlate"
+                  style="width: 30%;min-width: 30%;max-width: 30%;text-align: center;">
+              申请板块
+            </view> 
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 热门板块End -->
+  <!-- 我收藏的板块 -->
+  <view class="cu-card case">
+    <view class="cu-item radius shadow-warp bg-white margin-top">
+      <view class="cu-list padding-xs">
+        <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
+          <view class="flex-treble padding-xs margin-xs radius">
+            我收藏的板块
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="flex" style="flex-wrap: wrap;">
+            <view  wx:for="{{myObject9}}" wx:key="index" data-value="{{index}}"
+                    bindtap="toExperienceContent"
+                    class="flex-sub radius bg-grey margin-xs text-cut"   
+                    style="width: 30%;min-width: 30%;max-width: 30%;">
+              <view class="image">
+                <image mode="widthFix" src="{{item.imgUrl}}" />
+                <view class="cu-bar bg-shadeBottom">
+                  <text class="text-cut">
+                    {{item.name}}
+                  </text>
+                </view>
+              </view>
+            </view>
+            <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
+                  bindtap="toTest"
+                  style="width: 30%;min-width: 30%;max-width: 30%;text-align: center;">
+              去测试页面
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 我收藏的板块End -->
+</view>
