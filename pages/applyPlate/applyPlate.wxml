@@ -1,2 +1,31 @@
-<!--pages/applyPlate/applyPlate.wxml-->
-<text>pages/applyPlate/applyPlate.wxml</text>
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <vtu-input-group title="申请板块">
+      <vtu-input border 
+        v-class="titleInput"
+        placeholder="请输入板块名字"
+        adjust-position="{{true}}"
+        value="" 
+        type="input"   
+        maxlength="20"
+        text-align="center"
+        bind:input="nameChange"
+        >
+        </vtu-input>
+      <vtu-input
+        border placeholder="请输入板块描述" 
+        value="" 
+        type="textarea" 
+        text-align="left" 
+        text-height="500rpx"
+        maxlength="300"
+        bind:input="contentChange"
+        >
+      </vtu-input>
+      <vtu-btn bind:click="submitCard" disabled="{{name==''?true:content==''?true:false}}"
+        v-class="submitBtn" type="success" shadow="{{true}}" >
+        确认
+      </vtu-btn>
+    </vtu-input-group>
+  </view>
+</view>

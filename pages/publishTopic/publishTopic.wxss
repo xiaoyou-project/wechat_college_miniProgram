@@ -1,1 +1,8 @@
 /* pages/publishTopic/publishTopic.wxss */
+.titleInput{
+  font-weight: bold;
+}
+.submitBtn{
+  margin-top: 60rpx !important;
+  margin-bottom: 60rpx !important;
+}

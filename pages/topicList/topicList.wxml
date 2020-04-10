@@ -1,2 +1,22 @@
-<!--pages/topicList/topicList.wxml-->
-<text>pages/topicList/topicList.wxml</text>
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <view>
+      <view wx:for="{{object7}}" wx:key="index" class="cu-card article">
+        <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
+          <view class="title">
+            <view class="text-cut">{{item.title}}</view>
+          </view>
+          <view class="content">
+            <view class="desc">
+              <view class="text-gray text-sm flex justify-between">
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

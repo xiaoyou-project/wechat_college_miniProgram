@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "发布话题",
+  "usingComponents": {
+    "vtu-input-group": "../../dist/input/group/vtu-input-group",
+    "vtu-input": "../../dist/input/item/vtu-input",
+    "vtu-btn": "../../dist/button/vtu-btn"
+  }
 }

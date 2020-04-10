@@ -5,9 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    name: '',//申请的板块名字
+    content: '',//申请板块的描述
   },
-
+  nameChange: function (e) {//填写板块名字
+    // console.log("板块名字改变的时候：", e.detail.value);
+    this.setData({
+      name: e.detail.value
+    });
+  },
+  contentChange: function (e) {//填写板块描述内容
+    // console.log("内容改变的时候：", e.detail.value);
+    this.setData({
+      content: e.detail.value
+    });
+  },
+  submitCard: function () {//提交板块申请
+    console.log("提交板块申请");
+  },
   /**
    * 生命周期函数--监听页面加载
    */
