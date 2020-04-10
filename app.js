@@ -30,6 +30,12 @@ App({
               }
             }
           })
+        }else{
+          console.log("这个用户还没有登录过");
+          this.globalData.isLogin = false;
+          wx.navigateTo({
+            url: '/pages/login/login'
+          });
         }
       }
     });
@@ -96,7 +102,6 @@ App({
                 console.log("获取用户openid数据成功", res.data);
                 this.globalData.openid = res.data.data.openid;
                 // 获取用户信息
-
                 wx.getSetting({
                   success: (res) => {
                     if (res.authSetting['scope.userInfo']) {
@@ -146,7 +151,7 @@ App({
                             complete: () => {
                               console.log("完成了");
                               wx.switchTab({
-                                url: "/pages/index/index",
+                                url: "/pages/plate/plate",
                                 success: () => {
                                   console.log("跳转成功");
                                   wx.hideLoading();
@@ -170,6 +175,8 @@ App({
                           }
                         }
                       })
+                    }else{
+                      wx.hideLoading();//把那个加载框隐藏掉
                     }
                   }
                 });
@@ -229,5 +236,6 @@ App({
     cardFinish: '/api/card/finish',//38、打卡
     cardJoin: '/api/card/join',//39、加入打卡
     cardDelete: '/api/card/delete',//40、删除打卡
+    
   }
 })

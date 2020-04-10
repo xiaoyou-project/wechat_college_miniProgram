@@ -29,7 +29,7 @@ Page({
               that.queryUsreInfo();
               //用户已经授权过
               wx.switchTab({
-                url: '/pages/index/index'
+                url: '/pages/plate/plate'
               })
             }
           });
@@ -45,13 +45,13 @@ Page({
       console.log("用户按了允许登录按钮", app.globalData);
       //授权成功后，跳转进入小程序首页
       wx.switchTab({
-        url: '/pages/index/index'
+        url: '/pages/plate/plate'
       })
     } else {
       //用户按了拒绝按钮
       console.log("用户按了拒绝按钮");
       wx.switchTab({
-        url: '/pages/index/index'
+        url: '/pages/plate/plate'
       })
     }
   },

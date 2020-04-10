@@ -1,2 +1,113 @@
-<!--pages/myMessage/myMessage.wxml-->
-<text>pages/myMessage/myMessage.wxml</text>
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <scroll-view scroll-x class="bg-green nav text-center">
+      <view class="cu-item {{0==myMessage?'text-white cur':''}}" bindtap="toMessage" data-id="0">
+        <text class="cuIcon-creative"></text> 收到的评论
+      </view>
+      <view class="cu-item {{1==myMessage?'text-white cur':''}}" bindtap="toMessage" data-id="1">
+        <text class="cuIcon-message"></text> 收到的赞
+      </view>
+      <view class="cu-item {{2==myMessage?'text-white cur':''}}" bindtap="toMessage" data-id="2">
+        <text class="cuIcon-roundcheck"></text> 系统消息
+      </view>
+    </scroll-view>
+    <!--收到的评论-->
+    <view wx:if="{{myMessage == 0}}" class="cu-list menu-avatar">
+      <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-bottom " 
+        wx:for="{{object4}}" 
+        wx:key="index" 
+        bindtouchstart="ListTouchStart"
+        bindtouchmove="ListTouchMove"
+        bindtouchend="ListTouchEnd" 
+        data-target="move-box-{{index}}">
+        <view class="content" 
+              data-value="{{index}}"
+              style="position: absolute; left: 20rpx; width: 80%;" 
+              bindtap="{{item.type=='topical'?'toTopicArticle':'toExperienceArticle'}}">
+          <view class="text-content text-grey text-cut">
+            <text class="text-grey">
+              你的{{item.type == 'topical'?'话题':'经验'}}：
+            </text>
+            <text class="text-cut">
+              {{item.postTitle}}
+            </text>
+          </view>
+          <view class="text-gray text-sm text-cut">
+              {{item.name}}：
+            <text class="text-cut">{{item.content}}</text>
+          </view>
+        </view>
+        <view class="action">
+          <view class="text-grey text-xs">{{item.time}}</view>
+          <view wx:if="{{item.status == 0}}" class="cu-tag round bg-red sm">未读</view>
+          <view wx:if="{{item.status == 1}}" class="cu-tag round bg-grey sm">已读</view>
+        </view>
+        <view class="move">
+          <view class="bg-red" bindtap="deleteMessage" data-value="{{index}}">删除</view>
+        </view>
+      </view>
+    </view>
+    <!--收到的评论End-->
+
+    <!--收到的赞-->
+    <view wx:if="{{myMessage == 1}}" class="cu-list menu-avatar">
+      <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-bottom " 
+        wx:for="{{object5}}" 
+        wx:key="index" 
+        bindtouchstart="ListTouchStart"
+        bindtouchmove="ListTouchMove"
+        bindtouchend="ListTouchEnd" 
+        data-target="move-box-{{index}}">
+        <view class="content" 
+              data-value="{{index}}"
+              style="position: absolute; left: 20rpx; width: 80%;" 
+              bindtap="{{item.type=='topical'?'goodToTopicArticle':item.type=='comment'?'toComment':'goodToExperienceArticle'}}">
+          <view class="text-content text-grey text-cut">
+            <text class="text-grey">
+              你的{{item.type == 'topical'?'话题':item.type=='share'?'经验':'评论'}}：
+            </text>
+            <text class="text-cut">
+              {{item.postTitle}}
+            </text>
+          </view>
+          <view class="text-gray text-sm text-cut">
+            收到了{{item.name}}的赞
+          </view>
+        </view>
+        <view class="action">
+          <view class="text-grey text-xs">{{item.time}}</view>
+          <view wx:if="{{item.status == 0}}" class="cu-tag round bg-red sm">未读</view>
+          <view wx:if="{{item.status == 1}}" class="cu-tag round bg-grey sm">已读</view>
+        </view>
+        <view class="move">
+          <view class="bg-red" bindtap="deleteMessage" data-value="{{index}}">删除</view>
+        </view>
+      </view>
+    </view>
+    <!--收到的赞End-->
+
+    <!--收到的系统消息-->
+    <view wx:if="{{myMessage == 2}}" class="cu-list menu-avatar">
+      <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-bottom " 
+        wx:for="{{object6}}" 
+        wx:key="index" 
+        bindtouchstart="ListTouchStart"
+        bindtouchmove="ListTouchMove"
+        bindtouchend="ListTouchEnd" 
+        data-target="move-box-{{index}}">
+        <view class="content text-grey text-cut" style="position: absolute; left: 20rpx; width: 80%;">
+          {{item.content}}
+        </view>
+        <view class="action">
+          <view class="text-grey text-xs">{{item.time}}</view>
+          <view wx:if="{{item.status == 0}}" class="cu-tag round bg-red sm">未读</view>
+          <view wx:if="{{item.status == 1}}" class="cu-tag round bg-grey sm">已读</view>
+        </view>
+        <view class="move">
+          <view class="bg-red" bindtap="deleteMessage" data-value="{{index}}">删除</view>
+        </view>
+      </view>
+    </view>
+    <!--收到的系统消息End-->
+  </view>
+</view>
