@@ -46,7 +46,7 @@
         <view class="cu-item">
           <view class="flex" style="flex-wrap: wrap;">
             <view  wx:for="{{object9}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
-                    bindtap="toExperienceContent"
+                    bindtap="toExperienceList"
                     class="flex-sub radius bg-grey margin-xs text-cut"   
                     style="width: 30%;min-width: 30%;max-width: 30%;">
               <view class="image">
@@ -81,7 +81,7 @@
         <view class="cu-item">
           <view class="flex" style="flex-wrap: wrap;">
             <view  wx:for="{{myObject9}}" wx:key="index" data-value="{{index}}"
-                    bindtap="toExperienceContent"
+                    bindtap="toExperienceList"
                     class="flex-sub radius bg-grey margin-xs text-cut"   
                     style="width: 30%;min-width: 30%;max-width: 30%;">
               <view class="image">

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "经验列表",
+  "usingComponents": {
+    "vtu-collapse-item": "../../dist/collapse/item/vtu-collapse-item"
+  }
 }

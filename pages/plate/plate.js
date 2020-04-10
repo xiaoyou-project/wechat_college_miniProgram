@@ -98,12 +98,6 @@ Page({
         total: 66
       },
       {
-        id: 6,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      },
-      {
         id: 7,
         name: "好好学习天天向上",
         imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
@@ -161,10 +155,10 @@ Page({
       url: '/pages/topicList/topicList'
     });
   },
-  toExperienceContent: function(e){//去经验的详细界面
+  toExperienceList: function(e){//去板块的经验列表界面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({
-      url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object9[index].id + '&userID=' + app.globalData.userID
+      url: '/pages/experienceList/experienceList?plateID=' + this.data.object9[index].id
     });
   },
   toApplyPlate: function(){//申请板块界面

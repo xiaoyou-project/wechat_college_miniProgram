@@ -1,2 +1,51 @@
-<!--pages/experienceList/experienceList.wxml-->
-<text>pages/experienceList/experienceList.wxml</text>
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <view class="title padding">
+      <view class="text-cut text-center">板块名字</view>
+    </view>
+  </view>
+</view>
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <vtu-collapse-item title="板块描述">
+      这些是板块的描述
+    </vtu-collapse-item>
+  </view>
+</view>
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <view wx:for="{{object10}}" wx:key="index" class="cu-card article">
+      <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
+        <view class="cu-list menu-avatar">
+          <view class="cu-item solids-bottom ">
+            <view class="cu-avatar round lg" style="background-image:url({{item.avatar}});"></view>
+            <view class="content flex-sub text-grey">
+              <view>{{item.name}}</view>
+              <view class="text-gray text-sm" style="position: absolute;right: 2rpx;">
+                {{item.time}}
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="title">
+          <view class="text-cut solids-bottom text-center">{{item.title}}</view>
+        </view>
+        <view class="content">
+          <image src="{{item.img}}" mode="aspectFill"></image>
+          <view class="desc">
+            <view class="text-content">{{item.content}}</view>
+            <view>
+              <view class="text-gray text-sm flex justify-between">
+                <view class="text-gray text-sm">
+                  <text class="cuIcon-messagefill margin-lr-xs"></text>{{item.comments}}
+                  <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                  <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.total}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
