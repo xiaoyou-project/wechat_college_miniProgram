@@ -99,7 +99,7 @@
           value="" 
           type="textarea" 
           text-align="left" 
-          text-height="500rpx"
+          text-height="550rpx"
           maxlength="300"
           bind:input="contentChange"
           >

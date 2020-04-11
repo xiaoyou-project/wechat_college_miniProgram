@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showIndex: 0,
     object10: [//某个板块的经验列表页面
       {
         id: 1,
@@ -103,6 +104,17 @@ Page({
         comments: 88
       }
     ],
+  },
+  panel: function (e) {//折叠版函数
+    if (e.currentTarget.dataset.index != this.data.showIndex) {
+      this.setData({
+        showIndex: e.currentTarget.dataset.index
+      })
+    } else {
+      this.setData({
+        showIndex: 0
+      })
+    }
   },
   experienceArticle: function (e) {//点击经验去经验页面
     let index = e.currentTarget.dataset.value;

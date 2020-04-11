@@ -3,15 +3,28 @@
     <view class="title padding">
       <view class="text-cut text-center">板块名字</view>
     </view>
+    <button class="cu-btn round bg-white shadow" 
+          role="button" 
+          style="width: 150rpx;position: absolute;right: 20rpx;top: 40rpx;"
+          aria-disabled="false">
+            收藏
+    </button>
   </view>
 </view>
+
 <view class="cu-card case">
   <view class="cu-item shadow">
-    <vtu-collapse-item title="板块描述">
-      这些是板块的描述
-    </vtu-collapse-item>
+    <view class="title padding flex {{showIndex==1?'solids-bottom':''}}" data-index='1' catchtap='panel'>
+      <view class='flex-treble'>板块详细说明</view>
+      <view class='flex-sub text-right'>
+        <text wx:if="{{showIndex == 1}}" class="cuIcon-fold lg text-gray"></text>
+        <text wx:if="{{showIndex == 0}}" class="cuIcon-unfold lg text-gray"></text>
+      </view>
+    </view>
+    <view class='cu-item padding' wx:if="{{showIndex == 1}}">这是一个板块，一个专门分享的板块！！！</view>
   </view>
 </view>
+
 <view class="cu-card case">
   <view class="cu-item shadow">
     <view wx:for="{{object10}}" wx:key="index" class="cu-card article">
