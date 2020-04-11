@@ -39,6 +39,14 @@
     <!-- 上面的作者栏End -->
     <view class="text-content solid-bottom">
       {{content}}
+      <!-- <vtu-input
+          border
+          value="{{content}}" 
+          type="textarea" 
+          disabled="true"
+          auto-height="true"
+          >
+        </vtu-input> -->
     </view>
     <view>
       <view class="text-gray text-sm flex justify-between padding">
@@ -65,7 +73,7 @@
               bindtap="deleteComment">
             删除
         </view>
-        <view class="text-gray text-content text-df bg-grey light">
+        <view class="text-gray content text-df bg-grey light">
           {{item.content}}
         </view>
         <view class="margin-top-sm flex justify-between">

@@ -237,5 +237,6 @@ App({
     cardJoin: '/api/card/join',//39、加入打卡
     cardDelete: '/api/card/delete',//40、删除打卡
     commentType: '/api/comment/type',//41、获取某条评论的类型是经验的还是话题的
+    cardAbort: '/api/card/abort',//42、退出打卡
   }
 })

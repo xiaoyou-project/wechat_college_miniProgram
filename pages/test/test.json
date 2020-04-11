@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "测试",
+  "usingComponents": {
+    "vtu-dialog": "../../dist/dialog/vtu-dialog",
+    "vtu-dialo": "../../dist/radio/radio/vtu-radio",
+    "vtu-dialo-group": "../../dist/radio/group/vtu-radio-group",
+    "vtu-btn": "../../dist/button/vtu-btn"
+  }
 }

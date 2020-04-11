@@ -1,5 +1,6 @@
 // pages/test/test.js
 // 测试界面
+import Dialog from "../../dist/dialog/vtu-index";
 var app = getApp();
 Page({
 
@@ -7,14 +8,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    show: false
   },
-  testfun: function () {
-    wx.showToast({
-      title: "登录失败",
-      image: '../../image/登录失败.png'
-    });
-    console.log(app.globalData);
+  closeCustomDialog: function () {
+    Dialog("Vtu-Custom-Dialog").close()
+  },
+  alert7: function () {
+    console.log("alert");
+    this.setData({
+      show: true
+    })
   },
   /**
    * 生命周期函数--监听页面加载
