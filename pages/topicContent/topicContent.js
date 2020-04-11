@@ -35,7 +35,7 @@ Page({
         good: 99,
         content: "这是一条评论内容",
         imgUrl: "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqdCLCAkToM481u8IS2MH0E2UxP4nm5veUeUpuSGFBXPb6eFDvluTZUWc69keqLnTib5jeVyfzDWSw/132",//评论的用户头像
-        userID: 2,//评论的用户的id
+        userID: 5,//评论的用户的id
         time: "2020-2-29",
         state: 1
       }
@@ -99,6 +99,27 @@ Page({
         [objectGood]: good - 1
       });
     }
+  },
+  deleteTopic:function(){//删除话题
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除这篇话题么?',
+      success: function (res) {
+        console.log("用户确认删除id为：", that.data.topicID,"的话题");
+      }
+    });
+  },
+  deleteComment: function(e){//删除评论
+    let that = this;
+    let commentID = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除这条评论么?',
+      success: function (res) {
+        console.log("用户确认删除id为：", commentID, "的评论");
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面加载

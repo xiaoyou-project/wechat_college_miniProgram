@@ -28,6 +28,11 @@
             <view class="text-gray text-sm flex-sub" style="position: absolute;right: 2rpx;">
               {{time}}
             </view>
+            <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
+                  style="position: absolute; right: -40rpx; top: -50rpx;" 
+                  bindtap="deleteTopic">
+              删除
+            </view>
           </view>
         </view>
       </view>
@@ -54,6 +59,12 @@
             bindtap="toPersonCenter"></view>
       <view class="content">
         <view class="text-grey">{{item.name}}</view>
+        <view wx:if="{{userID == item.userID}}" class="text-grey" 
+              style="position: absolute;right: 0rpx;top: -10rpx;" 
+              data-id="{{item.id}}" 
+              bindtap="deleteComment">
+            删除
+        </view>
         <view class="text-gray text-content text-df bg-grey light">
           {{item.content}}
         </view>
