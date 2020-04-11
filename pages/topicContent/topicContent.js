@@ -106,7 +106,11 @@ Page({
       title: '提示',
       content: '确认删除这篇话题么?',
       success: function (res) {
-        console.log("用户确认删除id为：", that.data.topicID,"的话题");
+        if(res.cancel){
+          console.log("用户确认删除id为：", that.data.topicID, "的话题");
+        }else{
+          console.log("用户取消删除id为：", that.data.topicID, "的话题");
+        }
       }
     });
   },
@@ -117,7 +121,11 @@ Page({
       title: '提示',
       content: '确认删除这条评论么?',
       success: function (res) {
-        console.log("用户确认删除id为：", commentID, "的评论");
+        if(res.cancel){
+          console.log("用户取消删除id为：", commentID, "的评论");
+        }else{
+          console.log("用户确认删除id为：", commentID, "的评论");
+        }
       }
     });
   },

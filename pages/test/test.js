@@ -1,6 +1,5 @@
 // pages/test/test.js
 // 测试界面
-import Dialog from "../../dist/dialog/vtu-index";
 var app = getApp();
 Page({
 
@@ -8,22 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    show: false
+
   },
-  closeCustomDialog: function () {
-    Dialog("Vtu-Custom-Dialog").close()
-  },
-  alert7: function () {
-    console.log("alert");
-    this.setData({
-      show: true
-    })
+  testFun: function(){
+    console.log(app.globalData);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(app.globalData);
   },
 
   /**

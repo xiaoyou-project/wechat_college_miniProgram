@@ -9,6 +9,13 @@
           aria-disabled="false">
             收藏
     </button>
+    <button class="cu-btn round bg-white shadow" 
+          role="button" 
+          style="width: 180rpx;position: absolute;right: 20rpx;"
+          bindtap="toReleaseExperience"
+          aria-disabled="false">
+            我要分享
+    </button>
   </view>
 </view>
 

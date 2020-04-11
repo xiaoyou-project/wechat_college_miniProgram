@@ -1,2 +1,104 @@
-<!--pages/experienceContent/experienceContent.wxml-->
-<text>pages/experienceContent/experienceContent.wxml</text>
+<view class="cu-card case">
+  <!-- 经验的标题 -->
+  <view class="cu-item shadow">
+    <view class="title padding">
+      <view class="text-cut text-center">{{title}}</view>
+    </view>
+    <button class="cu-btn round bg-white shadow" 
+          role="button" 
+          style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
+          bindtap="collectionTopic"
+          aria-disabled="false">
+            {{collectStatus==0?"收藏":"取消收藏"}}
+    </button>
+  </view>
+  <!-- 经验的标题End -->
+
+  <!-- 话题详细介绍 -->
+  <view class="cu-item shadow padding">
+    <!-- 上面的作者栏 -->
+    <view class="cu-list menu-avatar">
+        <view class="cu-item solids-bottom ">
+          <view class="cu-avatar round lg"
+            style="background-image:url({{avatar}});" 
+            data-id="{{authorID}}" 
+            bindtap="toPersonCenter"></view>
+          <view class="content flex text-grey" style="width: 70%;">
+            <view class="flex-treble">{{name}}</view>
+            <view class="text-gray text-sm flex-sub" style="position: absolute;right: 2rpx;">
+              {{time}}
+            </view>
+            <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
+                  style="position: absolute; right: -40rpx; top: -50rpx;" 
+                  bindtap="deleteExperience">
+              删除
+            </view>
+            <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
+                  style="position: absolute; right: 80rpx; top: -50rpx;" 
+                  bindtap="editExperience">
+              修改
+            </view>
+          </view>
+        </view>
+      </view>
+    <!-- 上面的作者栏End -->
+    <view class="text-content solid-bottom margin-bottom">
+      {{content}}
+      <!-- <vtu-input
+          border
+          value="{{content}}" 
+          type="textarea" 
+          disabled="true"
+          auto-height="true"
+          >
+        </vtu-input> -->
+    </view>
+    <!-- 显示图片列表 -->
+    <view wx:if="{{img != ''}}" class="content margin-bottom solid-bottom" >
+      <image wx:for="{{img}}" wx:if="{{item}}" wx:key="index" mode="widthFix" src="{{item}}">
+      </image>
+    </view>
+    <!-- 显示图片列表End -->
+    <view>
+      <view class="text-gray text-sm flex justify-between padding">
+        <view class="text-gray text-sm text-right" style="width: 100%;">
+          <text class="cuIcon-attentionfill margin-lr-xs" ></text>{{view}}
+          <text class="cuIcon-appreciatefill margin-lr-xs {{goodStatus==0?'':'text-red'}}" 
+                bindtap="toExperienceGoods" 
+                data-id="{shareID}}"></text>{{good}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 下面的评论列表 -->
+  <view wx:if="{{object8 != []}}" class="cu-list menu-avatar comment solids-top padding">
+    <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
+      <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
+            data-id="{{item.userID}}"
+            bindtap="toPersonCenter"></view>
+      <view class="content">
+        <view class="text-grey">{{item.name}}</view>
+        <view wx:if="{{userID == item.userID}}" class="text-grey" 
+              style="position: absolute;right: 0rpx;top: -10rpx;" 
+              data-id="{{item.id}}" 
+              bindtap="deleteComment">
+            删除
+        </view>
+        <view class="text-gray content text-df bg-grey light">
+          {{item.content}}
+        </view>
+        <view class="margin-top-sm flex justify-between">
+          <view class="text-gray text-df">{{item.time}}</view>
+          <view>
+            <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
+                  data-id="{{item.id}}"
+                  data-index="{{index}}"
+                  bindtap="toCommentGoods"></text>{{item.good}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 下面的评论列表End -->
+  <!-- 话题详细介绍End -->
+</view>

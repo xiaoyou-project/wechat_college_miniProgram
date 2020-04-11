@@ -1,0 +1,56 @@
+<view class="cu-card case">
+  <view class="cu-item shadow">
+    <vtu-input-group title="发布经验分享">
+      <vtu-input border 
+        v-class="titleInput"
+        placeholder="请输入分享标题"
+        adjust-position="{{true}}"
+        value="" 
+        type="input"   
+        maxlength="20"
+        text-align="center"
+        bind:input="titleChange"
+        >
+        </vtu-input>
+      <vtu-input
+        border placeholder="请输入分享内容" 
+        value="" 
+        type="textarea" 
+        text-align="left" 
+        text-height="500rpx"
+        maxlength="300"
+        bind:input="contentChange"
+        >
+      </vtu-input>
+      <!-- 上传图片 -->
+      <view class="cu-item shadow margin">
+        <view class="cu-bar bg-white margin-top">
+          <view class="action">
+            图片上传
+          </view>
+          <view class="action">
+            {{imgList.length}}/4
+          </view>
+        </view>
+        <view class="cu-form-group">
+          <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+              <image src='{{imgList[index]}}' mode='aspectFill'></image>
+              <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                <text class="cuIcon-close"></text>
+              </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+              <text class="cuIcon-cameraadd"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 上传图片End -->
+      <vtu-btn bind:click="submitCard" disabled="{{title==''?true:content==''?true:false}}"
+        v-class="submitBtn" type="success" shadow="{{true}}" >
+        发布
+      </vtu-btn>
+    </vtu-input-group>
+  </view>
+</view>

@@ -8,6 +8,8 @@
     "pages/applyPlate/applyPlate",
     "pages/experienceList/experienceList",
     "pages/experienceContent/experienceContent",
+    "pages/experienceEdit/experienceEdit",
+    "pages/releaseExperience/releaseExperience",
 
     "pages/index/index",
     "pages/personCenter/personCenter",

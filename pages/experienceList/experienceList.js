@@ -122,6 +122,11 @@ Page({
       url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object10[index].id + '&userID=' + app.globalData.userID
     });
   },
+  toReleaseExperience: function(){//去分享经验界面
+    wx.navigateTo({
+      url: '/pages/releaseExperience/releaseExperience'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
