@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    InputBottom: 0,//发表评论相关
+    commentContent: '',//发表评论的内容
     shareID: '',//存储这篇经验的id
     userID: '',//存储观看这篇经验的用户id
     title: "经验的标题",
@@ -140,6 +142,24 @@ Page({
     wx.navigateTo({
       url: '/pages/experienceEdit/experienceEdit?shareID=' + shareID +'&userID=' + userID + '&title=' + title + '&content=' + content + '&imgs=' + imgs
     });
+  },
+  commentContent: function (e) {//发表评论的内容
+    this.setData({
+      commentContent: e.detail.value
+    });
+  },
+  submitComment: function () {//点击发表评论
+    console.log("发表评论：", this.data.commentContent);
+  },
+  InputFocus(e) {//发表评论相关
+    this.setData({
+      InputBottom: e.detail.height
+    })
+  },
+  InputBlur(e) {//发表评论相关
+    this.setData({
+      InputBottom: 0
+    })
   },
   /**
    * 生命周期函数--监听页面加载

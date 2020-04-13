@@ -15,14 +15,10 @@
     "pages/personCenter/personCenter",
     "pages/myCollection/myCollection",
     "pages/myMessage/myMessage",
-    "pages/service/service",
 
     "pages/login/login",
 
     "pages/card/card",
-    "pages/myCard/myCard",
-    "pages/allCard/allCard",
-    "pages/initiateCard/initiateCard",
     "pages/cardDetail/cardDetail",
     
     "pages/test/test"

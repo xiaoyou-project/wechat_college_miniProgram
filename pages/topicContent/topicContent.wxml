@@ -60,7 +60,7 @@
     </view>
   </view>
   <!-- 下面的评论列表 -->
-  <view wx:if="{{object8 != []}}" class="cu-list menu-avatar comment solids-top padding">
+  <view wx:if="{{object8 != []}}" class="cu-list menu-avatar comment solids-top padding" style="margin-bottom: 80rpx;">
     <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
       <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
             data-id="{{item.userID}}"
@@ -90,4 +90,19 @@
   </view>
   <!-- 下面的评论列表End -->
   <!-- 话题详细介绍End -->
+
+  <!--话题页面发表评论 -->
+  <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
+    <input class="solid-bottom" 
+            placeholder="请输入评论内容" 
+            bindfocus="InputFocus" 
+            bindblur="InputBlur" 
+            adjust-position="{{false}}"
+            focus="{{false}}" 
+            maxlength="300" 
+            cursor-spacing="10" 
+            bindinput="commentContent"></input>
+    <button class="cu-btn bg-green shadow" bindtap="submitComment" style="width: 120rpx;">发送</button>
+  </view>
+  <!--话题页面发表评论End -->
 </view>

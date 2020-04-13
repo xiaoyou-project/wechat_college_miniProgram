@@ -28,3 +28,13 @@
 .myDetail{
   height: 100rpx;
 }
+.contactPeople{
+  display: inline-block !important;
+  background: white !important;
+  font-weight: normal !important;
+  text-align: left !important;
+  margin-left: 55rpx !important;
+  font-size: 30rpx !important;
+  padding: 0rpx !important;
+  width: 90% !important;
+}
