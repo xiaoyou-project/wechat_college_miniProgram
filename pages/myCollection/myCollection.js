@@ -68,10 +68,12 @@ Page({
     if(app.globalData.isLogin == true){//这个用户已经登录了
       //获取个人收藏的数据
       wx.request({//获取个人收藏的经验
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userCollectShareList,
         data: {
           userId: app.globalData.userID
         },
+        method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             this.setData({
@@ -92,10 +94,12 @@ Page({
         }
       });
       wx.request({//获取个人收藏的话题
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userCollectTopicalList,
         data: {
           userId: app.globalData.userID
         },
+        method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             this.setData({

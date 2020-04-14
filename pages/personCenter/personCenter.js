@@ -195,10 +195,12 @@ Page({
     if (app.globalData.isLogin == true) {//用户已经登录了
       //获取个人中心的数据
       wx.request({//获取个人中心的分享经验列表
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userShareList,
         data: {
           userId: options.userID
         },
+        method: 'get',
         success: (res) => {
           if(res.data.code == 1){//获取成功
             this.setData({
@@ -219,10 +221,12 @@ Page({
         }
       });
       wx.request({//获取个人中心的发布的话题
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userTopicalList,
         data: {
           userId: options.userID
         },
+        method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             this.setData({
@@ -243,10 +247,12 @@ Page({
         }
       });
       wx.request({//获取个人中心的创建打卡
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userCardList,
         data: {
           userId: options.userID
         },
+        method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             this.setData({

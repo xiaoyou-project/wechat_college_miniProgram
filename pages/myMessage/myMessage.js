@@ -60,11 +60,13 @@ Page({
       messageId = this.data.object6[index].id;
     } 
     wx.request({//删除消息
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 2
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//删除成功
           that.onLoad();
@@ -90,11 +92,13 @@ Page({
     let messageStatus = "object4[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 1
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           that.setData({//直接更改消息状态减少调用接口的次数
@@ -126,11 +130,13 @@ Page({
     let messageStatus = "object4[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 1
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           that.setData({//直接更改消息状态减少调用接口的次数
@@ -162,11 +168,13 @@ Page({
     let messageStatus = "object4[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 1
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           that.setData({//直接更改消息状态减少调用接口的次数
@@ -198,11 +206,13 @@ Page({
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 1
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           that.setData({//直接更改消息状态减少调用接口的次数
@@ -234,11 +244,13 @@ Page({
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 1
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           that.setData({//直接更改消息状态减少调用接口的次数
@@ -269,11 +281,13 @@ Page({
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 1
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           that.setData({//直接更改消息状态减少调用接口的次数
@@ -302,10 +316,12 @@ Page({
     let messageId = this.data.object5[index].postID;
     let that = this;
     wx.request({//判断评论内容
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.commentType,
       data: {
         postID: messageId
       },
+      method: 'get',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           if(res.data.data.type == 1 ){//是经验
@@ -336,11 +352,13 @@ Page({
     let messageStatus = "object6[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.userMessageStatus,
       data: {
         messageId: messageId,
         status: 1
       },
+      method: 'post',
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           that.setData({//直接更改消息状态减少调用接口的次数
@@ -402,10 +420,12 @@ Page({
     });
     if (app.globalData.isLogin == true) {//这个用户已经登录了
       wx.request({//获取收到的评论消息
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userCommentMessageList,
         data: {
           userId: app.globalData.userID
         },
+        method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             this.setData({
@@ -426,10 +446,12 @@ Page({
         }
       });
       wx.request({//获取个人收到赞的消息
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userGoodMessageList,
         data: {
           userId: app.globalData.userID
         },
+        method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             this.setData({
@@ -450,10 +472,12 @@ Page({
         }
       });
       wx.request({//获取个人收到系统消息
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
         url: app.globalData.sameUrl + app.globalData.userSystemMessageList,
         data: {
           userId: app.globalData.userID
         },
+        method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             this.setData({
