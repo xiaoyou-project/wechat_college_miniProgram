@@ -27,7 +27,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1cbbb4",
     "navigationBarTitleText": "小程序名字",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "borderStyle": "black",

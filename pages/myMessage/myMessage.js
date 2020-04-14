@@ -6,118 +6,38 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: false,//判断登录
     myMessage: 0,
     object4: [//收到的评论消息
-      {
-        id: 1,
-        name: "用户名字",
-        postID: 1,
-        postTitle: "话题的标题啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦了",
-        type: "topical",//标明是话题类型的
-        status: 0,
-        time: "2020-2-29",
-        content: "评论内容1啦啦啦啦啦啦啦啦绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿"
-      },
-      {
-        id: 2,
-        name: "用户名字2",
-        postID: 2,
-        postTitle: "经验的标题",
-        type: "share",//标明是经验类型的
-        status: 0,
-        time: "2020-3-29",
-        content: "评论内容2"
-      },
-      {
-        id: 3,
-        name: "用户名字3",
-        postID: 3,
-        postTitle: "话题的标题",
-        type: "topical",//标明是话题类型的
-        status: 1,
-        time: "2020-4-29",
-        content: "评论内容3"
-      },
-      {
-        id: 4,
-        name: "用户名字4",
-        postID: 4,
-        postTitle: "经验的标题",
-        type: "share",//标明是经验类型的
-        status: 1,
-        time: "2020-5-29",
-        content: "评论内容4"
-      }
+      // {
+      //   id: 1,
+      //   name: "用户名字",
+      //   postID: 1,
+      //   postTitle: "话题的标题啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦了",
+      //   type: "topical",//标明是话题类型的topical，share，card
+      //   status: 0,
+      //   time: "2020-2-29",
+      //   content: "评论内容1"
+      // }
     ],
     object5: [//收到的赞的消息
-      {
-        id: 1,
-        name: "用户的名字",
-        postID: 1,//话题id
-        postTitle: "话题标题",
-        type: "topical",//标明是话题类型的
-        status: 0,//未读
-        time: "2020-2-29"
-      },
-      {
-        id: 2,
-        name: "用户的名字2",
-        postID: 2,//话题id
-        postTitle: "话题标题",
-        type: "topical",//标明是话题类型的
-        status: 1,//未读
-        time: "2020-3-29"
-      },
-      {
-        id: 3,
-        name: "用户的名字3",
-        postID: 3,//经验id
-        postTitle: "经验标题",
-        type: "share",//标明是经验类型的
-        status: 0,//未读
-        time: "2020-4-29"
-      },
-      {
-        id: 4,
-        name: "用户的名字4",
-        postID: 4,//经验id
-        postTitle: "经验标题",
-        type: "share",//标明是经验类型的
-        status: 1,//未读
-        time: "2020-5-29"
-      },
-      {
-        id: 5,
-        name: "用户的名字5",
-        postID: 5,//话题id
-        postTitle: "评论的简略内容",
-        type: "comment",//标明是话题类型的
-        status: 0,//未读
-        time: "2020-6-29"
-      },
-      {
-        id: 6,
-        name: "用户的名字6",
-        postID: 6,//话题id
-        postTitle: "评论的简略内容",
-        type: "comment",//标明是话题类型的
-        status: 1,//未读
-        time: "2020-7-29"
-      }
+      // {
+      //   id: 1,
+      //   name: "用户的名字",
+      //   postID: 1,//话题id
+      //   postTitle: "话题标题",
+      //   type: "topical",//标明是话题类型的，topical，share，comment，card
+      //   status: 0,//未读
+      //   time: "2020-2-29"
+      // }
     ],
     object6: [//收到的系统消息
-      {
-        id: 1,
-        content: "系统消息内容",
-        time: "2020-2-29",
-        status: 0
-      },
-      {
-        id: 2,
-        content: "系统消息内容2",
-        time: "2020-3-29",
-        status: 1
-      }
+      // {
+      //   id: 1,
+      //   content: "系统消息内容",
+      //   time: "2020-2-29",
+      //   status: 0
+      // }
     ]
   },
   toMessage: function(e){//更改查看的状态
@@ -127,49 +47,324 @@ Page({
   },
   deleteMessage: function(e){//左滑删除
     console.log("左滑删除", e.currentTarget.dataset.value);
+    let index = e.currentTarget.dataset.value;
+    let messageId = -1;
+    let that = this;
+    if(e.currentTarget.dataset.object==4){//删除评论
+      messageId = this.data.object4[index].id;
+    } 
+    if (e.currentTarget.dataset.object == 5) {//删除赞
+      messageId = this.data.object5[index].id;
+    } 
+    if (e.currentTarget.dataset.object == 6) {//删除系统消息
+      messageId = this.data.object6[index].id;
+    } 
+    wx.request({//删除消息
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 2
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//删除成功
+          that.onLoad();
+        } else {
+          wx.showToast({
+            title: "删除消息失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "删除消息失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    });
   },
   toExperienceArticle: function(e){//由收到的评论到查看具体的经验文章
     let index = e.currentTarget.dataset.value;
-    //同时记得更改变成已读 调接口
-    //
-    //
-    wx.navigateTo({
-      url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object4[index].id + '&userID=' + app.globalData.userID
+    let messageId = this.data.object4[index].id;
+    let articleId = this.data.object4[index].postID;
+    let messageStatus = "object4[" + index + "].status";
+    let that = this;
+    wx.request({//将消息变成已读
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 1
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          that.setData({//直接更改消息状态减少调用接口的次数
+            messageStatus: 1
+          });
+          wx.navigateTo({
+            url: '/pages/experienceContent/experienceContent?shareID=' + articleId + '&userID=' + app.globalData.userID
+          });
+          
+        } else {
+          wx.showToast({
+            title: "更改消息状态失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "更改消息状态失败",
+          image: '../../image/登录失败.png'
+        });
+      }
     });
   },
   toTopicArticle: function (e) {//由收到的评论到查看具体的话题文章
     let index = e.currentTarget.dataset.value;
-    //同时记得更改变成已读 调接口
-    //
-    //
-    wx.navigateTo({
-      url: '/pages/topicContent/topicContent?topicID=' + this.data.object4[index].id + '&userID=' + app.globalData.userID
+    let messageId = this.data.object4[index].id;
+    let articleId = this.data.object4[index].postID;
+    let messageStatus = "object4[" + index + "].status";
+    let that = this;
+    wx.request({//将消息变成已读
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 1
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          that.setData({//直接更改消息状态减少调用接口的次数
+            messageStatus: 1
+          });
+          wx.navigateTo({
+            url: '/pages/topicContent/topicContent?topicID=' + articleId + '&userID=' + app.globalData.userID
+          });
+
+        } else {
+          wx.showToast({
+            title: "更改消息状态失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "更改消息状态失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    });
+  },
+  toCard: function(e){//由评论到打卡
+    let index = e.currentTarget.dataset.value;
+    let messageId = this.data.object4[index].id;
+    let articleId = this.data.object4[index].postID;
+    let messageStatus = "object4[" + index + "].status";
+    let that = this;
+    wx.request({//将消息变成已读
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 1
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          that.setData({//直接更改消息状态减少调用接口的次数
+            messageStatus: 1
+          });
+          wx.navigateTo({
+            url: '/pages/cardDetail/cardDetail?cardID=' + articleId + '&userID=' + app.globalData.userID
+          });
+
+        } else {
+          wx.showToast({
+            title: "更改消息状态失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "更改消息状态失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    });
+  },
+  goodToCard: function(e){//由赞到打卡
+    let index = e.currentTarget.dataset.value;
+    let messageId = this.data.object5[index].id;
+    let articleId = this.data.object5[index].postID;
+    let messageStatus = "object5[" + index + "].status";
+    let that = this;
+    wx.request({//将消息变成已读
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 1
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          that.setData({//直接更改消息状态减少调用接口的次数
+            messageStatus: 1
+          });
+          wx.navigateTo({
+            url: '/pages/cardDetail/cardDetail?cardID=' + articleId + '&userID=' + app.globalData.userID
+          });
+
+        } else {
+          wx.showToast({
+            title: "更改消息状态失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "更改消息状态失败",
+          image: '../../image/登录失败.png'
+        });
+      }
     });
   },
   goodToExperienceArticle: function(e){//由赞到经验文章
     let index = e.currentTarget.dataset.value;
-    //同时记得更改变成已读 调接口
-    //
-    //
-    wx.navigateTo({
-      url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object5[index].postID + '&userID=' + app.globalData.userID
+    let messageId = this.data.object5[index].id;
+    let articleId = this.data.object5[index].postID;
+    let messageStatus = "object5[" + index + "].status";
+    let that = this;
+    wx.request({//将消息变成已读
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 1
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          that.setData({//直接更改消息状态减少调用接口的次数
+            messageStatus: 1
+          });
+          wx.navigateTo({
+            url: '/pages/experienceContent/experienceContent?shareID=' + articleId + '&userID=' + app.globalData.userID
+          });
+        } else {
+          wx.showToast({
+            title: "更改消息状态失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "更改消息状态失败",
+          image: '../../image/登录失败.png'
+        });
+      }
     });
   },
   goodToTopicArticle: function(e){//由赞到话题文章
     let index = e.currentTarget.dataset.value;
-    //同时记得更改变成已读 调接口
-    //
-    //
-    wx.navigateTo({
-      url: '/pages/topicContent/topicContent?topicID=' + this.data.object5[index].postID + '&userID=' + app.globalData.userID
+    let messageId = this.data.object5[index].id;
+    let articleId = this.data.object5[index].postID;
+    let messageStatus = "object5[" + index + "].status";
+    let that = this;
+    wx.request({//将消息变成已读
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 1
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          that.setData({//直接更改消息状态减少调用接口的次数
+            messageStatus: 1
+          });
+          wx.navigateTo({
+            url: '/pages/topicContent/topicContent?topicID=' + articleId + '&userID=' + app.globalData.userID
+          });
+        } else {
+          wx.showToast({
+            title: "更改消息状态失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "更改消息状态失败",
+          image: '../../image/登录失败.png'
+        });
+      }
     });
   },
   toComment: function (e) {//去评论的那篇文章，调用上面的goodToExperienceArticle，或者goodToTopicArticle
     let index = e.currentTarget.dataset.value;
-    console.log("评论的文章：",this.data.object5[index]);
-    //这里还要调接口判断是经验文章的评论还是话题文章的评论
-    //
-    //
+    let messageId = this.data.object5[index].postID;
+    let that = this;
+    wx.request({//判断评论内容
+      url: app.globalData.sameUrl + app.globalData.commentType,
+      data: {
+        postID: messageId
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          if(res.data.data.type == 1 ){//是经验
+            that.goodToExperienceArticle(e);
+          }else if(res.data.data.type == 2){//是话题
+            that.goodToTopicArticle(e);
+          }else{//是打卡的
+            that.goodToCard(e);
+          }
+        } else {
+          wx.showToast({
+            title: "判断评论类型失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "判断评论类型失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    });
+  },
+  systemMessage: function(){//系统消息
+    let index = e.currentTarget.dataset.value;
+    let messageId = this.data.object6[index].id;
+    let messageStatus = "object6[" + index + "].status";
+    let that = this;
+    wx.request({//将消息变成已读
+      url: app.globalData.sameUrl + app.globalData.userMessageStatus,
+      data: {
+        messageId: messageId,
+        status: 1
+      },
+      success: (res) => {
+        if (res.data.code == 1) {//更改消息状态成功
+          that.setData({//直接更改消息状态减少调用接口的次数
+            messageStatus: 1
+          });
+        } else {
+          wx.showToast({
+            title: "更改消息状态失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "更改消息状态失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    });
+  },
+  toLogin() {//去登录
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
   },
   // ListTouch触摸开始
   ListTouchStart(e) {
@@ -202,7 +397,83 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({//先存储是否登录的情况
+      isLogin: app.globalData.isLogin
+    });
+    if (app.globalData.isLogin == true) {//这个用户已经登录了
+      wx.request({//获取收到的评论消息
+        url: app.globalData.sameUrl + app.globalData.userCommentMessageList,
+        data: {
+          userId: app.globalData.userID
+        },
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            this.setData({
+              object4: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: "获取用户评论消息失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取用户评论消息失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+      wx.request({//获取个人收到赞的消息
+        url: app.globalData.sameUrl + app.globalData.userGoodMessageList,
+        data: {
+          userId: app.globalData.userID
+        },
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            this.setData({
+              object5: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: "获取用户收到赞消息失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取用户收到赞消息失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+      wx.request({//获取个人收到系统消息
+        url: app.globalData.sameUrl + app.globalData.userSystemMessageList,
+        data: {
+          userId: app.globalData.userID
+        },
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            this.setData({
+              object6: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: "获取用户收到系统消息失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取用户收到系统消息失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+    }
   },
 
   /**
@@ -237,7 +508,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad();
   },
 
   /**

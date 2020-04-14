@@ -6,57 +6,30 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: false,//判断是否登录
     myCollection: 0,
-    object1: [{//经验列表
-      id: 1,
-      title: "经验1的标题",
-      time: '2020-2-29',
-      view: 666,
-      good: 777,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
-      img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-      plate: "如果学习英语"
-    }, {
-      id: 2,
-      title: "经验2的标题",
-      time: '2020-3-29',
-      view: 777,
-      good: 888,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
-      img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-      plate: "如果学习高数"
-    }, {
-      id: 3,
-      title: "经验3的标题",
-      time: '2020-4-29',
-      view: 888,
-      good: 999,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
-      img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-      plate: "如果学习计算机"
-    }],
-    object2: [{//话题列表
-      id: 1,
-      name: "话题1的名字",
-      time: '2020-2-29',
-      view: 666,
-      good: 777,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }, {
-      id: 2,
-      name: "话题2的名字",
-      time: '2020-3-29',
-      view: 777,
-      good: 888,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }, {
-      id: 3,
-      name: "话题3的名字",
-      time: '2020-4-29',
-      view: 888,
-      good: 999,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }]
+    object1: [
+      // {//经验列表
+      //   id: 1,
+      //   title: "经验1的标题",
+      //   time: '2020-2-29',
+      //   view: 666,
+      //   good: 777,
+      //   description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
+      //   img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+      //   plate: "如果学习英语"
+      // }
+    ],
+    object2: [
+      // {//话题列表
+      //   id: 1,
+      //   name: "话题1的名字",
+      //   time: '2020-2-29',
+      //   view: 666,
+      //   good: 777,
+      //   description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
+      // }
+    ]
   },
   collectionTopic: function(){//我收藏的话题
     this.setData({
@@ -80,11 +53,69 @@ Page({
       url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object1[index].id + '&userID=' + app.globalData.userID
     });
   },
+  toLogin() {//去登录
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({//先存储是否登录的情况
+      isLogin: app.globalData.isLogin
+    });
+    if(app.globalData.isLogin == true){//这个用户已经登录了
+      //获取个人收藏的数据
+      wx.request({//获取个人收藏的经验
+        url: app.globalData.sameUrl + app.globalData.userCollectShareList,
+        data: {
+          userId: app.globalData.userID
+        },
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            this.setData({
+              object1: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: "获取用户收藏经验失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取用户收藏话题失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+      wx.request({//获取个人收藏的话题
+        url: app.globalData.sameUrl + app.globalData.userCollectTopicalList,
+        data: {
+          userId: app.globalData.userID
+        },
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            this.setData({
+              object2: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: "获取用户收藏话题失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取用户收藏话题失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+    }
   },
 
   /**

@@ -9,8 +9,8 @@
         <view class="cu-avatar xl round margin-left" style="background-image:url({{imgUrl}});">
         </view>
         <!-- 名字 -->
-        <view class="content wxNickName">
-          {{nickName}}
+        <view class="content wxNickName" bindtap="{{isLogin==true?'':'toLogin'}}">
+          {{isLogin==true?nickName:'点击登录'}}
         </view>
       </view>
 

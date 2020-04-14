@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: '',//判断登录相关
     InputBottom: 0,//发表评论相关
     commentContent: '',//发表评论的内容
     shareID: '',//存储这篇经验的id
@@ -161,20 +162,28 @@ Page({
       InputBottom: 0
     })
   },
+  toLogin() {//去登录
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log("来到经验详情界面：", options);
-    
-    this.setData({
-      img: this.data.imgs.split("&&")
-    });
-    // console.log("分割字符串，", this.data.img.split("&&"));
-    this.setData({
-      shareID: options.shareID,
-      userID: options.userID
-    });
+    if(app.globalData.isLogin == true){//用户已经登录了
+      this.setData({
+        img: this.data.imgs.split("&&")
+      });
+      // console.log("分割字符串，", this.data.img.split("&&"));
+      this.setData({
+        shareID: options.shareID,
+        userID: options.userID
+      });
+    }else{//没有登录去登录界面
+      this.toLogin();
+    }
   },
 
   /**

@@ -1,65 +1,105 @@
-<view class="cu-card case">
-  <view class="cu-item shadow">
-    <scroll-view scroll-x class="bg-green nav text-center">
-      <view class="cu-item {{0==myCollection?'text-white cur':''}}" bindtap="collectionShare" data-id="0">
-        <text class="cuIcon-creative"></text> 我收藏的经验
-      </view>
-      <view class="cu-item {{1==myCollection?'text-white cur':''}}" bindtap="collectionTopic" data-id="1">
-        <text class="cuIcon-message"></text> 我收藏的话题
-      </view>
-    </scroll-view>
-    <!--我收藏的经验-->
-    <view wx:if="{{myCollection == 0}}">
-      <view wx:for="{{object1}}" wx:key="index" class="cu-card article">
-        <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
-          <view class="cu-tag bg-blue" style="position: absolute;right: 0rpx;">{{item.plate}}</view>
-          <view class="title">
-            <view class="text-cut">{{item.title}}</view>
+<view class="mainView">
+  <view class="mainView02">
+    <view class="cu-card case">
+      <view class="cu-item shadow">
+        <scroll-view scroll-x class="bg-cyan nav text-center">
+          <view class="cu-item {{0==myCollection?'text-white cur':''}}" bindtap="collectionShare" data-id="0">
+            <text class="cuIcon-creative"></text> 我收藏的经验
           </view>
-          <view class="content">
-            <image src="{{item.img}}" mode="aspectFill"></image>
-            <view class="desc">
-              <view class="text-content">{{item.description}}</view>
-              <view>
-                <view class="text-gray text-sm flex justify-between">
-                  {{item.time}}
-                  <view class="text-gray text-sm">
-                    <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
-                    <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+          <view class="cu-item {{1==myCollection?'text-white cur':''}}" bindtap="collectionTopic" data-id="1">
+            <text class="cuIcon-message"></text> 我收藏的话题
+          </view>
+        </scroll-view>
+        <!--我收藏的经验-->
+        <view wx:if="{{myCollection == 0}}">
+          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
+            <view wx:if="{{object1.length > 0}}"><!--object1不是是空的-->
+              <view wx:for="{{object1}}" wx:key="index" class="cu-card article">
+                <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
+                  <view class="cu-tag bg-blue" style="position: absolute;right: 0rpx;">{{item.plate}}</view>
+                  <view class="title">
+                    <view class="text-cut">{{item.title}}</view>
+                  </view>
+                  <view class="content">
+                    <image src="{{item.img}}" mode="aspectFill"></image>
+                    <view class="desc">
+                      <view class="text-content">{{item.description}}</view>
+                      <view>
+                        <view class="text-gray text-sm flex justify-between">
+                          {{item.time}}
+                          <view class="text-gray text-sm">
+                            <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                            <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+                          </view>
+                        </view>
+                      </view>
+                    </view>
                   </view>
                 </view>
               </view>
             </view>
+            <view wx:else><!--object1是空的-->
+              <view
+                  class="padding text-center text-gray" 
+                  style="background: #EFF8FE;">
+                    您还没有收藏经验分享呢~
+              </view>
+            </view>
+          </view>
+          <view wx:else><!--用户没有登录-->
+            <view bindtap="toLogin" 
+                  class="padding text-center text-gray" 
+                  style="background: #EFF8FE;text-decoration:underline;">
+                    您还没有登录呢~，点击登录
+            </view>
           </view>
         </view>
-      </view>
-    </view>
-    <!--我收藏的经验End-->
+        <!--我收藏的经验End-->
 
-    <!--我收藏的话题-->
-    <view wx:if="{{myCollection == 1}}">
-      <view wx:for="{{object2}}" wx:key="index" class="cu-card article">
-        <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
-          <view class="title">
-            <view class="text-cut">{{item.name}}</view>
-          </view>
-          <view class="content">
-            <view class="desc">
-              <view class="text-content">{{item.description}}</view>
-              <view>
-                <view class="text-gray text-sm flex justify-between">
-                  {{item.time}}
-                  <view class="text-gray text-sm">
-                    <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
-                    <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+        <!--我收藏的话题-->
+        <view wx:if="{{myCollection == 1}}">
+          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
+            <view wx:if="{{object2.length > 0}}"><!--object2不是是空的-->
+              <view wx:for="{{object2}}" wx:key="index" class="cu-card article">
+                <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
+                  <view class="title">
+                    <view class="text-cut">{{item.name}}</view>
+                  </view>
+                  <view class="content">
+                    <view class="desc">
+                      <view class="text-content">{{item.description}}</view>
+                      <view>
+                        <view class="text-gray text-sm flex justify-between">
+                          {{item.time}}
+                          <view class="text-gray text-sm">
+                            <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                            <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+                          </view>
+                        </view>
+                      </view>
+                    </view>
                   </view>
                 </view>
               </view>
             </view>
+            <view wx:else><!--object2是空的-->
+              <view
+                  class="padding text-center text-gray" 
+                  style="background: #EFF8FE;">
+                    您还没有收藏话题呢~
+              </view>
+            </view>
+          </view>
+          <view wx:else><!--用户没有登录-->
+            <view bindtap="toLogin" 
+                  class="padding text-center text-gray" 
+                  style="background: #EFF8FE;text-decoration:underline;">
+                    您还没有登录呢~，点击登录
+            </view>
           </view>
         </view>
+        <!--我收藏的话题End-->
       </view>
     </view>
-    <!--我收藏的话题End-->
   </view>
 </view>

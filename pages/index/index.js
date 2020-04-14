@@ -7,8 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrl: '',
-    nickName: '',
+    isLogin: '',
+    imgUrl: 'https://img.xiaoyou66.com/images/2020/01/21/nNUi.png',
+    nickName: '点击登录',
   },
 
   //跳转到登录界面
@@ -35,15 +36,25 @@ Page({
       url: '/pages/myMessage/myMessage'
     });
   },
+  toLogin(){//去登录
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //获取微信头像以及微信名称
-    this.setData({
-      imgUrl: app.globalData.userInfo.avatarUrl,
-      nickName: app.globalData.userInfo.nickName
+    this.setData({//先把是否登录的情况保存下来
+      isLogin: app.globalData.isLogin
     });
+    if(app.globalData.isLogin == true){//这个用户已经登录了
+      //获取微信头像以及微信名称
+      this.setData({
+        imgUrl: app.globalData.userInfo.avatarUrl,
+        nickName: app.globalData.userInfo.nickName
+      });
+    }
   },
 
   /**
@@ -78,7 +89,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad();
   },
 
   /**

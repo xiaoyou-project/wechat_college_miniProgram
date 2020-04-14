@@ -100,7 +100,7 @@ App({
               }else{
                 //获取用户openid数据成功
                 console.log("获取用户openid数据成功", res.data);
-                this.globalData.openid = res.data.data.openid;
+                this.globalData.openid = res.data.data.openid;//存openid
                 // 获取用户信息
                 wx.getSetting({
                   success: (res) => {
@@ -128,7 +128,8 @@ App({
                                 console.log("注册用户发送成功", res);
                                 //将数据存到本地缓存中
                                 this.globalData.isLogin = true;
-                                this.getUserInfo(this.globalData.userID);//初始化用户信息，获取college，name，sex
+                                this.globalData.userID = res.data.data.userID;//存userID
+                                this.getUserInfo(res.data.data.userID);//初始化用户信息，获取college，name，sex
                                 wx.setStorageSync('openid', this.globalData.openid);
                                 wx.setStorageSync('userID', res.data.data.userID);
                                 wx.setStorageSync('isLogin', true);
@@ -236,7 +237,8 @@ App({
     cardFinish: '/api/card/finish',//38、打卡
     cardJoin: '/api/card/join',//39、加入打卡
     cardDelete: '/api/card/delete',//40、删除打卡
-    commentType: '/api/comment/type',//41、获取某条评论的类型是经验的还是话题的
+    commentType: '/api/comment/type',//41、获取某条评论的类型是经验的还是话题还是打卡
     cardAbort: '/api/card/abort',//42、退出打卡
+    releaseExperience: '/api/plate/release/share',//43、发布新经验
   }
 })

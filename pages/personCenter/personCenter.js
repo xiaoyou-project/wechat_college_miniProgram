@@ -1,17 +1,17 @@
 // pages/personCenter/personCenter.js
 var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    name: '',
-    sex: '',
-    college: '',
-    isSelf: '',//判断是不是本人
+    isLogin: false,//判断是否登录
+    name: '请您先登录呢~',
+    sex: '保密',
+    college: '保密',
+    isSelf: false,//判断是不是本人
     isEdit: false,//判断是不是修改模式
-    imgUrl: '',
+    imgUrl: 'https://img.xiaoyou66.com/images/2020/01/21/nNUi.png',
     sexIndex: 0, //选择性别时
     collegeIndex: 0, //选择学院的时候
     myShare: 0,//显示经验还是话题还是打卡,0为经验，1为话题，2为打卡
@@ -37,75 +37,37 @@ Page({
                     '法学与公共管理学院',
                     '材料科学与工程学院'
     ],
-    object1: [{//经验列表
-      id: 1,
-      title: "经验1的标题",
-      time: '2020-2-29',
-      view: 666,
-      good: 777,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
-      img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-      plate: "如果学习英语"
-    },{
-      id: 2,
-      title: "经验2的标题",
-      time: '2020-3-29',
-      view: 777,
-      good: 888,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
-      img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-      plate: "如果学习高数"
-    },{
-      id: 3,
-      title: "经验3的标题",
-      time: '2020-4-29',
-      view: 888,
-      good: 999,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
-      img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-      plate: "如果学习计算机"
-    }],
-    object2: [{//话题列表
-      id: 1,
-      name: "话题1的名字",
-      time: '2020-2-29',
-      view: 666,
-      good: 777,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }, {
-      id: 2,
-      name: "话题2的名字",
-      time: '2020-3-29',
-      view: 777,
-      good: 888,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }, {
-      id: 3,
-      name: "话题3的名字",
-      time: '2020-4-29',
-      view: 888,
-      good: 999,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }],
-    object3: [{//打卡列表
-      id: 1,
-      title: "打卡1的标题",
-      keepDay: 66,
-      totalDay: 77,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }, {
-      id: 2,
-      title: "打卡2的标题",
-      keepDay: 77,
-      totalDay: 88,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }, {
-      id: 3,
-      title: "打卡3的标题",
-      keepDay: 88,
-      totalDay: 99,
-      description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
-    }]
+    object1: [
+      // {//经验列表
+      //   id: 1,
+      //   title: "经验1的标题",
+      //   time: '2020-2-29',
+      //   view: 666,
+      //   good: 777,
+      //   description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、',
+      //   img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+      //   plate: "如果学习英语"
+      // }
+    ],
+    object2: [
+      // {//话题列表
+      //   id: 1,
+      //   name: "话题1的名字",
+      //   time: '2020-2-29',
+      //   view: 666,
+      //   good: 777,
+      //   description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
+      // }
+    ],
+    object3: [
+      // {//打卡列表
+      //   id: 1,
+      //   title: "打卡1的标题",
+      //   keepDay: 66,
+      //   totalDay: 77,
+      //   description: '这是一些简略信息，这是一些简略信息，这是一些简略信息、、、、'
+      // }
+    ]
   },
 
   sexChange: function (e) {//改变性别的时候
@@ -220,15 +182,94 @@ Page({
       url: '/pages/cardDetail/cardDetail?cardID=' + this.data.object3[index].id + '&userID=' + app.globalData.userID
     });
   },
+  toLogin() {//去登录
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log("跳转到个人中心界面：",options);
     if (app.globalData.isLogin == true) {//用户已经登录了
+      //获取个人中心的数据
+      wx.request({//获取个人中心的分享经验列表
+        url: app.globalData.sameUrl + app.globalData.userShareList,
+        data: {
+          userId: options.userID
+        },
+        success: (res) => {
+          if(res.data.code == 1){//获取成功
+            this.setData({
+              object1: res.data.data
+            })
+          }else{
+            wx.showToast({
+              title: "获取用户经验列表失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) =>{
+          wx.showToast({
+            title: "获取用户经验列表失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+      wx.request({//获取个人中心的发布的话题
+        url: app.globalData.sameUrl + app.globalData.userTopicalList,
+        data: {
+          userId: options.userID
+        },
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            this.setData({
+              object2: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: "获取用户话题列表失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取用户话题列表失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+      wx.request({//获取个人中心的创建打卡
+        url: app.globalData.sameUrl + app.globalData.userCardList,
+        data: {
+          userId: options.userID
+        },
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            this.setData({
+              object3: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: "获取用户打卡列表失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取用户打卡列表失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
       if (app.globalData.userID == options.userID) {//再判断是不是自己进入的个人中心
         this.setData({
           isSelf: true,
+          isLogin: true,//保存用户是登录的
           name: app.globalData.name,
           sex: app.globalData.sex,
           college: app.globalData.college,
@@ -237,6 +278,7 @@ Page({
       }else{//不是本人进入
         this.setData({
           isSelf: false,
+          isLogin: true,//用户是登录的
           name: app.globalData.name,
           sex: app.globalData.sex,
           college: app.globalData.college,
