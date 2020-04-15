@@ -39,7 +39,7 @@ Page({
   topicArticle: function (e) {//点击话题去话题页面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({
-      url: '/pages/topicContent/topicContent?topicID=' + this.data.object2[index].id + '&userID=' + app.globalData.userID
+      url: '/pages/topicContent/topicContent?topicalID=' + this.data.object2[index].id + '&userId=' + app.globalData.userID
     });
   },
   collectionShare: function () {//我收藏的经验

@@ -6,103 +6,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    options: '',//存一下别的页面传过来的options
     showIndex: 0,
+    name: '',//板块的名字
+    description: '',//板块的描述
+    plateID: '',//板块的id
     object10: [//某个板块的经验列表页面
-      {
-        id: 1,
-        time: "2020-2-29",
-        title: "经验的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者1号一二三四",
-        content: "简略内容啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      },
-      {
-        id: 2,
-        time: "2020-2-29",
-        title: "经验2的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者2号一二三四",
-        content: "简略内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈或或或或或或或或或",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      },
-      {
-        id: 3,
-        time: "2020-3-29",
-        title: "经验3的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者3号一二三四",
-        content: "简略内容呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      }, {
-        id: 4,
-        time: "2020-4-29",
-        title: "经验的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者4号一二三四",
-        content: "简略内容哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈或或或或或或或或或",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      },
-      {
-        id: 5,
-        time: "2020-5-29",
-        title: "经验5的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者5号一二三四",
-        content: "简略内容呜呜呜呜呜呜呜呜无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无无",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      },
-      {
-        id: 6,
-        time: "2020-6-29",
-        title: "经验6的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者6号一二三四",
-        content: "简略内容么么么么么么么木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木木",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      },
-      {
-        id: 7,
-        time: "2020-7-29",
-        title: "经验7的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者7号一二三四",
-        content: "简略内容是否合适DNF喜欢佛黄金时代非你莫属的，覆写和V型就成了圣诞节发送到发会计师的飞机扣水电费看了还快递费",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      },
-      {
-        id: 8,
-        time: "2020-8-29",
-        title: "经验8的标题",
-        avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        name: "作者8号一二三四",
-        content: "简略内容嘻嘻嘻嘻嘻嘻嘻嘻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻寻",
-        img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66,
-        view: 77,
-        comments: 88
-      }
+      // {
+      //   id: 1,
+      //   time: "2020-2-29",
+      //   title: "经验的标题",
+      //   avatar: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+      //   name: "作者1号一二三四",
+      //   content: "简略内容啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦",
+      //   img: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+      //   total: 66,
+      //   view: 77,
+      //   comments: 88
+      // }
     ],
   },
   panel: function (e) {//折叠版函数
@@ -131,7 +52,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("来到某个板块的经验列表页面");
+    console.log("来到某个板块的经验列表页面", options);
+    if(options != undefined){
+      let that = this;
+      this.setData({
+        options: options,
+        name: options.name,
+        plateID: options.plateID,
+        description: options.description
+      });
+      wx.request({//获取某个板块的经验列表
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        url: app.globalData.sameUrl + app.globalData.plateShareList,
+        data: {
+          plateID: options.plateID
+        },
+        method: 'get',
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            that.setData({//保存数据
+              object10: res.data.data
+            });
+          } else {
+            wx.showToast({
+              title: "获取经验列表信息失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "获取经验列表信息失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+    }
   },
 
   /**
@@ -145,7 +101,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**

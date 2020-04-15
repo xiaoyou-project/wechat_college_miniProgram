@@ -7,134 +7,34 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: false,//判断是否登录
     object7: [//话题列表
-      {
-        id: 1,
-        title: "高考推延？",
-        view: 66
-    },{
-        id: 2,
-        title: "中考推延？",
-        view: 66
-    },{
-        id: 3,
-        title: "高考推延？？",
-        view: 66
-    },{
-        id: 4,
-        title: "高考推延？？？",
-        view: 66
-    },{
-        id: 5,
-        title: "高考推延？？？？",
-        view: 66
-    },{
-        id: 6,
-        title: "高考推延？？？？？",
-        view: 66
-    }],
-    object9: [
-      {
-        id:1,
-        name: "学习英语",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-    },{
-        id: 2,
-        name: "学习数学AND高数",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-    },{
-        id: 3,
-        name: "学习计算机的好多好多好多东西",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-    },{
-        id: 4,
-        name: "啥都学习",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-    },{
-        id: 5,
-        name: "好好学习，天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-    },{
-        id: 6,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-    }],
-    myObject9: [
-      {
-        id: 1,
-        name: "学习英语",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      }, {
-        id: 2,
-        name: "学习数学AND高数",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      }, {
-        id: 3,
-        name: "学习计算机的好多好多好多东西",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      }, {
-        id: 4,
-        name: "啥都学习",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      }, {
-        id: 5,
-        name: "好好学习，天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      }, {
-        id: 6,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      },
-      {
-        id: 7,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      },
-      {
-        id: 8,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      },
-      {
-        id: 9,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      },
-      {
-        id: 10,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      },
-      {
-        id: 11,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      },
-      {
-        id: 12,
-        name: "好好学习天天向上",
-        imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
-        total: 66
-      }]
+      // {
+      //   id: 1,
+      //   title: "高考推延？",
+      //   view: 66
+      // }
+    ],
+    object9: [//热门板块
+      // {
+      //   id:1,
+      //   name: "学习英语",
+      //   imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+      //   total: 66,
+      //   description: '内容',//板块内容介绍
+      // } 
+    ],
+    myObject9: [//我收藏的板块
+      // {
+      //   id: 1,
+      //   name: "学习英语",
+      //   imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+      //   total: 66,
+      //   description: '内容',//板块内容介绍
+      // }
+      ]
   },
-  toTest: function () {
+  toTest: function () {//测试页面
     wx.navigateTo({
       url: '/pages/test/test'
     });
@@ -142,7 +42,7 @@ Page({
   toTopicContent: function(e){//去话题的详细界面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({
-      url: '/pages/topicContent/topicContent?topicID=' + this.data.object7[index].id + '&userID=' + app.globalData.userID
+      url: '/pages/topicContent/topicContent?topicalID=' + this.data.object7[index].id + '&userId=' + app.globalData.userID
     });
   },
   toPublishTopic: function(){//去发布话题界面
@@ -171,11 +71,87 @@ Page({
       url: '/pages/plateList/plateList'
     });
   },
+  theFailMeg: function(title){//提示信息函数
+    wx.showToast({
+      title: title,
+      image: '../../image/登录失败.png'
+    });
+  },
+  toLogin() {//去登录
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
+    this.setData({//存储登录信息
+      isLogin: app.globalData.isLogin
+    });
+    wx.request({//获取话题列表
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      url: app.globalData.sameUrl + app.globalData.topicalTopicalList,
+      data: {
 
+      },
+      method: 'get',
+      success: (res) => {
+        if (res.data.code == 1) {//获取成功
+          that.setData({//保存数据
+            object7: res.data.data
+          });
+        } else {
+          that.theFailMeg('获取话题列表失败');
+        }
+      },
+      fail: (res) => {
+        that.theFailMeg('获取话题列表失败');
+      }
+    });
+    wx.request({//获取板块列表
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      url: app.globalData.sameUrl + app.globalData.platePlateList,
+      data: {
+
+      },
+      method: 'get',
+      success: (res) => {
+        if (res.data.code == 1) {//获取成功
+          that.setData({//保存数据
+            object9: res.data.data
+          });
+        } else {
+          that.theFailMeg('获取板块列表失败');
+        }
+      },
+      fail: (res) => {
+        that.theFailMeg('获取板块列表失败');
+      }
+    });
+    if(app.globalData.isLogin==true){//这个用户已经登录了
+      wx.request({//获取用户收藏的板块列表
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        url: app.globalData.sameUrl + app.globalData.plateCollectPlateList,
+        data: {
+          userID: app.globalData.userID
+        },
+        method: 'get',
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            that.setData({//保存数据
+              object9: res.data.data
+            });
+          } else {
+            that.theFailMeg('获取板块列表失败');
+          }
+        },
+        fail: (res) => {
+          that.theFailMeg('获取板块列表失败');
+        }
+      });
+    }
   },
 
   /**
@@ -189,7 +165,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**
@@ -210,7 +186,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad();
   },
 
   /**

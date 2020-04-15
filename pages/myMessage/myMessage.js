@@ -143,7 +143,7 @@ Page({
             messageStatus: 1
           });
           wx.navigateTo({
-            url: '/pages/topicContent/topicContent?topicID=' + articleId + '&userID=' + app.globalData.userID
+            url: '/pages/topicContent/topicContent?topicalID=' + articleId + '&userId=' + app.globalData.userID
           });
 
         } else {
@@ -294,7 +294,7 @@ Page({
             messageStatus: 1
           });
           wx.navigateTo({
-            url: '/pages/topicContent/topicContent?topicID=' + articleId + '&userID=' + app.globalData.userID
+            url: '/pages/topicContent/topicContent?topicalID=' + articleId + '&userId=' + app.globalData.userID
           });
         } else {
           wx.showToast({

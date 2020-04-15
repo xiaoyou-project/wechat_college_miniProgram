@@ -1,107 +1,127 @@
 <!--pages/plate/plate.wxml-->
-<view>
-  <!-- 话题 -->
-  <view class="cu-card case">
-    <view class="cu-item radius shadow-warp bg-white margin-top">
-      <view class="cu-list padding-xs">
-        <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-          <view class="flex-treble padding-xs margin-xs radius">
-            话题
-          </view>
-          <view class="flex-sub padding-xs margin-xs radius" bindtap="toTopicList">
-            查看更多
-          </view>
-        </view>
-        <view class="cu-item">
-          <view class="flex" style="flex-wrap: wrap;">
-            <view  wx:for="{{object7}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
-                    bindtap="toTopicContent"
-                    class="flex-sub radius bg-grey padding-xs margin-xs text-cut"   
-                    style="width: 30%;min-width: 30%;max-width: 30%;">
-              {{item.title}}
+<view class="mainView">
+  <view class="mainView02">
+    <!-- 话题 -->
+    <view class="cu-card case">
+      <view class="cu-item radius shadow-warp bg-white margin-top">
+        <view class="cu-list padding-xs">
+          <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
+            <view class="flex-treble padding-xs margin-xs radius">
+              话题
             </view>
-            <view class="flex-sub radius bg-grey padding-xs margin-xs text-cut" 
-                  bindtap="toPublishTopic"
-                  style="width: 30%;min-width: 30%;max-width: 30%;">
-              发布话题
-            </view> 
+            <view class="flex-sub padding-xs margin-xs radius" bindtap="toTopicList">
+              查看更多
+            </view>
+          </view>
+          <view class="cu-item">
+            <view class="flex" style="flex-wrap: wrap;">
+              <view  wx:for="{{object7}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
+                      bindtap="toTopicContent"
+                      class="flex-sub radius bg-grey padding-xs margin-xs text-cut"   
+                      style="width: 30%;min-width: 30%;max-width: 30%;">
+                {{item.title}}
+              </view>
+              <view class="flex-sub radius bg-grey padding-xs margin-xs text-cut text-center" 
+                    bindtap="toPublishTopic"
+                    style="width: 30%;min-width: 30%;max-width: 30%;">
+                发布话题
+              </view> 
+            </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
-  <!-- 话题End -->
-  <!-- 热门板块 -->
-  <view class="cu-card case">
-    <view class="cu-item radius shadow-warp bg-white margin-top">
-      <view class="cu-list padding-xs">
-        <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-          <view class="flex-treble padding-xs margin-xs radius">
-            热门板块
+    <!-- 话题End -->
+    <!-- 热门板块 -->
+    <view class="cu-card case">
+      <view class="cu-item radius shadow-warp bg-white margin-top">
+        <view class="cu-list padding-xs">
+          <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
+            <view class="flex-treble padding-xs margin-xs radius">
+              热门板块
+            </view>
+            <view class="flex-sub padding-xs margin-xs radius" bindtap="toPlateList">
+              查看更多
+            </view>
           </view>
-          <view class="flex-sub padding-xs margin-xs radius" bindtap="toPlateList">
-            查看更多
+          <view class="cu-item">
+            <view class="flex" style="flex-wrap: wrap;">
+              <view  wx:for="{{object9}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
+                      bindtap="toExperienceList"
+                      class="flex-sub radius bg-grey margin-xs text-cut"   
+                      style="width: 30%;min-width: 30%;max-width: 30%;">
+                <view class="image">
+                  <image src="{{item.imgUrl}}" style="height: 200rpx; width: 200rpx;" />
+                  <view class="cu-bar bg-shadeBottom">
+                    <text class="text-cut">
+                      {{item.name}}
+                    </text>
+                  </view>
+                </view>
+              </view>
+              <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
+                    bindtap="toApplyPlate"
+                    style="width: 30%;min-width: 30%;max-width: 30%;text-align: center; height: 200rpx;line-height: 140rpx;">
+                申请板块
+              </view> 
+            </view>
           </view>
         </view>
-        <view class="cu-item">
-          <view class="flex" style="flex-wrap: wrap;">
-            <view  wx:for="{{object9}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
-                    bindtap="toExperienceList"
-                    class="flex-sub radius bg-grey margin-xs text-cut"   
-                    style="width: 30%;min-width: 30%;max-width: 30%;">
-              <view class="image">
-                <image mode="widthFix" src="{{item.imgUrl}}" />
-                <view class="cu-bar bg-shadeBottom">
-                  <text class="text-cut">
-                    {{item.name}}
-                  </text>
+      </view>
+    </view>
+    <!-- 热门板块End -->
+    <!-- 我收藏的板块 -->
+    <view class="cu-card case">
+      <view class="cu-item radius shadow-warp bg-white margin-top">
+        <view class="cu-list padding-xs">
+          <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
+            <view class="flex-treble padding-xs margin-xs radius">
+              我收藏的板块
+            </view>
+          </view>
+          <view class="cu-item">
+            <view class="flex" style="flex-wrap: wrap;">
+              <view wx:if="{{isLogin == true}}" style="width: 100%;"><!--是登录了的用户-->
+                <view wx:if="{{myObject9.length > 0}}"><!--myObject9不是是空的-->
+                  <view  wx:for="{{myObject9}}" wx:key="index" data-value="{{index}}"
+                          bindtap="toExperienceList"
+                          class="flex-sub radius bg-grey margin-xs text-cut"   
+                          style="width: 30%;min-width: 30%;max-width: 30%;">
+                    <view class="image">
+                      <image mode="widthFix" src="{{item.imgUrl}}" />
+                      <view class="cu-bar bg-shadeBottom">
+                        <text class="text-cut">
+                          {{item.name}}
+                        </text>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
+                        bindtap="toTest"
+                        style="width: 30%;min-width: 30%;max-width: 30%;text-align: center;">
+                    去测试页面
+                  </view>
+                </view>
+                <view wx:else><!--myObject9是空的-->
+                  <view
+                      class="padding text-center text-gray" 
+                      style="background: #EFF8FE;">
+                        您还没有收藏任何板块呢~
+                  </view>
+                </view>
+              </view>
+              <view wx:else><!--用户没有登录-->
+                <view bindtap="toLogin" 
+                      class="padding text-center text-gray" 
+                      style="background: #EFF8FE;text-decoration:underline;">
+                        您还没有登录呢~，点击登录
                 </view>
               </view>
             </view>
-            <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
-                  bindtap="toApplyPlate"
-                  style="width: 30%;min-width: 30%;max-width: 30%;text-align: center;">
-              申请板块
-            </view> 
           </view>
         </view>
       </view>
     </view>
+    <!-- 我收藏的板块End -->
   </view>
-  <!-- 热门板块End -->
-  <!-- 我收藏的板块 -->
-  <view class="cu-card case">
-    <view class="cu-item radius shadow-warp bg-white margin-top">
-      <view class="cu-list padding-xs">
-        <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-          <view class="flex-treble padding-xs margin-xs radius">
-            我收藏的板块
-          </view>
-        </view>
-        <view class="cu-item">
-          <view class="flex" style="flex-wrap: wrap;">
-            <view  wx:for="{{myObject9}}" wx:key="index" data-value="{{index}}"
-                    bindtap="toExperienceList"
-                    class="flex-sub radius bg-grey margin-xs text-cut"   
-                    style="width: 30%;min-width: 30%;max-width: 30%;">
-              <view class="image">
-                <image mode="widthFix" src="{{item.imgUrl}}" />
-                <view class="cu-bar bg-shadeBottom">
-                  <text class="text-cut">
-                    {{item.name}}
-                  </text>
-                </view>
-              </view>
-            </view>
-            <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
-                  bindtap="toTest"
-                  style="width: 30%;min-width: 30%;max-width: 30%;text-align: center;">
-              去测试页面
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- 我收藏的板块End -->
 </view>
