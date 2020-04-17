@@ -6,7 +6,7 @@
         <view class="title padding">
           <view class="text-cut text-center">#{{title}}#</view>
         </view>
-        <button class="cu-btn round bg-white shadow" 
+        <button wx:if="{{authorID != userId}}" class="cu-btn round bg-white shadow" 
               role="button" 
               style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
               bindtap="collectionTopic"
@@ -91,7 +91,7 @@
           </view>
         </view>
       </view>
-      <view wx:else style="width: 100%;"><!--object8是空的-->
+      <view wx:else style="width: 100%;" style="margin-bottom: 100rpx;"><!--object8是空的-->
         <view
             class="padding text-center text-gray" 
             style="background: #EFF8FE;">

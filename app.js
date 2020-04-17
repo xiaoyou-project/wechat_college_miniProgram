@@ -191,7 +191,7 @@ App({
   globalData: {
     userInfo: null,
     openid: '',//用户的openid
-    userID: '',//用户的id
+    userID: 0,//用户的id
     isLogin: false,//判断用户是否登录
     name: '错误',//个人中心的存用户自己填的名字
     college: '保密',//个人中心的学院
@@ -223,8 +223,8 @@ App({
     plateShareList: '/api/plate/get/shareList', //24、获取经验列表
     plateShareContent: '/api/plate/get/shareContent',//25、获取经验内容
     plateEditShareContent: '/api/plate/edit/shareContent',//26、修改经验内容
-    plateGood: '/api/plate/update/good', //27、点赞或取消点赞
-    plateCollect: '/api/plate/update/collect',//28、（取消）收藏经验
+    plateGood: '/api/plate/update/good', //27、点赞或取消点赞经验
+    plateCollectShare: '/api/plate/update/collect/share',//28、（取消）收藏经验
     plateDeleteShareContent: '/api/plate/delete/shareContent',//29、删除经验内容
     plateCollectPlateList: '/api/plate/get/collect/plateList', //30、获取我收藏的板块
     plateCollect: '/api/plate/update/collect', //31、收藏板块
@@ -240,5 +240,6 @@ App({
     commentType: '/api/comment/type',//41、获取某条评论的类型是经验的还是话题还是打卡
     cardAbort: '/api/card/abort',//42、退出打卡
     releaseExperience: '/api/plate/release/share',//43、发布新经验
+    userPlateStatus: '/api/plate/status/collect',//44、判断用户是否收藏板块
   }
 })

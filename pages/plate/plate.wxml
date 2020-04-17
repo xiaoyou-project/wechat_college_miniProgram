@@ -26,6 +26,11 @@
                     style="width: 30%;min-width: 30%;max-width: 30%;">
                 发布话题
               </view> 
+              <!-- <view class="flex-sub radius bg-grey padding-xs margin-xs text-cut text-center" 
+                    bindtap="toTest"
+                    style="width: 30%;min-width: 30%;max-width: 30%;">
+                去测试页面
+              </view> -->
             </view>
           </view>
         </view>

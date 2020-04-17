@@ -1,4 +1,5 @@
 // pages/applyPlate/applyPlate.js
+var app = getApp();
 Page({
 
   /**
@@ -22,6 +23,39 @@ Page({
   },
   submitCard: function () {//提交板块申请
     console.log("提交板块申请");
+    let that = this;
+    if(app.globalData.isLogin == true){//用户已经登录了
+      wx.request({//提交板块申请
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        url: app.globalData.sameUrl + app.globalData.plateApplicationPlate,
+        data: {
+          name: that.data.name,
+          content: that.data.content,
+          userID: app.globalData.userID
+        },
+        method: 'post',
+        success: (res) => {
+          if (res.data.code == 1) {//发送成功
+            
+          } else {
+            wx.showToast({
+              title: "申请失败",
+              image: '../../image/登录失败.png'
+            });
+          }
+        },
+        fail: (res) => {
+          wx.showToast({
+            title: "申请失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      });
+    }else{
+      wx.navigateTo({
+        url: '/pages/login/login'
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载

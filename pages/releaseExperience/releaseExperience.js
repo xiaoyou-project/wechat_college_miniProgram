@@ -1,13 +1,18 @@
 // pages/releaseExperience/releaseExperience.js
+import api from '../../utils/api.js';
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    uploadImgNum: 0,//存储上传了的图片数量
     title: '',//发布的经验标题
     content: '',//发布经验的内容
     imgList: [],//上传的图片
+    plateID: 0,//上传经验的板块id
+    imgUrl: null,//存储上传的图片
 
   },
   titleChange: function (e) {//填写经验标题
@@ -23,8 +28,19 @@ Page({
       content: e.detail.value
     });
   },
-  submitCard: function () {//发布话题
-    console.log("发布话题");
+  submitCard: function () {//发布经验
+    if(app.globalData.isLogin == true){//用户已经登录了
+      console.log("发布经验");
+      //先上传图片，然后拿到图片地址
+      let that = this;
+      that.data.imgList.forEach(function(item, index){//先上传图片
+        that.uploadImage(item);
+      });
+    }else{
+      wx.navigateTo({//去登录界面
+        url: '/pages/login/login'
+      })
+    }
   },
   ViewImage(e) {//上传图片
     wx.previewImage({
@@ -66,11 +82,71 @@ Page({
       }
     })
   },
+  uploadImage(imgPath) {//上传图片
+    let that = this;
+    //上传图片到自己服务器
+    wx.uploadFile({
+      url: 'https://college.xiaoyou66.com/api/img/upload',
+      filePath: imgPath,
+      name: 'file',
+      success(res) {
+        //服务器返回图片地址，把图片地址给粘贴上去
+        let data = JSON.parse(res.data)
+        console.log(data)
+        if (data.code == 1) {
+          if(that.data.imgUrl == null){//第一次拼接
+            that.setData({
+              imgUrl: data.data.src,
+              uploadImgNum: parseInt(that.data.uploadImgNum) + 1
+            })
+          }else{
+            that.setData({
+              imgUrl: that.data.imgUrl.concat("&&" + data.data.src),
+              uploadImgNum: parseInt(that.data.uploadImgNum) + 1
+            })
+          }
+          if (that.data.uploadImgNum == that.data.imgList.length) {//图片都上传完了
+            api.post(app.globalData.releaseExperience, {
+              userID: app.globalData.userID,
+              title: that.data.title,
+              content: that.data.content,
+              plateID: that.data.plateID,
+              imgUrl: that.data.imgUrl
+            }).then((res) => {
+              wx.switchTab({//分享成功去板块页面
+                url: '/pages/plate/plate'
+              })
+            }).catch((err) => {
+              wx.showToast({
+                title: "发布失败",
+                image: '../../image/登录失败.png'
+              });
+            })
+          }
+          console.log("上传图片",data.data.src);
+          console.log("上传图片",that.data);
+        }else{
+          wx.showToast({
+            title: "上传图片失败",
+            image: '../../image/登录失败.png'
+          });
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: "上传图片失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      plateID: options.plateID
+    })
   },
 
   /**

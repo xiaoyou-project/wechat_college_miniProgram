@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    options: '',//存储别的页面传过来的数据
+    options: undefined,//存储别的页面传过来的数据
     isLogin: false,//判断是否登录
     InputBottom: 0,//发表评论相关
     commentContent: '',//发表评论的内容
@@ -355,46 +355,48 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this;
-    console.log("来到话题界面：",options);
-    this.setData({//存数据
-      options: options,
-      topicalID: options.topicalID,
-      userId: options.userId,
-      isLogin: app.globalData.isLogin
-    });
-    wx.request({//获话题内容
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
-      url: app.globalData.sameUrl + app.globalData.topicalContent,
-      data: {
+    if(options != undefined){
+      console.log("来到话题界面：", options);
+      let that = this;
+      this.setData({//存数据
+        options: options,
         topicalID: options.topicalID,
-        userId: options.userId
-      },
-      method: 'get',
-      success: (res) => {
-        if (res.data.code == 1) {//获取成功
-          let data = res.data.data;
-          that.setData({//保存数据
-            title: data.title,
-            content: data.content,
-            view: data.view,
-            good: data.good,
-            name: data.name,
-            imgUrl: data.imgUrl,
-            goodStatus: data.goodStatus,
-            collectStatus: data.collectStatus,
-            time: data.time,
-            authorID: data.authorID
-          });
-        } else {
+        userId: options.userId,
+        isLogin: app.globalData.isLogin
+      });
+      wx.request({//获话题内容
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        url: app.globalData.sameUrl + app.globalData.topicalContent,
+        data: {
+          topicalID: options.topicalID,
+          userId: options.userId
+        },
+        method: 'get',
+        success: (res) => {
+          if (res.data.code == 1) {//获取成功
+            let data = res.data.data;
+            that.setData({//保存数据
+              title: data.title,
+              content: data.content,
+              view: data.view,
+              good: data.good,
+              name: data.name,
+              imgUrl: data.imgUrl,
+              goodStatus: data.goodStatus,
+              collectStatus: data.collectStatus,
+              time: data.time,
+              authorID: data.authorID
+            });
+          } else {
+            that.theFailMeg('获取话题内容失败');
+          }
+        },
+        fail: (res) => {
           that.theFailMeg('获取话题内容失败');
         }
-      },
-      fail: (res) => {
-        that.theFailMeg('获取话题内容失败');
-      }
-    });
-    this.getCommentList(options.topicalID, options.userId);//获取评论列表
+      });
+      this.getCommentList(options.topicalID, options.userId);//获取评论列表
+    }
   },
 
   /**
@@ -408,7 +410,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad(this.data.options);
   },
 
   /**

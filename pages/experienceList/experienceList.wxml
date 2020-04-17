@@ -7,9 +7,10 @@
         </view>
         <button class="cu-btn round bg-white shadow" 
               role="button" 
-              style="width: 150rpx;position: absolute;right: 20rpx;top: 40rpx;"
+              style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
+              bindtap="collectionPlate"
               aria-disabled="false">
-                收藏
+                {{collectionStatus==0?'收藏':'取消收藏'}}
         </button>
         <button class="cu-btn round bg-white shadow" 
               role="button" 

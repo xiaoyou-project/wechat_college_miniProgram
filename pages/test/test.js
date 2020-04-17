@@ -1,4 +1,5 @@
 // pages/test/test.js
+import api from '../../utils/api.js'
 // 测试界面
 var app = getApp();
 Page({
@@ -17,6 +18,14 @@ Page({
    */
   onLoad: function (options) {
     console.log(app.globalData);
+    console.log("测试封装request请求");
+    api.get(app.globalData.userUserInfo, {
+      userId: app.globalData.userID
+    }).then(res => {
+      console.log("请求成功的返回数据", res);
+    }).catch(err => {
+      console.log("请求失败的返回数据", err);
+    })
   },
 
   /**

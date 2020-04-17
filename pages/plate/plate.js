@@ -57,8 +57,11 @@ Page({
   },
   toExperienceList: function(e){//去板块的经验列表界面
     let index = e.currentTarget.dataset.value;
+    let plateID = this.data.object9[index].id;
+    let name = this.data.object9[index].name;
+    let description= this.data.object9[index].description;
     wx.navigateTo({
-      url: '/pages/experienceList/experienceList?plateID=' + this.data.object9[index].id
+      url: '/pages/experienceList/experienceList?plateID=' + plateID + '&name=' + name + '&description=' + description
     });
   },
   toApplyPlate: function(){//申请板块界面

@@ -1,130 +1,141 @@
-<view class="cu-item shadow">
-  <view class="cu-card article">
-    <!-- 上面的打卡内容 -->
-    <view class="cu-item radius shadow-warp">
-      <view class="cu-list menu-avatar">
-        <view class="cu-item solids-bottom">
-          <view class="cu-avatar round lg" style="background-image:url({{imgUrl}});" 
-                data-id="{{userID}}" 
-                bindtap="toPersonCenter"></view>
-          <view class="content flex justify-between" style="width: 70%;">
-            <view style="margin-left: -15rpx;">{{name}}</view>
-            <view class="text-gray text-sm">
-              {{time}}
-            </view>
-            <view wx:if="{{userId == userID}}" class="text-gray flex-sub" 
-                  style="position: absolute; right: -40rpx; top: -40rpx;" 
-                  bindtap="deleteCard">
-              删除
-            </view>
-            <view wx:if="{{cardStatus == 1 && userId != userID}}" class="text-gray flex-sub" 
-                  style="position: absolute; right: -40rpx; top: -40rpx;" 
-                  bindtap="signOutCard">
-              退出打卡
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="title text-center solid-bottom">
-        <view class="text-cut">{{title}}</view>
-      </view>
-      <view class="content">
-        <view class="desc">
-          <view class="content margin-bottom solid-bottom ">{{description}}</view>
-          <view>
-            <view class="text-gray text-sm flex justify-between">
-              <view wx:if="{{cardStatus==0}}" class="flex-treble text-black text-bold text-xl">需坚持 {{totalDay}} 天</view>
-              <view wx:if="{{cardStatus==1}}" class="flex-treble text-black text-bold text-xl">
-                已坚持 {{keepDay}}/{{totalDay}}天
-              </view>
-              <view class="flex-sub cu-tag bg-blue light lg">已加入{{peoples}}人</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <!-- 上面的打卡内容End -->
-
-    <!-- 中间的打卡按钮 -->
-    <view class="flex flex-direction bg-white margin shadow-lg radius shadow padding">
-      <button wx:if="{{cardStatus == 0}}" 
-              class="cu-btn bg-cyan margin-tb-sm lg" 
-              role="button" 
-              bindtap="joinCard" 
-              aria-disabled="false">
-        加入打卡
-      </button>
-      <button wx:if="{{nowStatus==0&&cardStatus==1}}" 
-              class="cu-btn bg-cyan margin-tb-sm lg" 
-              role="button" 
-              bindtap="clockCard" 
-              aria-disabled="false">
-       立即打卡
-      </button>
-      <!-- 下面的输入框 -->
-      <textarea 
-        wx:if="{{nowStatus==0&&cardStatus==1}}"
-        class="radius shadow solids padding" 
-        placeholder="请输入打卡感想，也可以不输入，最多50字" 
-        bindinput="textareaAInput" 
-        maxlength="50" 
-        style="width: 100%;">
-      </textarea>
-      <!-- 下面的输入框End -->
-      <button wx:if="{{nowStatus==1&&cardStatus==1}}" 
-              class="cu-btn margin-tb-sm lg" 
-              style="background: #8799a3;"
-              role="button" 
-              disabled="true">
-       今天已打卡
-      </button>
-    </view>
-    <!-- 中间的打卡按钮End -->
-
-    <!-- 下面的打卡记录 -->
-    <view class="cu-card case">
-      <view class="cu-item radius shadow-warp bg-white margin-top">
-        <view class="cu-list padding-xs">
-          <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-            <view class="flex-treble padding-xs margin-xs radius">
-              打卡记录
-            </view>
-          </view>
-          <view class="cu-item">
-            <!-- 记录 -->
-            <view wx:if="{{object8 != []}}" class="cu-list menu-avatar comment padding">
-              <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
-                <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
-                      data-id="{{item.userID}}"
-                      bindtap="toPersonCenter"></view>
-                <view class="content">
-                  <view class="text-grey">{{item.name}}</view>
-                  <view wx:if="{{userID == item.userID}}" class="text-grey" 
-                        style="position: absolute;right: 0rpx;top: -10rpx;" 
-                        data-id="{{item.id}}" 
-                        bindtap="deleteComment">
-                      删除
-                  </view>
-                  <view class="text-gray content text-df bg-grey light">
-                    {{item.content}}
-                  </view>
-                  <view class="margin-top-sm flex justify-between">
-                    <view class="text-gray text-df">{{item.time}}</view>
-                    <view>
-                      <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
-                            data-id="{{item.id}}"
-                            data-index="{{index}}"
-                            bindtap="toCommentGoods"></text>{{item.good}}
-                    </view>
-                  </view>
+<view class="mainView">
+  <view class="mainView02">
+    <view class="cu-item shadow">
+      <view class="cu-card article">
+        <!-- 上面的打卡内容 -->
+        <view class="cu-item radius shadow-warp">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item solids-bottom">
+              <view class="cu-avatar round lg" style="background-image:url({{imgUrl}});" 
+                    data-id="{{userID}}" 
+                    bindtap="toPersonCenter"></view>
+              <view class="content flex justify-between" style="width: 70%;">
+                <view style="margin-left: -15rpx;">{{name}}</view>
+                <view class="text-gray text-sm">
+                  {{time}}
+                </view>
+                <view wx:if="{{userId == userID}}" class="text-gray flex-sub" 
+                      style="position: absolute; right: -40rpx; top: -40rpx;" 
+                      bindtap="deleteCard">
+                  删除
+                </view>
+                <view wx:if="{{cardStatus == 1 && userId != userID}}" class="text-gray flex-sub" 
+                      style="position: absolute; right: -40rpx; top: -40rpx;" 
+                      bindtap="signOutCard">
+                  退出打卡
                 </view>
               </view>
             </view>
-            <!-- 记录End -->
+          </view>
+          <view class="title text-center solid-bottom">
+            <view class="text-cut">{{title}}</view>
+          </view>
+          <view class="content">
+            <view class="desc">
+              <view class="content margin-bottom solid-bottom ">{{description}}</view>
+              <view>
+                <view class="text-gray text-sm flex justify-between">
+                  <view wx:if="{{cardStatus==0}}" class="flex-treble text-black text-bold text-xl">需坚持 {{totalDay}} 天</view>
+                  <view wx:if="{{cardStatus==1}}" class="flex-treble text-black text-bold text-xl">
+                    已坚持 {{keepDay}}/{{totalDay}}天
+                  </view>
+                  <view class="flex-sub cu-tag bg-blue light lg">已加入{{peoples}}人</view>
+                </view>
+              </view>
+            </view>
           </view>
         </view>
+        <!-- 上面的打卡内容End -->
+
+        <!-- 中间的打卡按钮 -->
+        <view class="flex flex-direction bg-white margin shadow-lg radius shadow padding">
+          <button wx:if="{{cardStatus == 0}}" 
+                  class="cu-btn bg-cyan margin-tb-sm lg" 
+                  role="button" 
+                  bindtap="joinCard" 
+                  aria-disabled="false">
+            加入打卡
+          </button>
+          <button wx:if="{{nowStatus==0&&cardStatus==1}}" 
+                  class="cu-btn bg-cyan margin-tb-sm lg" 
+                  role="button" 
+                  bindtap="clockCard" 
+                  aria-disabled="false">
+          立即打卡
+          </button>
+          <!-- 下面的输入框 -->
+          <textarea 
+            wx:if="{{nowStatus==0&&cardStatus==1}}"
+            class="radius shadow solids padding" 
+            placeholder="请输入打卡感想，也可以不输入，最多50字" 
+            bindinput="textareaAInput" 
+            maxlength="50" 
+            style="width: 100%;">
+          </textarea>
+          <!-- 下面的输入框End -->
+          <button wx:if="{{nowStatus==1&&cardStatus==1}}" 
+                  class="cu-btn margin-tb-sm lg" 
+                  style="background: #8799a3;"
+                  role="button" 
+                  disabled="true">
+          今天已打卡
+          </button>
+        </view>
+        <!-- 中间的打卡按钮End -->
+
+        <!-- 下面的打卡记录 -->
+        <view class="cu-card case">
+          <view class="cu-item radius shadow-warp bg-white margin-top">
+            <view class="cu-list padding-xs">
+              <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
+                <view class="flex-treble padding-xs margin-xs radius">
+                  打卡记录
+                </view>
+              </view>
+              <view class="cu-item">
+                <!-- 记录 -->
+                <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment padding">
+                  <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
+                    <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
+                          data-id="{{item.userID}}"
+                          bindtap="toPersonCenter"></view>
+                    <view class="content">
+                      <view class="text-grey">{{item.name}}</view>
+                      <view wx:if="{{userID == item.userID}}" class="text-grey" 
+                            style="position: absolute;right: 0rpx;top: -10rpx;" 
+                            data-id="{{item.id}}" 
+                            bindtap="deleteComment">
+                          删除
+                      </view>
+                      <view class="text-gray content text-df bg-grey light">
+                        {{item.content}}
+                      </view>
+                      <view class="margin-top-sm flex justify-between">
+                        <view class="text-gray text-df">{{item.time}}</view>
+                        <view>
+                          <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
+                                data-id="{{item.id}}"
+                                data-index="{{index}}"
+                                bindtap="toCommentGoods"></text>{{item.good}}
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view wx:else style="width: 100%;" style="margin-bottom: 100rpx;"><!--object8是空的-->
+                  <view
+                      class="padding text-center text-gray" 
+                      style="background: #EFF8FE;">
+                        这里还没有任何打卡感想呢~
+                  </view>
+                </view>
+                <!-- 记录End -->
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 下面的打卡记录End -->
       </view>
     </view>
-    <!-- 下面的打卡记录End -->
   </view>
 </view>

@@ -1,4 +1,5 @@
 // pages/experienceList/experienceList.js
+import api from '../../utils/api.js';
 var app = getApp();
 Page({
 
@@ -6,11 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: false,//存储登录信息
+    userID: 0,//存储进入这个页面的用户id
     options: '',//存一下别的页面传过来的options
     showIndex: 0,
     name: '',//板块的名字
     description: '',//板块的描述
     plateID: '',//板块的id
+    collectionStatus: 0,//版块的收藏状态，0表示没有收藏，1表示已经收藏了
     object10: [//某个板块的经验列表页面
       // {
       //   id: 1,
@@ -44,49 +48,82 @@ Page({
     });
   },
   toReleaseExperience: function(){//去分享经验界面
+    let that = this;
     wx.navigateTo({
-      url: '/pages/releaseExperience/releaseExperience'
+      url: '/pages/releaseExperience/releaseExperience?plateID=' + that.data.plateID
     });
+  },
+  collectionPlate: function(){//收藏这个版块或者取消收藏这个版块
+    if(app.globalData.isLogin == true){
+      let that = this;
+      let status = this.data.collectionStatus == 0 ? 1 : 0;
+      api.post(app.globalData.plateCollect,{
+        userID: that.data.userID,
+        plateID: that.data.plateID
+      }).then((res) => {
+        that.setData({
+          collectionStatus: status
+        });
+      }).catch((err) => {
+        wx.showToast({
+          title: "操作失败",
+          image: '../../image/登录失败.png'
+        });
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/login/login'
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("来到某个板块的经验列表页面", options);
     if(options != undefined){
+      console.log("来到某个板块的经验列表页面", options);
       let that = this;
       this.setData({
         options: options,
         name: options.name,
         plateID: options.plateID,
-        description: options.description
+        userID: app.globalData.userID,
+        description: options.description,
+        isLogin: app.globalData.isLogin
       });
-      wx.request({//获取某个板块的经验列表
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        url: app.globalData.sameUrl + app.globalData.plateShareList,
-        data: {
-          plateID: options.plateID
-        },
-        method: 'get',
-        success: (res) => {
-          if (res.data.code == 1) {//获取成功
-            that.setData({//保存数据
-              object10: res.data.data
+      api.get(app.globalData.plateShareList,{//先获取经验列表信息
+        plateID: options.plateID
+      }).then((res) => {
+        that.setData({//保存数据
+          object10: res.data
+        });
+      }).catch((err) => {
+        wx.showToast({
+          title: "获取经验列表信息失败",
+          image: '../../image/登录失败.png'
+        });
+      });
+      if(app.globalData.isLogin == true){//这个用户登录了
+        api.get(app.globalData.userPlateStatus, {//获取用户是否收藏这个板块
+          plateID: options.plateID,
+          userID: app.globalData.userID
+        }).then((res) => {
+          if(res.data.code == 1){//用户收藏了
+            that.setData({
+              collectionStatus: 1
             });
-          } else {
-            wx.showToast({
-              title: "获取经验列表信息失败",
-              image: '../../image/登录失败.png'
+          }else{
+            that.setData({
+              collectionStatus: 0
             });
           }
-        },
-        fail: (res) => {
+        }).catch((err) => {
           wx.showToast({
-            title: "获取经验列表信息失败",
+            title: "获取用户收藏状态失败",
             image: '../../image/登录失败.png'
           });
-        }
-      });
+        })
+      }
     }
   },
 
@@ -101,7 +138,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad();
+    this.onLoad(this.data.options);
   },
 
   /**
@@ -122,7 +159,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad(this.data.options);
   },
 
   /**
