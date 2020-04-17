@@ -12,7 +12,7 @@ Page({
     content: '',//发布经验的内容
     imgList: [],//上传的图片
     plateID: 0,//上传经验的板块id
-    imgUrl: null,//存储上传的图片
+    imgUrl: '',//存储上传的图片
 
   },
   titleChange: function (e) {//填写经验标题
@@ -94,7 +94,7 @@ Page({
         let data = JSON.parse(res.data)
         console.log(data)
         if (data.code == 1) {
-          if(that.data.imgUrl == null){//第一次拼接
+          if(that.data.imgUrl.length == 0){//第一次拼接
             that.setData({
               imgUrl: data.data.src,
               uploadImgNum: parseInt(that.data.uploadImgNum) + 1

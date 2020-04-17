@@ -11,7 +11,7 @@ Page({
     imgList: [],//上传的图片,
     title: "",//标题
     content: "",//内容
-    imgUrl: null,
+    imgUrl: '',
   },
   titleChange: function (e) {//填写经验标题
     // console.log("经验标题改变的时候：", e.detail.value);
@@ -108,7 +108,7 @@ Page({
         let data = JSON.parse(res.data)
         console.log(data)
         if (data.code == 1) {
-          if (that.data.imgUrl == null) {//第一次拼接
+          if (that.data.imgUrl.length == 0) {//第一次拼接
             that.setData({
               imgUrl: data.data.src,
               uploadImgNum: parseInt(that.data.uploadImgNum) + 1
