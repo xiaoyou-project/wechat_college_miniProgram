@@ -2,15 +2,15 @@
   <view class="mainView02">
     <view class="cu-card case">
       <!-- 话题标题 -->
-      <view class="cu-item shadow">
+      <view class="cu-item shadow viewCard">
         <view class="title padding">
-          <view class="text-cut text-center">#{{title}}#</view>
+          <view class="text-cut text-center"><text style="font-weight:bold;font-size:30rpx;">#</text>{{title}}<text style="font-weight:bold;font-size:30rpx;">#</text></view>
         </view>
         <button wx:if="{{authorID != userId}}" class="cu-btn round bg-white shadow" 
-              role="button" 
-              style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
-              bindtap="collectionTopic"
-              aria-disabled="false">
+                role="button" 
+                style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
+                bindtap="collectionTopic"
+                aria-disabled="false">
                 {{collectStatus==0?"收藏":"取消收藏"}}
         </button>
       </view>
@@ -23,6 +23,8 @@
             <view class="cu-item solids-bottom ">
               <view class="cu-avatar round lg"
                 style="background-image:url({{imgUrl}});" 
+                wx:if="{{imgUrl}}"
+                data-img="{{imgUrl}}"
                 data-id="{{authorID}}" 
                 bindtap="toPersonCenter"></view>
               <view class="content flex text-grey" style="width: 70%;">
@@ -66,6 +68,7 @@
         <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
           <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                 data-id="{{item.userID}}"
+                data-img="{{item.imgUrl}}"
                 bindtap="toPersonCenter"></view>
           <view class="content">
             <view class="text-grey">{{item.name}}</view>

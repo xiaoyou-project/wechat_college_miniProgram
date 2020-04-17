@@ -2,7 +2,7 @@
   <view class="mainView02">
     <view class="cu-card case">
       <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-cyan nav text-center">
+        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
           <view class="cu-item {{0==myMessage?'text-white cur':''}}" bindtap="toMessage" data-id="0">
             <text class="cuIcon-creative"></text> 收到的评论
           </view>

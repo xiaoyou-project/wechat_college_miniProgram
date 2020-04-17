@@ -2,14 +2,14 @@
 <view class="mainView">
   <view class="mainView02">
     <!-- 话题 -->
-    <view class="cu-card case">
-      <view class="cu-item radius shadow-warp bg-white margin-top">
+    <view class="cu-card case ">
+      <view class="cu-item radius shadow-warp bg-white margin-top viewCard">
         <view class="cu-list padding-xs">
           <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-            <view class="flex-treble padding-xs margin-xs radius">
+            <view class="flex-treble padding-xs margin-xs radius viewTitle">
               话题
             </view>
-            <view class="flex-sub padding-xs margin-xs radius" bindtap="toTopicList">
+            <view class="flex-sub padding-xs margin-xs radius" style="text-decoration:underline;" bindtap="toTopicList">
               查看更多
             </view>
           </view>
@@ -17,11 +17,11 @@
             <view class="flex" style="flex-wrap: wrap;">
               <view  wx:for="{{object7}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
                       bindtap="toTopicContent"
-                      class="flex-sub radius bg-grey padding-xs margin-xs text-cut"   
+                      class="flex-sub radius bg-grey padding-xs margin-xs text-cut topicView"   
                       style="width: 30%;min-width: 30%;max-width: 30%;">
                 {{item.title}}
               </view>
-              <view class="flex-sub radius bg-grey padding-xs margin-xs text-cut text-center" 
+              <view class="flex-sub radius bg-grey padding-xs margin-xs text-cut text-center applyTopicView" 
                     bindtap="toPublishTopic"
                     style="width: 30%;min-width: 30%;max-width: 30%;">
                 发布话题
@@ -39,13 +39,13 @@
     <!-- 话题End -->
     <!-- 热门板块 -->
     <view class="cu-card case">
-      <view class="cu-item radius shadow-warp bg-white margin-top">
+      <view class="cu-item radius shadow-warp bg-white margin-top viewCard">
         <view class="cu-list padding-xs">
           <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-            <view class="flex-treble padding-xs margin-xs radius">
+            <view class="flex-treble padding-xs margin-xs radius viewTitle">
               热门板块
             </view>
-            <view class="flex-sub padding-xs margin-xs radius" bindtap="toPlateList">
+            <view class="flex-sub padding-xs margin-xs radius" style="text-decoration:underline;" bindtap="toPlateList">
               查看更多
             </view>
           </view>
@@ -53,7 +53,7 @@
             <view class="flex" style="flex-wrap: wrap;">
               <view  wx:for="{{object9}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}"
                       bindtap="toExperienceList"
-                      class="flex-sub radius bg-grey margin-xs text-cut"   
+                      class="flex-sub radius bg-grey margin-xs text-cut plateView"   
                       style="width: 30%;min-width: 30%;max-width: 30%;">
                 <view class="image">
                   <image src="{{item.imgUrl}}" style="height: 200rpx; width: 200rpx;" />
@@ -64,9 +64,8 @@
                   </view>
                 </view>
               </view>
-              <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
-                    bindtap="toApplyPlate"
-                    style="width: 30%;min-width: 30%;max-width: 30%;text-align: center; height: 200rpx;line-height: 140rpx;">
+              <view class="flex-sub radius bg-grey padding margin-xs text-cut applyPlateView" 
+                    bindtap="toApplyPlate">
                 申请板块
               </view> 
             </view>
@@ -77,10 +76,10 @@
     <!-- 热门板块End -->
     <!-- 我收藏的板块 -->
     <view class="cu-card case">
-      <view class="cu-item radius shadow-warp bg-white margin-top">
+      <view class="cu-item radius shadow-warp bg-white margin-top viewCard">
         <view class="cu-list padding-xs">
           <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-            <view class="flex-treble padding-xs margin-xs radius">
+            <view class="flex-treble padding-xs margin-xs radius viewTitle">
               我收藏的板块
             </view>
           </view>
@@ -109,8 +108,7 @@
                 </view>
                 <view wx:else><!--myObject9是空的-->
                   <view
-                      class="padding text-center text-gray" 
-                      style="background: #EFF8FE;">
+                      class="padding text-center text-gray" >
                         您还没有收藏任何板块呢~
                   </view>
                 </view>
@@ -118,7 +116,7 @@
               <view wx:else><!--用户没有登录-->
                 <view bindtap="toLogin" 
                       class="padding text-center text-gray" 
-                      style="background: #EFF8FE;text-decoration:underline;">
+                      style="text-decoration:underline;">
                         您还没有登录呢~，点击登录
                 </view>
               </view>

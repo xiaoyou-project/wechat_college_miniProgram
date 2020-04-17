@@ -1,7 +1,7 @@
 <view class="mainView">
   <view class="mainView02">
     <view class="cu-card case">
-      <view class="cu-item shadow">
+      <view class="cu-item shadow viewCard">
         <view class="title padding">
           <view class="text-cut text-center">{{name}}</view>
         </view>
@@ -14,7 +14,7 @@
         </button>
         <button class="cu-btn round bg-white shadow" 
               role="button" 
-              style="width: 180rpx;position: absolute;right: 20rpx;"
+              style="width: 180rpx;position: absolute;left: 20rpx;top:40rpx;"
               bindtap="toReleaseExperience"
               aria-disabled="false">
                 我要分享
@@ -23,7 +23,7 @@
     </view>
 
     <view class="cu-card case">
-      <view class="cu-item shadow">
+      <view class="cu-item shadow" style="margin:0;">
         <view class="title padding flex {{showIndex==1?'solids-bottom':''}}" data-index='1' catchtap='panel'>
           <view class='flex-treble'>板块详细说明</view>
           <view class='flex-sub text-right'>

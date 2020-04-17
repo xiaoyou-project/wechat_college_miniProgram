@@ -78,8 +78,9 @@ Page({
     }
   },
   toPersonCenter: function (e) {//点击头像进入个人中心
+    console.log("即将要跳转到个人中心：", e.currentTarget.dataset.id, e.currentTarget.dataset.img);
     wx.navigateTo({
-      url: '/pages/personCenter/personCenter?userID=' + e.currentTarget.dataset.id
+      url: '/pages/personCenter/personCenter?userID=' + e.currentTarget.dataset.id + '&imgUrl=' + e.currentTarget.dataset.img
     });
   },
   toCommentGoods: function (e) {//给评论点赞或者取消点赞

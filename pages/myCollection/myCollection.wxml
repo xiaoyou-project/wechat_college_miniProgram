@@ -2,7 +2,7 @@
   <view class="mainView02">
     <view class="cu-card case">
       <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-cyan nav text-center">
+        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
           <view class="cu-item {{0==myCollection?'text-white cur':''}}" bindtap="collectionShare" data-id="0">
             <text class="cuIcon-creative"></text> 我收藏的经验
           </view>
@@ -27,7 +27,7 @@
                       <view>
                         <view class="text-gray text-sm flex justify-between">
                           {{item.time}}
-                          <view class="text-gray text-sm">
+                          <view class="text-gray text-sm" style="width: 110%;">
                             <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
                             <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
                           </view>

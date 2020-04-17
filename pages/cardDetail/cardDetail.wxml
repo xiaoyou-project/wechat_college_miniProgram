@@ -7,7 +7,8 @@
           <view class="cu-list menu-avatar">
             <view class="cu-item solids-bottom">
               <view class="cu-avatar round lg" style="background-image:url({{imgUrl}});" 
-                    data-id="{{userID}}" 
+                    data-id="{{userID}}"
+                    data-img="{{imgUrl}}" 
                     bindtap="toPersonCenter"></view>
               <view class="content flex justify-between" style="width: 70%;">
                 <view style="margin-left: -15rpx;">{{name}}</view>
@@ -98,6 +99,7 @@
                   <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
                     <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                           data-id="{{item.userID}}"
+                          data-img="{{item.imgUrl}}"
                           bindtap="toPersonCenter"></view>
                     <view class="content">
                       <view class="text-grey">{{item.name}}</view>

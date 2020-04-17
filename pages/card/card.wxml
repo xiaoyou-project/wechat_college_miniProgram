@@ -2,7 +2,7 @@
   <view class="mainView02">
     <view class="cu-card case">
       <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-green nav text-center">
+        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
           <view class="cu-item {{0==myCard?'text-white cur':''}}" bindtap="toMyCard" data-id="0">
             <text class="cuIcon-creative"></text> 我的打卡
           </view>

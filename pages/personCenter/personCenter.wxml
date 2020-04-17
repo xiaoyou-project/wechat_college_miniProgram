@@ -60,7 +60,7 @@
     <!-- 下面显示个人经验，话题，打卡 -->
     <view class="cu-card case">
       <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-cyan nav text-center">
+        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
           <view class="cu-item {{0==myShare?'text-white cur':''}}" bindtap="myExperience" data-id="0">
             <text class="cuIcon-creative"></text> 经验
           </view>
@@ -73,7 +73,14 @@
         </scroll-view>
         <!-- 下面显示列表内容 -->
         <view wx:if="{{myShare==0}}"><!--显示个人经验界面-->
-          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
+          <view wx:if="{{isLogin == false&&isSelf==true}}"><!--没有登录了的用户访问自己的个人中心-->
+            <view bindtap="toLogin" 
+                  class="padding text-center text-gray" 
+                  style="background: #EFF8FE;text-decoration:underline;">
+                    您还没有登录呢~，点击登录
+            </view>
+          </view>
+          <view wx:else><!--查看个人中心-->
             <view wx:if="{{object1.length > 0}}"><!--object1不是是空的-->
               <view wx:for="{{object1}}" wx:key="index" class="cu-card article">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
@@ -87,8 +94,8 @@
                       <view class="text-content">{{item.description}}</view>
                       <view>
                         <view class="text-gray text-sm flex justify-between">
-                          {{item.time}}
-                          <view class="text-gray text-sm">
+                            {{item.time}}
+                          <view class="text-gray text-sm" style="width: 110%;">
                             <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
                             <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
                           </view>
@@ -107,18 +114,18 @@
               </view>
             </view>
           </view>
-          <view wx:else><!--用户没有登录-->
+          <!-- 这里 -->
+        </view>
+        <!--222-->
+        <view wx:if="{{myShare == 1}}"><!--显示个人话题界面-->
+          <view wx:if="{{isLogin == false&&isSelf==true}}"><!--没有登录了的用户访问自己的个人中心-->
             <view bindtap="toLogin" 
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;text-decoration:underline;">
                     您还没有登录呢~，点击登录
             </view>
           </view>
-          <!-- 这里 -->
-        </view>
-        <!--222-->
-        <view wx:if="{{myShare == 1}}"><!--显示个人话题界面-->
-          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
+          <view wx:else><!--用户还没有登录-->
             <view wx:if="{{object2.length > 0}}"><!--object2不是是空的-->
               <view wx:for="{{object2}}" wx:key="index" class="cu-card article">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
@@ -131,7 +138,7 @@
                       <view>
                         <view class="text-gray text-sm flex justify-between">
                           {{item.time}}
-                          <view class="text-gray text-sm">
+                          <view class="text-gray text-sm" style="width: 110%;">
                             <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
                             <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
                           </view>
@@ -150,18 +157,18 @@
               </view>
             </view>
           </view>
-          <view wx:else><!--用户还没有登录-->
+        </view>
+        <!--222-->
+        <!--333-->
+        <view wx:if="{{myShare == 2}}"><!--显示个人打卡界面-->
+          <view wx:if="{{isLogin == false&&isSelf==true}}"><!--没有登录了的用户访问自己的个人中心-->
             <view bindtap="toLogin" 
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;text-decoration:underline;">
                     您还没有登录呢~，点击登录
             </view>
           </view>
-        </view>
-        <!--222-->
-        <!--333-->
-        <view wx:if="{{myShare == 2}}"><!--显示个人打卡界面-->
-          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
+          <view wx:else><!--用户还没有登录-->
             <view wx:if="{{object3.length > 0}}"><!--object3不是是空的-->
               <view wx:for="{{object3}}" wx:key="index" class="cu-card article">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="cardDetail">
@@ -185,15 +192,8 @@
               <view
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;">
-                    该用户暂时还没有创建打卡呢~
+                    该用户暂时还没有加入打卡呢~
               </view>
-            </view>
-          </view>
-          <view wx:else><!--用户还没有登录-->
-            <view bindtap="toLogin" 
-                  class="padding text-center text-gray" 
-                  style="background: #EFF8FE;text-decoration:underline;">
-                    您还没有登录呢~，点击登录
             </view>
           </view>
         </view>

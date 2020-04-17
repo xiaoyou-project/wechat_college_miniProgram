@@ -1,1 +1,47 @@
 /* pages/plate/plate.wxss */
+.applyPlateView{
+  width: 30%;
+  min-width: 30%;
+  max-width: 30%;
+  text-align: center;
+  height: 110px;
+  line-height: 77px;
+  border: 5rpx dashed grey;
+  background: white;
+  color: black;
+  font-size: 30rpx;
+  font-weight: bold;
+  box-shadow: 5rpx 5rpx 10rpx gray;
+  border-radius: 25%;
+}
+.plateView{
+  width: 30%;
+  min-width: 30%;
+  max-width: 30%;
+  border-radius: 10%;
+  box-shadow: 5rpx 5rpx 10rpx gray;
+}
+.applyTopicView{
+  width: 30%;
+  min-width: 30%;
+  max-width: 30%;
+  background: none;
+  color: black;
+  box-shadow: 5rpx 5rpx 10rpx gray;
+  border: 4rpx dashed grey;
+  border-radius: 5%;
+}
+.topicView{
+  width: 30%;
+  min-width: 30%;
+  max-width: 30%;
+  border: 3rpx solid gray;
+  background: white;
+  color: black;
+  box-shadow: 5rpx 5rpx 10rpx gray;
+  border-radius: 6%;
+}
+.viewTitle{
+  font-weight: bold;
+  font-size: 30rpx;
+}

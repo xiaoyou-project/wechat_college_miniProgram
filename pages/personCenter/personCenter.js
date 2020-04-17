@@ -1,4 +1,5 @@
 // pages/personCenter/personCenter.js
+import api from '../../utils/api.js';
 var app = getApp();
 Page({
   /**
@@ -192,107 +193,114 @@ Page({
    */
   onLoad: function (options) {
     console.log("跳转到个人中心界面：",options);
-    if (app.globalData.isLogin == true) {//用户已经登录了
-      //获取个人中心的数据
-      wx.request({//获取个人中心的分享经验列表
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        url: app.globalData.sameUrl + app.globalData.userShareList,
-        data: {
-          userId: options.userID
-        },
-        method: 'get',
-        success: (res) => {
-          if(res.data.code == 1){//获取成功
-            this.setData({
-              object1: res.data.data
-            })
-          }else{
-            wx.showToast({
-              title: "获取用户经验列表失败",
-              image: '../../image/登录失败.png'
-            });
-          }
-        },
-        fail: (res) =>{
+    //获取个人中心的数据
+    wx.request({//获取个人中心的分享经验列表
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      url: app.globalData.sameUrl + app.globalData.userShareList,
+      data: {
+        userId: options.userID
+      },
+      method: 'get',
+      success: (res) => {
+        if(res.data.code == 1){//获取成功
+          this.setData({
+            object1: res.data.data
+          })
+        }else{
           wx.showToast({
             title: "获取用户经验列表失败",
             image: '../../image/登录失败.png'
           });
         }
-      });
-      wx.request({//获取个人中心的发布的话题
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        url: app.globalData.sameUrl + app.globalData.userTopicalList,
-        data: {
-          userId: options.userID
-        },
-        method: 'get',
-        success: (res) => {
-          if (res.data.code == 1) {//获取成功
-            this.setData({
-              object2: res.data.data
-            })
-          } else {
-            wx.showToast({
-              title: "获取用户话题列表失败",
-              image: '../../image/登录失败.png'
-            });
-          }
-        },
-        fail: (res) => {
+      },
+      fail: (res) =>{
+        wx.showToast({
+          title: "获取用户经验列表失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    });
+    wx.request({//获取个人中心的发布的话题
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      url: app.globalData.sameUrl + app.globalData.userTopicalList,
+      data: {
+        userId: options.userID
+      },
+      method: 'get',
+      success: (res) => {
+        if (res.data.code == 1) {//获取成功
+          this.setData({
+            object2: res.data.data
+          })
+        } else {
           wx.showToast({
             title: "获取用户话题列表失败",
             image: '../../image/登录失败.png'
           });
         }
-      });
-      wx.request({//获取个人中心的创建打卡
-        header: { "Content-Type": "application/x-www-form-urlencoded" },
-        url: app.globalData.sameUrl + app.globalData.userCardList,
-        data: {
-          userId: options.userID
-        },
-        method: 'get',
-        success: (res) => {
-          if (res.data.code == 1) {//获取成功
-            this.setData({
-              object3: res.data.data
-            })
-          } else {
-            wx.showToast({
-              title: "获取用户打卡列表失败",
-              image: '../../image/登录失败.png'
-            });
-          }
-        },
-        fail: (res) => {
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "获取用户话题列表失败",
+          image: '../../image/登录失败.png'
+        });
+      }
+    });
+    wx.request({//获取个人中心的创建打卡
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      url: app.globalData.sameUrl + app.globalData.userCardList,
+      data: {
+        userId: options.userID
+      },
+      method: 'get',
+      success: (res) => {
+        if (res.data.code == 1) {//获取成功
+          this.setData({
+            object3: res.data.data
+          })
+        } else {
           wx.showToast({
             title: "获取用户打卡列表失败",
             image: '../../image/登录失败.png'
           });
         }
-      });
-      if (app.globalData.userID == options.userID) {//再判断是不是自己进入的个人中心
-        this.setData({
-          isSelf: true,
-          isLogin: true,//保存用户是登录的
-          name: app.globalData.name,
-          sex: app.globalData.sex,
-          college: app.globalData.college,
-          imgUrl: app.globalData.userInfo.avatarUrl
-        });
-      }else{//不是本人进入
-        this.setData({
-          isSelf: false,
-          isLogin: true,//用户是登录的
-          name: app.globalData.name,
-          sex: app.globalData.sex,
-          college: app.globalData.college,
-          imgUrl: app.globalData.userInfo.avatarUrl
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: "获取用户打卡列表失败",
+          image: '../../image/登录失败.png'
         });
       }
+    });
+    if (app.globalData.userID == options.userID) {//再判断是不是自己进入的个人中心
+      this.setData({
+        isSelf: true,
+        isLogin: app.globalData.isLogin,
+        name: app.globalData.name,
+        sex: app.globalData.sex,
+        college: app.globalData.college,
+        imgUrl: app.globalData.userInfo.avatarUrl
+      });
+    }else{//不是本人进入，获取个人中心的数据
+      api.get(app.globalData.userUserInfo,{
+        userId: options.userID
+      }).then((res) => {
+        this.setData({
+          isSelf: false,
+          isLogin: app.globalData.isLogin,
+          name: res.data.name,
+          sex: res.data.sex,
+          college: res.data.college,
+          imgUrl: options.imgUrl
+        });
+      }).catch((err)=>{
+        wx.showToast({
+          title: "获取个人信息失败",
+          image: '../../image/登录失败.png'
+        });
+      })
     }
-    //这里还要调用接口获取用户的信息
+  //这里还要调用接口获取用户的信息
   },
 
   /**

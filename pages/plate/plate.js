@@ -89,6 +89,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("页面加载");
     let that = this;
     this.setData({//存储登录信息
       isLogin: app.globalData.isLogin
@@ -168,6 +169,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("页面显示");
     this.onLoad();
   },
 

@@ -39,7 +39,7 @@ Page({
   },
   toPersonCenter: function (e) {//点击头像进入个人中心
     wx.navigateTo({
-      url: '/pages/personCenter/personCenter?userID=' + e.currentTarget.dataset.id
+      url: '/pages/personCenter/personCenter?userID=' + e.currentTarget.dataset.id + '&imgUrl=' + e.currentTarget.dataset.img
     });
   },
   toCommentGoods: function (e) {//给评论点赞或者取消点赞

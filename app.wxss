@@ -20,3 +20,6 @@
   width: 100%;
   background: #EFF8FE;
 }
+.viewCard{
+  box-shadow: 1rpx 1rpx 10rpx gray;
+}

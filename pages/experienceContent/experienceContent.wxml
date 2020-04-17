@@ -4,7 +4,7 @@
       <!-- 经验的标题 -->
       <view class="cu-item shadow">
         <view class="title padding">
-          <view class="text-cut text-center">{{title}}</view>
+          <view class="text-cut text-center"><text style="font-weight:bold;font-size:30rpx;">#</text>{{title}}<text style="font-weight:bold;font-size:30rpx;">#</text></view>
         </view>
         <button wx:if="{{authorID != userID}}" class="cu-btn round bg-white shadow" 
               role="button" 
@@ -24,6 +24,7 @@
               <view class="cu-avatar round lg"
                 style="background-image:url({{avatar}});" 
                 data-id="{{authorID}}" 
+                data-img="{{avatar}}"
                 bindtap="toPersonCenter"></view>
               <view class="content flex text-grey" style="width: 70%;">
                 <view class="flex-treble">{{name}}</view>
@@ -77,6 +78,7 @@
         <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
           <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                 data-id="{{item.userID}}"
+                data-img="{{item.imgUrl}}"
                 bindtap="toPersonCenter"></view>
           <view class="content">
             <view class="text-grey">{{item.name}}</view>
@@ -115,6 +117,7 @@
       <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
         <input class="solid-bottom" 
                 placeholder="请输入评论内容" 
+                value="{{commentContent}}"
                 bindfocus="InputFocus" 
                 bindblur="InputBlur" 
                 adjust-position="{{false}}"
