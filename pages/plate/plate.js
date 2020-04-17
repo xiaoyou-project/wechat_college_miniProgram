@@ -145,7 +145,7 @@ Page({
         success: (res) => {
           if (res.data.code == 1) {//获取成功
             that.setData({//保存数据
-              object9: res.data.data
+              myObject9: res.data.data
             });
           } else {
             that.theFailMeg('获取板块列表失败');

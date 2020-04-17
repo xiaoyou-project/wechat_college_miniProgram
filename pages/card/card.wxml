@@ -4,13 +4,13 @@
       <view class="cu-item shadow">
         <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
           <view class="cu-item {{0==myCard?'text-white cur':''}}" bindtap="toMyCard" data-id="0">
-            <text class="cuIcon-creative"></text> 我的打卡
+            <text class="cuIcon-favor"></text> 我的打卡
           </view>
           <view class="cu-item {{1==myCard?'text-white cur':''}}" bindtap="toAllCard" data-id="1">
-            <text class="cuIcon-message"></text> 所有打卡
+            <text class="cuIcon-cascades"></text> 所有打卡
           </view>
           <view class="cu-item {{2==myCard?'text-white cur':''}}" bindtap="toApplyCard" data-id="2">
-            <text class="cuIcon-roundcheck"></text> 发起打卡
+            <text class="cuIcon-squarecheck"></text> 发起打卡
           </view>
         </scroll-view>
         <!--我的打卡-->

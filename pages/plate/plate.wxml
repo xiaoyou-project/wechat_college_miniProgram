@@ -86,24 +86,19 @@
           <view class="cu-item">
             <view class="flex" style="flex-wrap: wrap;">
               <view wx:if="{{isLogin == true}}" style="width: 100%;"><!--是登录了的用户-->
-                <view wx:if="{{myObject9.length > 0}}"><!--myObject9不是是空的-->
+                <view wx:if="{{myObject9.length > 0}}" class="flex" style="flex-wrap: wrap;"><!--myObject9不是是空的-->
                   <view  wx:for="{{myObject9}}" wx:key="index" data-value="{{index}}"
                           bindtap="toExperienceList"
-                          class="flex-sub radius bg-grey margin-xs text-cut"   
+                          class="flex-sub radius bg-grey margin-xs text-cut plateView"   
                           style="width: 30%;min-width: 30%;max-width: 30%;">
                     <view class="image">
-                      <image mode="widthFix" src="{{item.imgUrl}}" />
+                      <image src="{{item.imgUrl}}" style="height: 200rpx; width: 200rpx;" />
                       <view class="cu-bar bg-shadeBottom">
                         <text class="text-cut">
                           {{item.name}}
                         </text>
                       </view>
                     </view>
-                  </view>
-                  <view class="flex-sub radius bg-grey padding margin-xs text-cut" 
-                        bindtap="toTest"
-                        style="width: 30%;min-width: 30%;max-width: 30%;text-align: center;">
-                    去测试页面
                   </view>
                 </view>
                 <view wx:else><!--myObject9是空的-->
