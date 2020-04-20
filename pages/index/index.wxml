@@ -3,7 +3,7 @@
 <view class="mainView">
   <!-- 上面显示个人信息的面板 -->
   <view class="cu-card case">
-    <view class="light bg-cyan cu-item padding-lg radius shadow-warp bg-white margin-top">
+    <view class="light bg-cyan cu-item padding radius shadow-warp bg-white margin-top">
       <view class="flex align-center">
         <!-- 头像 -->
         <view class="cu-avatar xl round margin-left" style="background-image:url({{imgUrl}});"> </view>
@@ -14,7 +14,7 @@
         <view class="flex justify-end flex-sub" bindtap="toPersonalCenter">
           <!-- 进入个人中心 -->
           <text>个人中心</text>
-          <text class="cuIcon-playfill lg text-gray"></text>
+          <text class="cuIcon-playfill lg text-gray" style="line-height: 40rpx;"></text>
         </view>
       </view>
     </view>
