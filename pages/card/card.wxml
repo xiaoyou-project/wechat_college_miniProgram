@@ -1,49 +1,50 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-card case">
+
       <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
-          <view class="cu-item {{0==myCard?'text-white cur':''}}" bindtap="toMyCard" data-id="0">
-            <text class="cuIcon-favor"></text> 我的打卡
+        <scroll-view scroll-x class="bg-white nav text-center">
+          <view class="cu-item {{0==myCard?'text-cyan cur':''}}" bindtap="toMyCard" data-id="0">
+            <text class="cuIcon-creative"></text> 我的打卡
           </view>
-          <view class="cu-item {{1==myCard?'text-white cur':''}}" bindtap="toAllCard" data-id="1">
-            <text class="cuIcon-cascades"></text> 所有打卡
+          <view class="cu-item {{1==myCard?'text-cyan cur':''}}" bindtap="toAllCard" data-id="1">
+            <text class="cuIcon-message"></text> 所有打卡
           </view>
-          <view class="cu-item {{2==myCard?'text-white cur':''}}" bindtap="toApplyCard" data-id="2">
-            <text class="cuIcon-squarecheck"></text> 发起打卡
+          <view class="cu-item {{2==myCard?'text-cyan cur':''}}" bindtap="toApplyCard" data-id="2">
+            <text class="cuIcon-roundcheck"></text> 发起打卡
           </view>
         </scroll-view>
+
+        
         <!--我的打卡-->
         <view wx:if="{{0 == myCard}}">
           <view wx:if="{{isLogin==true}}">
             <view wx:if="{{myObject11.length > 0}}"><!--myObject11不是是空的-->
+
               <view wx:for="{{myObject11}}" wx:key="index" class="cu-card article">
                 <view class="cu-item radius shadow-warp" data-value="{{item.id}}" bindtap="cardDetail">
-                  <view class="cu-list menu-avatar">
-                    <view class="cu-item solids-bottom">
-                      <view class="cu-avatar round lg" style="background-image:url({{item.imgUrl}});"></view>
-                      <view class="content flex justify-between" style="width: 70%;">
-                        <view style="margin-left: -15rpx;">{{item.name}}</view>
-                        <view class="text-gray text-sm">
-                          {{item.time}}
-                        </view>
+
+                  <view class="cu-list margin-top margin-bottom">
+                    <view class="content flex justify-start align-center">
+                      <view class="cu-avatar round margin-right" style="background-image:url({{item.imgUrl}});"></view>
+                      <view class="flex-sub">
+                        <view>{{item.name}}</view>
+                        <view class="text-gray text-sm">{{item.time}}</view>
                       </view>
+                      <view class="text-bold flex-sub align">{{item.title}}</view>
                     </view>
-                  </view>
-                  <view class="title text-center">
-                    <view class="text-cut">{{item.title}}</view>
-                  </view>
-                  <view class="content">
+                  </view> 
+                  <view class="content margin">
                     <view class="desc">
-                      <view class="text-content">{{item.description}}</view>
+                      <view class="text-content text-shadow">{{item.description}}</view>
                       <view>
-                        <view class="text-gray text-sm flex justify-between">
-                          <view class="cu-tag bg-red light lg">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
-                          <view class="cu-tag bg-blue light lg">已加入{{item.peoples}}人</view>
+                        <view class="text-gray flex justify-between">
+                          <view class="light lg">已坚持 <text class="text-black text-lg">{{item.keepDay}}</text>/{{item.totalDay}}天</view>
+                          <view class="light lg text-sm text-cyan">已加入{{item.peoples}}人</view>
                         </view>
                       </view>
                     </view>
                   </view>
+
                 </view>
               </view>
             </view>
@@ -70,31 +71,29 @@
           <view wx:if="{{object11.length > 0}}"><!--object11不是是空的-->
             <view wx:for="{{object11}}" wx:key="index" class="cu-card article">
               <view class="cu-item radius shadow-warp" data-value="{{item.id}}" bindtap="cardDetail">
-                <view class="cu-list menu-avatar">
-                  <view class="cu-item solids-bottom">
-                    <view class="cu-avatar round lg" style="background-image:url({{item.imgUrl}});"></view>
-                    <view class="content flex justify-between" style="width: 70%;">
-                      <view style="margin-left: -15rpx;">{{item.name}}</view>
-                      <view class="text-gray text-sm">
-                        {{item.time}}
+
+                  <view class="cu-list margin-top margin-bottom">
+                    <view class="content flex justify-start align-center">
+                      <view class="cu-avatar round margin-right" style="background-image:url({{item.imgUrl}});"></view>
+                      <view class="flex-sub">
+                        <view>{{item.name}}</view>
+                        <view class="text-gray text-sm">{{item.time}}</view>
+                      </view>
+                      <view class="text-bold flex-sub align">{{item.title}}</view>
+                    </view>
+                  </view> 
+                  <view class="content margin">
+                    <view class="desc">
+                      <view class="text-content text-shadow">{{item.description}}</view>
+                      <view>
+                        <view class="text-gray flex justify-between">
+                          <view class="light lg">已坚持 <text class="text-black text-lg">{{item.keepDay}}</text>/{{item.totalDay}}天</view>
+                          <view class="light lg text-sm text-cyan">已加入{{item.peoples}}人</view>
+                        </view>
                       </view>
                     </view>
                   </view>
-                </view>
-                <view class="title text-center">
-                  <view class="text-cut">{{item.title}}</view>
-                </view>
-                <view class="content">
-                  <view class="desc">
-                    <view class="text-content">{{item.description}}</view>
-                    <view>
-                      <view class="text-gray text-sm flex justify-between">
-                        <view class="cu-tag bg-red light lg">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
-                        <view class="cu-tag bg-blue light lg">已加入{{item.peoples}}人</view>
-                      </view>
-                    </view>
-                  </view>
-                </view>
+        
               </view>
             </view>
           </view>
@@ -110,15 +109,16 @@
 
         <!--发起打卡-->
         <view wx:if="{{2 == myCard}}">
-          <vtu-input-group title="发起打卡">
+          <view class="flex-direction bg-white padding">
+
             <vtu-input border 
               v-class="titleInput"
               placeholder="请输入标题"
               adjust-position="{{true}}"
               value="" 
-              type="input"   
+              type="input"
               maxlength="20"
-              text-align="center"
+              text-align="left"
               bind:input="titleChange"
               >
             </vtu-input>
@@ -127,11 +127,12 @@
               value="" 
               type="textarea" 
               text-align="left" 
-              text-height="550rpx"
+              text-height="250rpx"
               maxlength="300"
               bind:input="contentChange"
               >
             </vtu-input>
+
             <vtu-input 
               title="总的天数："
               title-color="red"
@@ -145,14 +146,16 @@
               bind:input="totalDayChange"
               >
             </vtu-input>
-            <vtu-btn bind:click="submitCard" disabled="{{myCardName==''?true:myCardContent==''?true:myCardTotalDay==0?true:false}}"
-            v-class="submitBtn" type="success" shadow="{{true}}" >
-            确认
-            </vtu-btn>
-          </vtu-input-group>
+
+            <button bindtap="submitCard" class="flex cu-btn align-center bg-blue lg margin-top" disabled="{{myCardName!='' && myCardContent!='' && myCardTotalDay!=''?false:true}}">确定</button>
+            <!-- <vtu-btn  bind:click="submitCard" disabled="{{myCardName==''?true:myCardContent==''?true:myCardTotalDay==0?true:false}}"
+            v-class="submitBtn" type="success" shadow="{{true}}" > -->
+          
+            <!-- </vtu-btn> -->
+          </view>
         </view>
         <!--发起打卡End-->
       </view>
-    </view>
+
   </view>
 </view>

@@ -1,1 +1,6 @@
 /* pages/experienceList/experienceList.wxss */
+.add-button{
+  position: fixed;
+  right: 27px;
+  bottom: 49px;
+}

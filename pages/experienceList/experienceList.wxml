@@ -1,69 +1,48 @@
 <view class="mainView">
+    <!-- 分享经验的按钮 -->
+  <button class="cu-btn icon add-button lg bg-cyan" bindtap="toReleaseExperience">
+    <text class="cuIcon-add text-white"></text>
+  </button>
+
   <view class="mainView02">
     <view class="cu-card case">
-      <view class="cu-item shadow viewCard">
-        <view class="title padding">
-          <view class="text-cut text-center">{{name}}</view>
-        </view>
-        <button class="cu-btn round bg-white shadow" 
-              role="button" 
-              style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
-              bindtap="collectionPlate"
-              aria-disabled="false">
-                {{collectionStatus==0?'收藏':'取消收藏'}}
-        </button>
-        <button class="cu-btn round bg-white shadow" 
-              role="button" 
-              style="width: 180rpx;position: absolute;left: 20rpx;top:40rpx;"
-              bindtap="toReleaseExperience"
-              aria-disabled="false">
-                我要分享
-        </button>
-      </view>
-    </view>
-
-    <view class="cu-card case">
-      <view class="cu-item shadow" style="margin:0;">
-        <view class="title padding flex {{showIndex==1?'solids-bottom':''}}" data-index='1' catchtap='panel'>
-          <view class='flex-treble'>板块详细说明</view>
-          <view class='flex-sub text-right'>
-            <text wx:if="{{showIndex == 1}}" class="cuIcon-fold lg text-gray"></text>
-            <text wx:if="{{showIndex == 0}}" class="cuIcon-unfold lg text-gray"></text>
+      <view class="cu-item shadow bg-white padding-bottom">
+        <view class="cu-bar flex">
+          <view class="action sub-title">
+            <text class="text-xl text-bold text-green">{{name}}</text>
+            <text class="bg-cyan" style="width:2rem"></text>
           </view>
+          <text
+            class="cuIcon-favor margin-lr-xs {{collectionStatus==0?'':'text-yellow'}}" 
+            bindtap="collectionPlate">{{collectionStatus==0?"收藏":"已收藏"}}</text>
         </view>
-        <view class='cu-item padding' wx:if="{{showIndex == 1}}">{{description}}</view>
+        <text class="text-Abc text-gray flex-sub  margin-left-sm">{{description}}</text>
       </view>
     </view>
+    <view class="cu-item shadow">
+      <view wx:for="{{object10}}" wx:key="index" class="cu-card article">
+        <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
+          <view class="content flex align-center margin-left margin-top margin-bottom">
+            <view class="cu-avatar round margin-right" style="background-image:url({{item.avatar}});" 
+              data-id="{{authorID}}" 
+              bindtap="toPersonCenter"></view>
+            <view class="flex-sub">
+              <view>{{item.name}}</view>
+              <view class="text-gray text-sm">{{item.time}}</view>
+            </view>
+            <view class="text-bold flex-sub align">{{item.title}}</view>
+          </view>
 
-    <view class="cu-card case">
-      <view class="cu-item shadow">
-        <view wx:for="{{object10}}" wx:key="index" class="cu-card article">
-          <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
-            <view class="cu-list menu-avatar">
-              <view class="cu-item solids-bottom ">
-                <view class="cu-avatar round lg" style="background-image:url({{item.avatar}});"></view>
-                <view class="content flex-sub text-grey">
-                  <view>{{item.name}}</view>
-                  <view class="text-gray text-sm" style="position: absolute;right: 2rpx;">
-                    {{item.time}}
-                  </view>
-                </view>
-              </view>
-            </view>
-            <view class="title">
-              <view class="text-cut solids-bottom text-center">{{item.title}}</view>
-            </view>
-            <view class="content">
-              <image src="{{item.img}}" mode="aspectFill"></image>
-              <view class="desc">
-                <view class="text-content">{{item.content}}</view>
-                <view>
-                  <view class="text-gray text-sm flex justify-between">
-                    <view class="text-gray text-sm">
-                      <text class="cuIcon-messagefill margin-lr-xs"></text>{{item.comments}}
-                      <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
-                      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.total}}
-                    </view>
+          <view class="content">
+            <image src="{{item.img}}" mode="aspectFill"></image>
+            <view class="desc">
+              <view class="text-content">{{item.content}}</view>
+              <view>
+                <view class="text-gray text-sm flex justify-between">
+                  <view class="text-gray text-sm">
+                    <text class="cuIcon-messagefill margin-lr-xs"></text>{{item.comments}}
+                    <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
+                    <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.total}}
                   </view>
                 </view>
               </view>
@@ -72,5 +51,8 @@
         </view>
       </view>
     </view>
+    
+
+
   </view>
 </view>

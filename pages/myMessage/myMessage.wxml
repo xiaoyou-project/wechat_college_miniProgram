@@ -1,15 +1,14 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-card case">
       <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
-          <view class="cu-item {{0==myMessage?'text-white cur':''}}" bindtap="toMessage" data-id="0">
+        <scroll-view scroll-x class="bg-white nav text-center">
+          <view class="cu-item {{0==myMessage?'text-cyan cur':''}}" bindtap="toMessage" data-id="0">
             <text class="cuIcon-creative"></text> 收到的评论
           </view>
-          <view class="cu-item {{1==myMessage?'text-white cur':''}}" bindtap="toMessage" data-id="1">
+          <view class="cu-item {{1==myMessage?'text-cyan cur':''}}" bindtap="toMessage" data-id="1">
             <text class="cuIcon-message"></text> 收到的赞
           </view>
-          <view class="cu-item {{2==myMessage?'text-white cur':''}}" bindtap="toMessage" data-id="2">
+          <view class="cu-item {{2==myMessage?'text-cyan cur':''}}" bindtap="toMessage" data-id="2">
             <text class="cuIcon-roundcheck"></text> 系统消息
           </view>
         </scroll-view>
@@ -169,6 +168,5 @@
         </view>
         <!--收到的系统消息End-->
       </view>
-    </view>
   </view>
 </view>

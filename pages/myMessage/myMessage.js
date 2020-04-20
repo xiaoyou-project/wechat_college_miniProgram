@@ -428,6 +428,7 @@ Page({
         method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
+            console.log(res.data)
             this.setData({
               object4: res.data.data
             })

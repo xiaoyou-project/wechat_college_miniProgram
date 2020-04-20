@@ -136,7 +136,7 @@ Page({
   clockCard: function(){//立即打卡
     console.log("打卡用户id", this.data.userId, "打卡id", this.data.cardID);
     let that = this;
-    let keepDay = this.data.keepDay;
+    let keepDay = parseInt(this.data.keepDay);
     api.post(app.globalData.cardFinish, {//加入打卡
       cardID: that.data.cardID,
       userID: app.globalData.userID,

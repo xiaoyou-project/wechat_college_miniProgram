@@ -1,12 +1,11 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-card case">
       <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
-          <view class="cu-item {{0==myCollection?'text-white cur':''}}" bindtap="collectionShare" data-id="0">
+        <scroll-view scroll-x class="bg-white nav text-center">
+          <view class="cu-item {{0==myCollection?'text-cyan cur':''}}" bindtap="collectionShare" data-id="0">
             <text class="cuIcon-creative"></text> 我收藏的经验
           </view>
-          <view class="cu-item {{1==myCollection?'text-white cur':''}}" bindtap="collectionTopic" data-id="1">
+          <view class="cu-item {{1==myCollection?'text-cyan cur':''}}" bindtap="collectionTopic" data-id="1">
             <text class="cuIcon-message"></text> 我收藏的话题
           </view>
         </scroll-view>
@@ -25,9 +24,9 @@
                     <view class="desc">
                       <view class="text-content">{{item.description}}</view>
                       <view>
-                        <view class="text-gray text-sm flex justify-between">
-                          {{item.time}}
-                          <view class="text-gray text-sm" style="width: 110%;">
+                        <view class="text-gray text-sm flex justify-between"> 
+                          <view class="text-gray text-sm">
+                            <text class="cuIcon-time margin-lr-xs"></text>{{item.time}}
                             <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
                             <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
                           </view>
@@ -100,6 +99,5 @@
         </view>
         <!--我收藏的话题End-->
       </view>
-    </view>
   </view>
 </view>

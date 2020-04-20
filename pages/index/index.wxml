@@ -3,25 +3,23 @@
 <view class="mainView">
   <!-- 上面显示个人信息的面板 -->
   <view class="cu-card case">
-    <view class="light bg-cyan cu-item padding-xl radius shadow-warp bg-white margin-top">
-      <view>
+    <view class="light bg-cyan cu-item padding-lg radius shadow-warp bg-white margin-top">
+      <view class="flex align-center">
         <!-- 头像 -->
-        <view class="cu-avatar xl round margin-left" style="background-image:url({{imgUrl}});">
-        </view>
+        <view class="cu-avatar xl round margin-left" style="background-image:url({{imgUrl}});"> </view>
         <!-- 名字 -->
-        <view class="content wxNickName" bindtap="{{isLogin==true?'':'toLogin'}}">
+        <view class="text-black text-bold margin-left" bindtap="{{isLogin==true?'':'toLogin'}}">
           {{isLogin==true?nickName:'点击登录'}}
         </view>
-      </view>
-
-      <view class="personalCenter" bindtap="toPersonalCenter">
-        <!-- 进入个人中心 -->
-        <text>个人中心</text>
-        <text class="cuIcon-playfill lg text-gray"></text>
+        <view class="flex justify-end flex-sub" bindtap="toPersonalCenter">
+          <!-- 进入个人中心 -->
+          <text>个人中心</text>
+          <text class="cuIcon-playfill lg text-gray"></text>
+        </view>
       </view>
     </view>
-  </view>
 
+  </view>
   <!-- 下面的列表 -->
   <view class="cu-list menu sm-border card-menu margin-top">  
     <view class="cu-item arrow myDetail" bindtap="toMyCollection">

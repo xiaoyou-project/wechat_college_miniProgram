@@ -1,74 +1,56 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-card case">
-      <!-- 话题标题 -->
-      <view class="cu-item shadow viewCard">
-        <view class="title padding">
-          <view class="text-cut text-center"><text style="font-weight:bold;font-size:30rpx;">#</text>{{title}}<text style="font-weight:bold;font-size:30rpx;">#</text></view>
-        </view>
-        <button wx:if="{{authorID != userId}}" class="cu-btn round bg-white shadow" 
+      <!-- 话题详细介绍 -->
+      <view class="cu-item shadow bg-white">
+        <!-- 上面的作者栏 -->
+        <view class="cu-list menu-avatar">
+          
+          <view class="content flex margin-left margin-top">
+            <view class="cu-avatar round margin-right" style="background-image:url({{imgUrl}});" 
+              data-id="{{authorID}}" 
+              bindtap="toPersonCenter"></view>
+            <view class="flex-sub">
+              <view>{{name}}</view>
+              <view class="text-gray text-sm">{{time}}</view>
+            </view>
+            <view class="text-bold flex-sub align">#{{title}}#</view>
+          </view>
+
+          <view wx:if="{{authorID == userId}}" class="text-gray flex-sub" 
+                  style="position: absolute; right: -40rpx; top: -50rpx;" 
+                  bindtap="deleteTopic">删除</view>
+              <!-- <button wx:if="{{authorID != userId}}" class="cu-btn round bg-white shadow" 
                 role="button" 
-                style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
+                style="width:180rpx;position:absolute;right:20rpx;"
                 bindtap="collectionTopic"
                 aria-disabled="false">
                 {{collectStatus==0?"收藏":"取消收藏"}}
-        </button>
-      </view>
-      <!-- 话题标题End -->
+              </button> -->
+        </view>
 
-      <!-- 话题详细介绍 -->
-      <view class="cu-item shadow padding">
-        <!-- 上面的作者栏 -->
-        <view class="cu-list menu-avatar">
-            <view class="cu-item solids-bottom ">
-              <view class="cu-avatar round lg"
-                style="background-image:url({{imgUrl}});" 
-                wx:if="{{imgUrl}}"
-                data-img="{{imgUrl}}"
-                data-id="{{authorID}}" 
-                bindtap="toPersonCenter"></view>
-              <view class="content flex text-grey" style="width: 70%;">
-                <view class="flex-treble">{{name}}</view>
-                <view class="text-gray text-sm flex-sub" style="position: absolute;right: 2rpx;">
-                  {{time}}
-                </view>
-                <view wx:if="{{authorID == userId}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: -40rpx; top: -50rpx;" 
-                      bindtap="deleteTopic">
-                  删除
-                </view>
-              </view>
-            </view>
-          </view>
         <!-- 上面的作者栏End -->
-        <view class="text-content solid-bottom">
+        <view class="text-content solid-bottom padding">
           {{content}}
-          <!-- <vtu-input
-              border
-              value="{{content}}" 
-              type="textarea" 
-              disabled="true"
-              auto-height="true"
-              >
-            </vtu-input> -->
         </view>
-        <view>
-          <view class="text-gray text-sm flex justify-between padding">
-            <view class="text-gray text-sm text-right" style="width: 100%;">
-              <text class="cuIcon-attentionfill margin-lr-xs" ></text>{{view}}
-              <text class="cuIcon-appreciatefill margin-lr-xs {{goodStatus==0?'':'text-red'}}" 
-                    bindtap="toTopicGoods" 
-                    data-id="{{topicalID}}"></text> {{good}}
-            </view>
+        <view class="text-gray text-sm flex justify-between padding">
+          <view class="text-gray text-df text-right" style="width: 100%;">
+            <text class="cuIcon-attentionfill margin-lr-xs" ></text>{{view}}
+            <text class="cuIcon-appreciatefill margin-lr-xs {{goodStatus==0?'':'text-red'}}" 
+                  bindtap="toTopicGoods" 
+                  data-id="{{topicalID}}">{{good}}</text>
+            <text wx:if="{{authorID != userId}}" 
+                  class="cuIcon-favor margin-lr-xs {{collectStatus==0?'':'text-yellow'}}" 
+                  bindtap="collectionTopic"
+                  data-id="{{topicalID}}">{{collectStatus==0?"收藏":"已收藏"}}</text>
           </view>
         </view>
       </view>
+      
       <!-- 下面的评论列表 -->
-      <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment solids-top padding" style="margin-bottom: 80rpx;">
+      <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment solids-top" style="margin-bottom: 80rpx;">
         <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
           <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                 data-id="{{item.userID}}"
-                data-img="{{item.imgUrl}}"
                 bindtap="toPersonCenter"></view>
           <view class="content">
             <view class="text-grey">{{item.name}}</view>
@@ -88,12 +70,13 @@
                 <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                       data-id="{{item.id}}"
                       data-index="{{index}}"
-                      bindtap="toCommentGoods"></text>{{item.good}}
+                      bindtap="toCommentGoods">{{item.good}}</text>
               </view>
             </view>
           </view>
         </view>
       </view>
+
       <view wx:else style="width: 100%;" style="margin-bottom: 100rpx;"><!--object8是空的-->
         <view
             class="padding text-center text-gray" 
@@ -118,6 +101,5 @@
         <button class="cu-btn bg-green shadow" bindtap="submitComment" style="width: 120rpx;">发送</button>
       </view>
       <!--话题页面发表评论End -->
-    </view>
   </view>
 </view>

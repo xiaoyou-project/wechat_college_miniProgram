@@ -1,22 +1,20 @@
 <!--pages/personCenter/personCenter.wxml-->
 <view class="mainView">
-  <view class="mainView02">
+  <view class="mainView02 grid col-1">
     <!-- 上面显示信息的 -->
-    <view class="cu-card case">
-      <view class="light bg-cyan cu-item padding-xl radius shadow-warp bg-white margin-top">
-        <view>
+      <view class="cu-item radius shadow-warp padding-top-xl padding-bottom bg-white">
+        <view class="flex margin-left">
           <!-- 头像 -->
-          <view class="cu-avatar xl round margin-left headImgView" style="background-image:url({{imgUrl}});">
-          </view>
+          <view class="cu-avatar xl round margin-left headImgView" style="background-image:url({{imgUrl}});"> </view>
           <!-- 名字，性别，学院 -->
-          <view class="detailView">
+          <view class="grid col-1 flex-sub margin-left">
             <!-- 名字 -->
             <view style="padding: 0 0 11px 0;" class="content">
               <text style="font-weight: bold;">名字：</text>
               <text wx:if="{{isEdit == false}}" style="color: black;">{{name}}</text>
               <input wx:if="{{isEdit == true}}" 
                               bindinput="nameChange" 
-                              style="color: black; display: inline-block; position: absolute; top: 25rpx;width: 250rpx; " 
+                              style="color: black; display: inline-block; position: absolute;width: 250rpx; " 
                               value="{{name}}"                                          
                               maxlength="8" />
             </view>
@@ -38,49 +36,35 @@
               </picker>
             </view>
           </view>
-          <!-- 修改按钮 -->
-          <view wx:if="{{isSelf == true}}" class="changeView">
-            <!-- 进入修改模式 -->
-            <button wx:if="{{isEdit == false}}" bindtap="toEdit" style="width: 150rpx;" class="cu-btn round bg-white shadow changeBtn" 
-            role="button" 
-            aria-disabled="false">
-              修改
-            </button>
-            <!-- 保存修改 -->
-            <button wx:else bindtap="saveEdit" style="width: 150rpx;" class="cu-btn round bg-white shadow changeBtn" 
-            role="button" 
-            aria-disabled="false">
-              保存
-            </button>
-          </view>
+        </view>
+        <!-- 修改按钮 -->
+        <view wx:if="{{isSelf == true}}">
+          <!-- 进入修改模式 -->
+          <button wx:if="{{isEdit == false}}" bindtap="toEdit"  class="cu-btn block line-cyan lg">
+            <text class="cuIcon-edit"></text> 修改资料
+          </button>
+          <button wx:else bindtap="saveEdit" class="cu-btn block line-cyan lg">
+             <text class="cuIcon-upload"></text> 保存修改
+          </button>
         </view>
       </view>
-    </view>
-
+    
     <!-- 下面显示个人经验，话题，打卡 -->
-    <view class="cu-card case">
-      <view class="cu-item shadow">
-        <scroll-view scroll-x class="bg-cyan nav text-center viewCard">
-          <view class="cu-item {{0==myShare?'text-white cur':''}}" bindtap="myExperience" data-id="0">
+      <view class="cu-item">
+        <scroll-view scroll-x class="bg-white nav text-center">
+          <view class="cu-item {{0==myShare?'text-cyan cur':''}}" bindtap="myExperience" data-id="0">
             <text class="cuIcon-creative"></text> 经验
           </view>
-          <view class="cu-item {{1==myShare?'text-white cur':''}}" bindtap="myTopic" data-id="1">
+          <view class="cu-item {{1==myShare?'text-cyan cur':''}}" bindtap="myTopic" data-id="1">
             <text class="cuIcon-message"></text> 话题
           </view>
-          <view class="cu-item {{2==myShare?'text-white cur':''}}" bindtap="myCard" data-id="2">
+          <view class="cu-item {{2==myShare?'text-cyan cur':''}}" bindtap="myCard" data-id="2">
             <text class="cuIcon-roundcheck"></text> 打卡
           </view>
         </scroll-view>
         <!-- 下面显示列表内容 -->
         <view wx:if="{{myShare==0}}"><!--显示个人经验界面-->
-          <view wx:if="{{isLogin == false&&isSelf==true}}"><!--没有登录了的用户访问自己的个人中心-->
-            <view bindtap="toLogin" 
-                  class="padding text-center text-gray" 
-                  style="background: #EFF8FE;text-decoration:underline;">
-                    您还没有登录呢~，点击登录
-            </view>
-          </view>
-          <view wx:else><!--查看个人中心-->
+          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object1.length > 0}}"><!--object1不是是空的-->
               <view wx:for="{{object1}}" wx:key="index" class="cu-card article">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
@@ -94,8 +78,8 @@
                       <view class="text-content">{{item.description}}</view>
                       <view>
                         <view class="text-gray text-sm flex justify-between">
-                            {{item.time}}
-                          <view class="text-gray text-sm" style="width: 110%;">
+                          <view class="text-gray text-sm">
+                            <text class="cuIcon-time margin-lr-xs"></text>{{item.time}}
                             <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
                             <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
                           </view>
@@ -114,18 +98,18 @@
               </view>
             </view>
           </view>
-          <!-- 这里 -->
-        </view>
-        <!--222-->
-        <view wx:if="{{myShare == 1}}"><!--显示个人话题界面-->
-          <view wx:if="{{isLogin == false&&isSelf==true}}"><!--没有登录了的用户访问自己的个人中心-->
+          <view wx:else><!--用户没有登录-->
             <view bindtap="toLogin" 
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;text-decoration:underline;">
                     您还没有登录呢~，点击登录
             </view>
           </view>
-          <view wx:else><!--用户还没有登录-->
+          <!-- 这里 -->
+        </view>
+        <!--222-->
+        <view wx:if="{{myShare == 1}}"><!--显示个人话题界面-->
+          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object2.length > 0}}"><!--object2不是是空的-->
               <view wx:for="{{object2}}" wx:key="index" class="cu-card article">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
@@ -138,7 +122,7 @@
                       <view>
                         <view class="text-gray text-sm flex justify-between">
                           {{item.time}}
-                          <view class="text-gray text-sm" style="width: 110%;">
+                          <view class="text-gray text-sm">
                             <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
                             <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
                           </view>
@@ -157,18 +141,18 @@
               </view>
             </view>
           </view>
-        </view>
-        <!--222-->
-        <!--333-->
-        <view wx:if="{{myShare == 2}}"><!--显示个人打卡界面-->
-          <view wx:if="{{isLogin == false&&isSelf==true}}"><!--没有登录了的用户访问自己的个人中心-->
+          <view wx:else><!--用户还没有登录-->
             <view bindtap="toLogin" 
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;text-decoration:underline;">
                     您还没有登录呢~，点击登录
             </view>
           </view>
-          <view wx:else><!--用户还没有登录-->
+        </view>
+        <!--222-->
+        <!--333-->
+        <view wx:if="{{myShare == 2}}"><!--显示个人打卡界面-->
+          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object3.length > 0}}"><!--object3不是是空的-->
               <view wx:for="{{object3}}" wx:key="index" class="cu-card article">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="cardDetail">
@@ -192,13 +176,20 @@
               <view
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;">
-                    该用户暂时还没有加入打卡呢~
+                    该用户暂时还没有创建打卡呢~
               </view>
+            </view>
+          </view>
+          <view wx:else><!--用户还没有登录-->
+            <view bindtap="toLogin" 
+                  class="padding text-center text-gray" 
+                  style="background: #EFF8FE;text-decoration:underline;">
+                    您还没有登录呢~，点击登录
             </view>
           </view>
         </view>
         <!--333-->
       </view>
-    </view>
+   
   </view>
 </view>

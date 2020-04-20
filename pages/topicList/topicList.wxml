@@ -1,21 +1,12 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-card case">
-      <view class="cu-item shadow">
-        <view>
-          <view wx:for="{{object7}}" wx:key="index" class="cu-card article">
-            <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
-              <view class="title">
-                <view class="text-cut">{{item.title}}</view>
-              </view>
+    <view class="cu-item shadow">
+      <view>
+        <view wx:for="{{object7}}" wx:key="index" class="article">
+          <view class="cu-list menu">
+            <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
               <view class="content">
-                <view class="desc">
-                  <view class="text-gray text-sm flex justify-between">
-                    <view class="text-gray text-sm">
-                      <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
-                    </view>
-                  </view>
-                </view>
+                <text class="text-grey">{{item.title}}({{item.view}}次浏览)</text>
               </view>
             </view>
           </view>
