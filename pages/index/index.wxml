@@ -8,7 +8,7 @@
         <!-- 头像 -->
         <view class="cu-avatar xl round margin-left" style="background-image:url({{imgUrl}});"> </view>
         <!-- 名字 -->
-        <view class="text-black text-bold margin-left" bindtap="{{isLogin==true?'':'toLogin'}}">
+        <view class="text-black text-bold margin-left text-cut" style="width: 260rpx;" bindtap="{{isLogin==true?'':'toLogin'}}">
           {{isLogin==true?nickName:'点击登录'}}
         </view>
         <view class="flex justify-end flex-sub" bindtap="toPersonalCenter">
