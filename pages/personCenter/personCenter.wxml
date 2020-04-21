@@ -176,7 +176,7 @@
               <view
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;">
-                    该用户暂时还没有创建打卡呢~
+                    该用户暂时还没有加入打卡呢~
               </view>
             </view>
           </view>

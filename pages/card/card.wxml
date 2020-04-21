@@ -52,7 +52,7 @@
               <view
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;">
-                    您还没有发起任何打卡呢~
+                    您还没有加入任何打卡呢~
               </view>
             </view>
           </view>
@@ -87,7 +87,8 @@
                       <view class="text-content text-shadow">{{item.description}}</view>
                       <view>
                         <view class="text-gray flex justify-between">
-                          <view class="light lg">已坚持 <text class="text-black text-lg">{{item.keepDay}}</text>/{{item.totalDay}}天</view>
+                          <view wx:if="{{item.keepDay!=-1}}" class="light lg">已坚持 <text class="text-black text-lg">{{item.keepDay}}</text>/{{item.totalDay}}天</view>
+                          <view wx:else class="light lg">需坚持 <text class="text-black text-lg">{{item.totalDay}}</text>天</view>
                           <view class="light lg text-sm text-cyan">已加入{{item.peoples}}人</view>
                         </view>
                       </view>
