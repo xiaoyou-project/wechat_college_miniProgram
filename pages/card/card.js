@@ -75,6 +75,8 @@ Page({
   },
   totalDayChange: function(e){//填写总的天数
     // console.log("总的天数：",e.detail.value);
+    // console.log(this.data);
+    // console.log(this.data.myCardContent.replace(/\n/g, '\\n'));
     this.setData({
       myCardTotalDay: e.detail.value
     });

@@ -199,7 +199,7 @@ Page({
     api.get(app.globalData.commentCommentList, {
       postID: postID,
       postType: 3,
-      userId: app.globalData.userId
+      userId: app.globalData.userID
     }).then((res) => {
       that.setData({
         object8: res.data

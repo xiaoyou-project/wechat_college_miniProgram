@@ -46,7 +46,7 @@
           </view>
         <!-- 上面的作者栏End -->
         <view class="text-content solid-bottom margin-bottom">
-          {{content}}
+          <text space="nbsp">{{content}}</text>
           <!-- <vtu-input
               border
               value="{{content}}" 
@@ -90,7 +90,7 @@
                 删除
             </view>
             <view class="text-gray content text-df bg-grey light">
-              {{item.content}}
+              <text space="nbsp">{{item.content}}</text>
             </view>
             <view class="margin-top-sm flex justify-between">
               <view class="text-gray text-df">{{item.time}}</view>

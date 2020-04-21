@@ -33,7 +33,7 @@
           </view>
           <view class="content">
             <view class="desc">
-              <view class="content margin-bottom solid-bottom ">{{description}}</view>
+              <view class="content margin-bottom solid-bottom "><text space="nbsp">{{description}}</text></view>
               <view>
                 <view class="text-gray text-sm flex justify-between">
                   <view wx:if="{{cardStatus==0}}" class="flex-treble text-black text-bold text-xl">需坚持 {{totalDay}} 天</view>
@@ -110,7 +110,7 @@
                           删除
                       </view>
                       <view class="text-gray content text-df bg-grey light">
-                        {{item.content}}
+                        <text space="nbsp">{{item.content}}</text>
                       </view>
                       <view class="margin-top-sm flex justify-between">
                         <view class="text-gray text-df">{{item.time}}</view>

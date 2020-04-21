@@ -30,7 +30,7 @@
 
         <!-- 上面的作者栏End -->
         <view class="text-content solid-bottom padding">
-          {{content}}
+          <text space="nbsp">{{content}}</text>
         </view>
         <view class="text-gray text-sm flex justify-between padding">
           <view class="text-gray text-df text-right" style="width: 100%;">
@@ -62,7 +62,7 @@
                 删除
             </view>
             <view class="text-gray content text-df bg-grey light">
-              {{item.content}}
+              <text space="nbsp">{{item.content}}</text>
             </view>
             <view class="margin-top-sm flex justify-between">
               <view class="text-gray text-df">{{item.time}}</view>
