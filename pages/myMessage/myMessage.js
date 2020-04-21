@@ -202,7 +202,7 @@ Page({
   goodToCard: function(e, postID){//由赞到打卡
     let index = e.currentTarget.dataset.value;
     let messageId = this.data.object5[index].id;
-    let articleId = postID;
+    let articleId = postID == undefined ? this.data.object5[index].postID : postID;
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
@@ -240,7 +240,7 @@ Page({
   goodToExperienceArticle: function(e, postID){//由赞到经验文章
     let index = e.currentTarget.dataset.value;
     let messageId = this.data.object5[index].id;
-    let articleId = postID;
+    let articleId = postID == undefined ? this.data.object5[index].postID : postID;
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
@@ -275,9 +275,10 @@ Page({
     });
   },
   goodToTopicArticle: function(e, postID){//由赞到话题文章
+    console.log("由赞到话题文章");
     let index = e.currentTarget.dataset.value;
     let messageId = this.data.object5[index].id;
-    let articleId = postID;
+    let articleId = postID==undefined?this.data.object5[index].postID:postID;
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
@@ -346,7 +347,8 @@ Page({
       }
     });
   },
-  systemMessage: function(){//系统消息
+  systemMessage: function(e){//系统消息
+    console.log("系统消息");
     let index = e.currentTarget.dataset.value;
     let messageId = this.data.object6[index].id;
     let messageStatus = "object6[" + index + "].status";
@@ -426,7 +428,7 @@ Page({
         method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
-            console.log(res.data)
+            // console.log(res.data)
             this.setData({
               object4: res.data.data
             })
@@ -510,7 +512,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**

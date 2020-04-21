@@ -73,7 +73,7 @@
                     <view class="text-cut">{{item.title}}</view>
                   </view>
                   <view class="content">
-                    <image src="{{item.img}}" mode="aspectFill"></image>
+                    <image src='{{item.img.length>0?item.img:"https://img.xiaoyou66.com/images/2020/04/21/YiSX.png"}}' mode="aspectFill"></image>
                     <view class="desc">
                       <view class="text-content">{{item.description}}</view>
                       <view>

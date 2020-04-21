@@ -124,7 +124,7 @@ Page({
             userID: app.globalData.userID
           }).then((res) => {
             wx.reLaunch({//删除成功去经验列表界面页面
-              url: '/pages/plateList/plateList'
+              url: '/pages/experienceList/experienceList?plateID='+that.data.options.plateID+'&name='+that.data.options.name+'&description='+that.data.options.description
             })
           }).catch((err) => {
             that.theFailMeg("删除分享失败");

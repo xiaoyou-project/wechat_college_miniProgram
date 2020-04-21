@@ -12,12 +12,14 @@ Page({
     content: '',//发布经验的内容
     imgList: [],//上传的图片
     plateID: 0,//上传经验的板块id
+    name: '',//板块的名字
+    description: '',//板块的描述
     imgUrl: '',//存储上传的图片
 
   },
   titleChange: function (e) {//填写经验标题
     // console.log("经验标题改变的时候：", e.detail.value);
-    console.log(this.data);
+    // console.log(this.data);
     this.setData({
       title: e.detail.value
     });
@@ -33,9 +35,28 @@ Page({
       console.log("发布经验");
       //先上传图片，然后拿到图片地址
       let that = this;
-      that.data.imgList.forEach(function(item, index){//先上传图片
-        that.uploadImage(item);
-      });
+      if(that.data.imgList.length > 0){//有图片
+        that.data.imgList.forEach(function(item, index){//先上传图片
+          that.uploadImage(item);
+        });
+      }else{//没有图片
+        api.post(app.globalData.releaseExperience, {
+          userID: app.globalData.userID,
+          title: that.data.title,
+          content: that.data.content,
+          plateID: that.data.plateID,
+          imgUrl: that.data.imgUrl
+        }).then((res) => {
+          wx.reLaunch({//分享成功去经验列表页面
+            url: '/pages/experienceList/experienceList?plateID='+that.data.plateID+'&name='+that.data.name+'&description='+that.data.description
+          });
+        }).catch((err) => {
+          wx.showToast({
+            title: "发布失败",
+            image: '../../image/登录失败.png'
+          });
+        });
+      }
     }else{
       wx.navigateTo({//去登录界面
         url: '/pages/login/login'
@@ -113,9 +134,9 @@ Page({
               plateID: that.data.plateID,
               imgUrl: that.data.imgUrl
             }).then((res) => {
-              wx.switchTab({//分享成功去板块页面
-                url: '/pages/plate/plate'
-              })
+              wx.reLaunch({//分享成功去经验列表页面
+                url: '/pages/experienceList/experienceList?plateID=' + that.data.plateID + '&name=' + that.data.name + '&description=' + that.data.description
+              });
             }).catch((err) => {
               wx.showToast({
                 title: "发布失败",
@@ -145,7 +166,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      plateID: options.plateID
+      plateID: options.plateID,
+      name: options.name,
+      description: options.description
     })
   },
 

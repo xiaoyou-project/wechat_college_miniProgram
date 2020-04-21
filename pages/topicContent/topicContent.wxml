@@ -93,6 +93,7 @@
                 placeholder="请输入评论内容" 
                 bindfocus="InputFocus" 
                 bindblur="InputBlur" 
+                value="{{commentContent}}"
                 adjust-position="{{false}}"
                 focus="{{false}}" 
                 maxlength="300" 

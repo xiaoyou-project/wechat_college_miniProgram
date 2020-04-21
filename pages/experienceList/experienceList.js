@@ -44,13 +44,13 @@ Page({
   experienceArticle: function (e) {//点击经验去经验页面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({
-      url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object10[index].id + '&userID=' + app.globalData.userID
+      url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object10[index].id + '&userID=' + app.globalData.userID + '&plateID='+this.data.plateID+'&name='+this.data.name+'&description='+this.data.description
     });
   },
   toReleaseExperience: function(){//去分享经验界面
     let that = this;
     wx.navigateTo({
-      url: '/pages/releaseExperience/releaseExperience?plateID=' + that.data.plateID
+      url: '/pages/releaseExperience/releaseExperience?plateID=' + that.data.plateID + '&name='+that.data.name+'&description='+that.data.description
     });
   },
   collectionPlate: function(){//收藏这个版块或者取消收藏这个版块

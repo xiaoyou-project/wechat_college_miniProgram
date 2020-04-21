@@ -1,6 +1,6 @@
 <view class="mainView">
     <!-- 分享经验的按钮 -->
-  <button class="cu-btn icon add-button lg bg-cyan" bindtap="toReleaseExperience">
+  <button class="cu-btn icon add-button lg bg-cyan" bindtap="toReleaseExperience" style="z-index:1;">
     <text class="cuIcon-add text-white"></text>
   </button>
 
@@ -34,7 +34,7 @@
           </view>
 
           <view class="content">
-            <image src="{{item.img}}" mode="aspectFill"></image>
+            <image src='{{item.img.length>0?item.img:"https://img.xiaoyou66.com/images/2020/04/21/YiSX.png"}}' mode="aspectFill"></image>
             <view class="desc">
               <view class="text-content">{{item.content}}</view>
               <view>

@@ -21,7 +21,7 @@
                   删除
                 </view>
                 <view wx:if="{{cardStatus == 1 && userId != userID}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: -40rpx; top: -40rpx;" 
+                      style="position: absolute; right: 40rpx; top: -40rpx;" 
                       bindtap="signOutCard">
                   退出打卡
                 </view>

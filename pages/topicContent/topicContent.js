@@ -294,6 +294,9 @@ Page({
         method: 'post',
         success: (res) => {
           if (res.data.code == 1) {//成功
+          that.setData({//让评论清空
+            commentContent: ''
+          })
             //重新获取评论内容
             that.getCommentList(that.data.topicalID, that.data.userId);
           } else {

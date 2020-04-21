@@ -133,10 +133,10 @@
                 bindtouchstart="ListTouchStart"
                 bindtouchmove="ListTouchMove"
                 bindtouchend="ListTouchEnd" 
+                bindtap="systemMessage" 
+                data-value="{{index}}"
                 data-target="move-box-{{index}}">
                 <view class="content text-grey text-cut" 
-                      bindtap="systemMessage" 
-                      data-value="{{index}}"
                       style="position: absolute; left: 20rpx; width: 65%;">
                   {{item.content}}
                 </view>
