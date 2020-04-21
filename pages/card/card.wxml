@@ -117,7 +117,7 @@
               adjust-position="{{true}}"
               value="" 
               type="input"
-              maxlength="20"
+              maxlength="15"
               text-align="left"
               bind:input="titleChange"
               >

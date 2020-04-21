@@ -1,13 +1,20 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-item shadow">
+    <view class="cu-item shadow ">
       <view>
         <view wx:for="{{object7}}" wx:key="index" class="article">
-          <view class="cu-list menu">
+          <view class="cu-list menu solid-top solid-bottom">
             <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
+
+              <text class="text-white text-cut" 
+                    style="background-color:{{index==0?'#f54545':index==1?'#ff8547':index==2?'#ffac38':'#8eb9f5'}};position:absolute;width:60rpx;text-align:center;border-radius:50%;left:10rpx; height:60rpx;line-height:60rpx;">{{index + 1}}</text>
               <view class="content">
-                <text class="text-grey">{{item.title}}({{item.view}}次浏览)</text>
+                <text class="text-grey text-cut" 
+                      style="position: absolute;top: 30rpx;width:65%; left: 80rpx;">{{item.title}}</text>
               </view>
+              <text class="cuIcon-attentionfill lg text-gray text-cut" 
+                    style="width:20%;right: 60rpx;position: absolute;">{{item.view}}</text>
+
             </view>
           </view>
         </view>

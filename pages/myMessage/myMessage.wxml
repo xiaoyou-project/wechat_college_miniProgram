@@ -14,9 +14,9 @@
         </scroll-view>
         <!--收到的评论-->
         <view wx:if="{{myMessage == 0}}" class="cu-list menu-avatar">
-          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
-            <view wx:if="{{object4.length > 0}}"><!--object4不是是空的-->
-              <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-bottom " 
+          <view wx:if="{{isLogin == true}}" class="cu-list menu-avatar"><!--是登录了的用户-->
+            <view wx:if="{{object4.length > 0}}" class="cu-list menu-avatar"><!--object4不是是空的-->
+              <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-bottom solids-top " 
                 wx:for="{{object4}}" 
                 wx:key="index" 
                 bindtouchstart="ListTouchStart"
@@ -25,7 +25,7 @@
                 data-target="move-box-{{index}}">
                 <view class="content" 
                       data-value="{{index}}"
-                      style="position: absolute; left: 20rpx; width: 80%;" 
+                      style="position: absolute; left: 20rpx; width: 65%;" 
                       bindtap="{{item.type=='topical'?'toTopicArticle':item.type=='card'?'toCard':'toExperienceArticle'}}">
                   <view class="text-content text-grey text-cut">
                     <text class="text-grey">
@@ -40,10 +40,10 @@
                     <text class="text-cut">{{item.content}}</text>
                   </view>
                 </view>
-                <view class="action">
+                <view class="action" style="width:30%;">
                   <view class="text-grey text-xs">{{item.time}}</view>
-                  <view wx:if="{{item.status == 0}}" class="cu-tag round bg-red sm">未读</view>
-                  <view wx:if="{{item.status == 1}}" class="cu-tag round bg-grey sm">已读</view>
+                  <view wx:if="{{item.status == 0}}" class="cu-tag round bg-red sm" style="position:absolute;right:20rpx;">未读</view>
+                  <view wx:if="{{item.status == 1}}" class="cu-tag round bg-grey sm" style="position:absolute;right:20rpx;">已读</view>
                 </view>
                 <view class="move">
                   <view class="bg-red" bindtap="deleteMessage" data-value="{{index}}" data-object="4">删除</view>
@@ -125,9 +125,9 @@
 
         <!--收到的系统消息-->
         <view wx:if="{{myMessage == 2}}" class="cu-list menu-avatar">
-          <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
-            <view wx:if="{{object6.length > 0}}"><!--object6不是是空的-->
-              <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-bottom " 
+          <view wx:if="{{isLogin == true}}" class="cu-list menu-avatar"><!--是登录了的用户-->
+            <view wx:if="{{object6.length > 0}}" class="cu-list menu-avatar"><!--object6不是是空的-->
+              <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} solids-bottom solids-top " 
                 wx:for="{{object6}}" 
                 wx:key="index" 
                 bindtouchstart="ListTouchStart"
@@ -137,13 +137,13 @@
                 <view class="content text-grey text-cut" 
                       bindtap="systemMessage" 
                       data-value="{{index}}"
-                      style="position: absolute; left: 20rpx; width: 80%;">
+                      style="position: absolute; left: 20rpx; width: 65%;">
                   {{item.content}}
                 </view>
-                <view class="action">
+                <view class="action" style="width:30%;">
                   <view class="text-grey text-xs">{{item.time}}</view>
-                  <view wx:if="{{item.status == 0}}" class="cu-tag round bg-red sm">未读</view>
-                  <view wx:if="{{item.status == 1}}" class="cu-tag round bg-grey sm">已读</view>
+                  <view wx:if="{{item.status == 0}}" class="cu-tag round bg-red sm" style="position:absolute;right:20rpx;">未读</view>
+                  <view wx:if="{{item.status == 1}}" class="cu-tag round bg-grey sm" style="position:absolute;right:20rpx;">已读</view>
                 </view>
                 <view class="move">
                   <view class="bg-red" bindtap="deleteMessage" data-value="{{index}}" data-object="6">删除</view>

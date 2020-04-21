@@ -6,7 +6,7 @@
         <view class="cu-list menu-avatar">
           
           <view class="content flex margin-left margin-top">
-            <view class="cu-avatar round margin-right" style="background-image:url({{imgUrl}});" 
+            <view class="cu-avatar round margin-right" wx:if="{{imgUrl}}" style="background-image:url({{imgUrl}});" 
               data-id="{{authorID}}" 
               bindtap="toPersonCenter"></view>
             <view class="flex-sub">
