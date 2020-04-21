@@ -98,6 +98,9 @@ Page({
     })
   },
   uploadImage(imgPath) {//上传图片
+    wx.showLoading({
+      title: '上传中...',
+    });
     let that = this;
     //上传图片到自己服务器
     wx.uploadFile({
@@ -105,6 +108,7 @@ Page({
       filePath: imgPath,
       name: 'file',
       success(res) {
+        wx.hideLoading();//将加载icon隐藏
         //服务器返回图片地址，把图片地址给粘贴上去
         let data = JSON.parse(res.data)
         console.log(data)
@@ -131,6 +135,7 @@ Page({
         }
       },
       fail: () => {
+        wx.hideLoading();//将加载icon隐藏
         if (that.data.imgUrl == null) {//第一次拼接
           that.setData({
             imgUrl: imgPath,
