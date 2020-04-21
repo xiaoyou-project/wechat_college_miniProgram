@@ -127,9 +127,10 @@
               value="" 
               type="textarea" 
               text-align="left" 
-              text-height="250rpx"
-              maxlength="300"
+              text-height="700rpx"
+              maxlength="500"
               bind:input="contentChange"
+              adjust-position="true"
               >
             </vtu-input>
 

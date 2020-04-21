@@ -1,6 +1,6 @@
-<view class="cu-card case">
-  <view class="cu-item shadow">
-    <vtu-input-group title="发布话题">
+<view class="bg-white cu-card case">
+  <view class="shadow">
+    <vtu-input-group title="">
       <vtu-input border 
         v-class="titleInput"
         placeholder="请输入话题标题"
@@ -17,15 +17,20 @@
         value="" 
         type="textarea" 
         text-align="left" 
-        text-height="500rpx"
-        maxlength="300"
+        text-height="980rpx"
+        maxlength="1500"
         bind:input="contentChange"
+        adjust-position="true"
         >
       </vtu-input>
-      <vtu-btn bind:click="submitCard" disabled="{{title==''?true:content==''?true:false}}"
+      <!-- <vtu-btn bind:click="submitCard" disabled="{{title==''?true:content==''?true:false}}"
         v-class="submitBtn" type="success" shadow="{{true}}" >
         发布
-      </vtu-btn>
+      </vtu-btn> -->
     </vtu-input-group>
+    <button 
+        bindtap="submitCard" 
+        class="flex cu-btn align-center bg-blue lg margin-top margin-bottom " 
+        disabled="{{title.length>0&&content.length>0?false:true}}">分享</button>
   </view>
 </view>

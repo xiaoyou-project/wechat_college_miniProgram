@@ -1,6 +1,6 @@
-<view class="cu-card case">
-  <view class="cu-item shadow">
-    <vtu-input-group title="发布经验分享">
+<view class="cu-card case bg-white">
+  <view class="shadow">
+    <vtu-input-group title="">
       <vtu-input border 
         v-class="titleInput"
         placeholder="请输入分享标题"
@@ -17,9 +17,10 @@
         value="{{content}}" 
         type="textarea" 
         text-align="left" 
-        text-height="500rpx"
-        maxlength="300"
+        text-height="710rpx"
+        maxlength="1500"
         bind:input="contentChange"
+        adjust-position="true"
         >
       </vtu-input>
       <!-- 上传图片 -->
@@ -47,10 +48,14 @@
         </view>
       </view>
       <!-- 上传图片End -->
-      <vtu-btn bind:click="submitCard" disabled="{{title==''?true:content==''?true:false}}"
+      <!-- <vtu-btn bind:click="submitCard" disabled="{{title==''?true:content==''?true:false}}"
         v-class="submitBtn" type="success" shadow="{{true}}" >
         发布
-      </vtu-btn>
+      </vtu-btn> -->
     </vtu-input-group>
+    <button 
+        bindtap="submitCard" 
+        class="flex cu-btn align-center bg-blue lg margin-top margin-bottom " 
+        disabled="{{title.length>0&&content.length>0?false:true}}">分享</button>
   </view>
 </view>
