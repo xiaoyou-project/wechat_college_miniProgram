@@ -3,7 +3,7 @@
       <!-- 话题详细介绍 -->
       <view class="cu-item shadow bg-white">
         <!-- 上面的作者栏 -->
-        <view class="cu-list menu-avatar">
+        <view class="cu-list menu-avatar padding-top">
           
           <view class="content flex margin-left margin-top">
             <view class="cu-avatar round margin-right" wx:if="{{imgUrl}}" style="background-image:url({{imgUrl}});" 
@@ -17,7 +17,7 @@
           </view>
 
           <view wx:if="{{authorID == userId}}" class="text-gray flex-sub" 
-                  style="position: absolute; right: -40rpx; top: -50rpx;" 
+                  style="position: absolute; right: 20rpx; top: 20rpx;" 
                   bindtap="deleteTopic">删除</view>
               <!-- <button wx:if="{{authorID != userId}}" class="cu-btn round bg-white shadow" 
                 role="button" 

@@ -89,9 +89,9 @@ Page({
         content: that.data.myCardContent,
         totalDay: that.data.myCardTotalDay
       }).then((res) => {
-        wx.switchTab({//发起打卡成功后去板块界面
-          url: '/pages/plate/plate'
-        })
+        wx.reLaunch({//发起打卡成功后去板块界面
+          url: '/pages/card/card'
+        });
       }).catch((err) => {
         that.theFailMeg("发起打卡失败");
       })
@@ -100,9 +100,7 @@ Page({
     }
   },
   toLogin() {//去登录
-    wx.navigateTo({
-      url: '/pages/login/login'
-    })
+    app.toLoginPage();
   },
   theFailMeg: function (title) {//提示信息函数
     wx.showToast({

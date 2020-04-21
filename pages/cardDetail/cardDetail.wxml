@@ -5,18 +5,18 @@
         <!-- 上面的打卡内容 -->
         <view class="cu-item radius shadow-warp">
           <view class="cu-list menu-avatar">
-            <view class="cu-item solids-bottom">
+            <view class="cu-item solids-bottom padding-top padding-bottom">
               <view class="cu-avatar round lg" style="background-image:url({{imgUrl}});" 
                     data-id="{{userID}}"
                     data-img="{{imgUrl}}" 
                     bindtap="toPersonCenter"></view>
-              <view class="content flex justify-between" style="width: 70%;">
+              <view class="content flex justify-between" style="width: 80%;">
                 <view style="margin-left: -15rpx;">{{name}}</view>
                 <view class="text-gray text-sm">
                   {{time}}
                 </view>
                 <view wx:if="{{userId == userID}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: -40rpx; top: -40rpx;" 
+                      style="position: absolute; right: 20rpx; top: -40rpx;" 
                       bindtap="deleteCard">
                   删除
                 </view>

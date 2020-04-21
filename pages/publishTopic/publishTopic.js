@@ -43,7 +43,7 @@ Page({
         method: 'post',
         success: (res) => {
           if (res.data.code == 1) {//发布话题成功
-            wx.navigateTo({
+            wx.reLaunch({
               url: '/pages/topicList/topicList'
             });
           } else {

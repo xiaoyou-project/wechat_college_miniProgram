@@ -123,8 +123,8 @@ Page({
             shareID: that.data.shareID,
             userID: app.globalData.userID
           }).then((res) => {
-            wx.switchTab({//分享成功去板块页面
-              url: '/pages/plate/plate'
+            wx.reLaunch({//删除成功去经验列表界面页面
+              url: '/pages/plateList/plateList'
             })
           }).catch((err) => {
             that.theFailMeg("删除分享失败");
@@ -276,7 +276,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad(this.data.options);
+
   },
 
   /**

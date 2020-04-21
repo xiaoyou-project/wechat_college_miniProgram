@@ -14,9 +14,7 @@ Page({
 
   //跳转到登录界面
   toLogin: function () {
-    wx.navigateTo({
-      url: '/pages/login/login'
-    });
+    app.toLoginPage();
   },
   //进入个人中心
   toPersonalCenter:function(){
@@ -35,11 +33,6 @@ Page({
     wx.navigateTo({
       url: '/pages/myMessage/myMessage'
     });
-  },
-  toLogin(){//去登录
-    wx.navigateTo({
-      url: '/pages/login/login'
-    })
   },
   /**
    * 生命周期函数--监听页面加载

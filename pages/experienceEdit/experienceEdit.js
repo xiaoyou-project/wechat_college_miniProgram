@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    options: null,//
     uploadImgNum: 0,//存储上传了的图片数量
     shareID: -1,//经验id
     imgList: [],//上传的图片,
@@ -150,6 +151,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      options: options
+    })
     let that = this;
     console.log("进入经验修改中心，", options);
     api.get(app.globalData.plateShareContent, {//获取经验文章信息
@@ -201,7 +205,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad(this.data.options);
   },
 
   /**

@@ -103,7 +103,7 @@ Page({
             cardID: that.data.cardID,
             userID: app.globalData.userID
           }).then((res) => {
-            wx.switchTab({//删除打卡成功后去card界面
+            wx.reLaunch({//删除打卡成功后去card界面
               url: '/pages/card/card'
             })
           }).catch((err) => {
@@ -186,9 +186,7 @@ Page({
     });
   },
   toLogin() {//去登录
-    wx.navigateTo({
-      url: '/pages/login/login'
-    })
+    app.toLoginPage();
   },
   theFailMeg: function (title) {//提示信息函数
     wx.showToast({

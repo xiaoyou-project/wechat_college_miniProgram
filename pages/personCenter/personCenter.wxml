@@ -78,10 +78,10 @@
                       <view class="text-content">{{item.description}}</view>
                       <view>
                         <view class="text-gray text-sm flex justify-between">
+                          <text class="cuIcon-time margin-lr-xs">{{item.time}}</text>
                           <view class="text-gray text-sm">
-                            <text class="cuIcon-time margin-lr-xs"></text>{{item.time}}
-                            <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
-                            <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+                            <text class="cuIcon-attentionfill margin-lr-xs">{{item.view}}</text>
+                            <text class="cuIcon-appreciatefill margin-lr-xs">{{item.good}}</text> 
                           </view>
                         </view>
                       </view>
@@ -121,10 +121,10 @@
                       <view class="text-content">{{item.description}}</view>
                       <view>
                         <view class="text-gray text-sm flex justify-between">
-                          {{item.time}}
+                          <text class="cuIcon-time margin-lr-xs">{{item.time}}</text>
                           <view class="text-gray text-sm">
-                            <text class="cuIcon-attentionfill margin-lr-xs"></text>{{item.view}}
-                            <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.good}}
+                            <text class="cuIcon-attentionfill margin-lr-xs">{{item.view}}</text>
+                            <text class="cuIcon-appreciatefill margin-lr-xs">{{item.good}}</text> 
                           </view>
                         </view>
                       </view>

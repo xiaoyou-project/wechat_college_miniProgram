@@ -380,9 +380,7 @@ Page({
     });
   },
   toLogin() {//去登录
-    wx.navigateTo({
-      url: '/pages/login/login'
-    })
+    app.toLoginPage();
   },
   // ListTouch触摸开始
   ListTouchStart(e) {

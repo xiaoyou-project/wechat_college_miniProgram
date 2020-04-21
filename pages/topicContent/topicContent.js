@@ -36,9 +36,7 @@ Page({
     ],
   },
   toLogin() {//去登录
-    wx.navigateTo({
-      url: '/pages/login/login'
-    })
+    app.toLoginPage();
   },
   apiCollection: function(flage){//话题收藏或者取消收藏
     let that = this;
@@ -221,8 +219,8 @@ Page({
             method: 'post',
             success: (res) => {
               if (res.data.code == 1) {//成功
-                wx.navigateTo({
-                  url: '/pages/topicList/topicList'
+                wx.reLaunch({
+                  url: '/pages/topicList/topicList',
                 });
               } else {
                 that.theFailMeg("删除话题失败");
@@ -410,7 +408,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad(this.data.options);
+
   },
 
   /**

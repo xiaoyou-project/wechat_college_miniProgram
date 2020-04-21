@@ -4,7 +4,7 @@
       <view class="cu-item radius shadow-warp bg-white margin-top">
         <view class="cu-list padding-xs">
           <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-            <view class="flex-treble padding-xs margin-xs radius">
+            <view class="flex-treble padding-xs margin-xs radius viewTitle">
               所有板块
             </view>
           </view>

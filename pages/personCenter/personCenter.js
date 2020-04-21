@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    options: null,//保存传过来的数据
     isLogin: false,//判断是否登录
     name: '请您先登录呢~',
     sex: '保密',
@@ -184,15 +185,16 @@ Page({
     });
   },
   toLogin() {//去登录
-    wx.navigateTo({
-      url: '/pages/login/login'
-    })
+    app.toLoginPage();
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log("跳转到个人中心界面：",options);
+    this.setData({
+      options: options
+    });
     //获取个人中心的数据
     wx.request({//获取个人中心的分享经验列表
       header: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -335,7 +337,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad(this.data.options);
   },
 
   /**

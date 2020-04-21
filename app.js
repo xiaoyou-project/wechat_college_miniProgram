@@ -188,6 +188,11 @@ App({
       })
     }
   },
+  toLoginPage: function(){
+    wx.reLaunch({
+      url: '/pages/login/login'
+    });
+  },
   globalData: {
     userInfo: null,
     openid: '',//用户的openid
