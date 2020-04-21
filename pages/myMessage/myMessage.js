@@ -12,7 +12,7 @@ Page({
       // {
       //   id: 1,
       //   name: "用户名字",
-      //   postID: 1,
+      //   postID: 1,//
       //   postTitle: "话题的标题啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦了",
       //   type: "topical",//标明是话题类型的topical，share，card
       //   status: 0,
@@ -24,7 +24,7 @@ Page({
       // {
       //   id: 1,
       //   name: "用户的名字",
-      //   postID: 1,//话题id
+      //   postID: 1,//评论id
       //   postTitle: "话题标题",
       //   type: "topical",//标明是话题类型的，topical，share，comment，card
       //   status: 0,//未读
@@ -199,10 +199,10 @@ Page({
       }
     });
   },
-  goodToCard: function(e){//由赞到打卡
+  goodToCard: function(e, postID){//由赞到打卡
     let index = e.currentTarget.dataset.value;
     let messageId = this.data.object5[index].id;
-    let articleId = this.data.object5[index].postID;
+    let articleId = postID;
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
@@ -237,10 +237,10 @@ Page({
       }
     });
   },
-  goodToExperienceArticle: function(e){//由赞到经验文章
+  goodToExperienceArticle: function(e, postID){//由赞到经验文章
     let index = e.currentTarget.dataset.value;
     let messageId = this.data.object5[index].id;
-    let articleId = this.data.object5[index].postID;
+    let articleId = postID;
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
@@ -274,10 +274,10 @@ Page({
       }
     });
   },
-  goodToTopicArticle: function(e){//由赞到话题文章
+  goodToTopicArticle: function(e, postID){//由赞到话题文章
     let index = e.currentTarget.dataset.value;
     let messageId = this.data.object5[index].id;
-    let articleId = this.data.object5[index].postID;
+    let articleId = postID;
     let messageStatus = "object5[" + index + "].status";
     let that = this;
     wx.request({//将消息变成已读
@@ -325,11 +325,11 @@ Page({
       success: (res) => {
         if (res.data.code == 1) {//更改消息状态成功
           if(res.data.data.type == 1 ){//是经验
-            that.goodToExperienceArticle(e);
+            that.goodToExperienceArticle(e, res.data.data.postID);
           }else if(res.data.data.type == 2){//是话题
-            that.goodToTopicArticle(e);
+            that.goodToTopicArticle(e, res.data.data.postID);
           }else{//是打卡的
-            that.goodToCard(e);
+            that.goodToCard(e, res.data.data.postID);
           }
         } else {
           wx.showToast({
