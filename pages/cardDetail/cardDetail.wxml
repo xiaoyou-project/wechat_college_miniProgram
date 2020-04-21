@@ -118,7 +118,7 @@
                           <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                                 data-id="{{item.id}}"
                                 data-index="{{index}}"
-                                bindtap="toCommentGoods"></text>{{item.good}}
+                                bindtap="toCommentGoods">{{item.good}}</text>
                         </view>
                       </view>
                     </view>

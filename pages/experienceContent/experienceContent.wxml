@@ -68,7 +68,7 @@
               <text class="cuIcon-attentionfill margin-lr-xs" ></text>{{view}}
               <text class="cuIcon-appreciatefill margin-lr-xs {{goodStatus==0?'':'text-red'}}" 
                     bindtap="toExperienceGoods" 
-                    data-id="{{shareID}}"></text>{{good}}
+                    data-id="{{shareID}}">{{good}}</text>
             </view>
           </view>
         </view>
@@ -98,7 +98,7 @@
                 <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                       data-id="{{item.id}}"
                       data-index="{{index}}"
-                      bindtap="toCommentGoods"></text>{{item.good}}
+                      bindtap="toCommentGoods">{{item.good}}</text>
               </view>
             </view>
           </view>

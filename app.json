@@ -24,7 +24,7 @@
     "pages/test/test"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#1cbbb4",
     "navigationBarTitleText": "小程序名字",
     "navigationBarTextStyle": "white",
