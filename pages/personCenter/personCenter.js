@@ -187,6 +187,9 @@ Page({
   toLogin() {//去登录
     app.toLoginPage();
   },
+  funTest: function(){//测试函数
+    console.log("测试点击");
+  },
   /**
    * 生命周期函数--监听页面加载
    */

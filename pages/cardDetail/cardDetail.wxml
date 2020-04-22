@@ -28,12 +28,12 @@
               </view>
             </view>
           </view>
-          <view class="title text-center solid-bottom">
-            <view class="text-cut">{{title}}</view>
+          <view class="text-center solid-bottom">
+            <view class="text-cut padding-sm" style="font-weight:bold;font-size:30rpx;">{{title}}</view>
           </view>
           <view class="content">
             <view class="desc">
-              <view class="content margin-bottom solid-bottom "><text class="padding" space="nbsp">{{description}}</text></view>
+              <view class="content margin-bottom solid-bottom " style="padding-left:0rpx;"><text class="padding-sm" space="nbsp">{{description}}</text></view>
               <view>
                 <view class="text-gray text-sm flex justify-between">
                   <view wx:if="{{cardStatus==0}}" class="flex-treble text-black text-bold text-xl">需坚持 {{totalDay}} 天</view>
@@ -109,16 +109,19 @@
                             bindtap="deleteComment">
                           删除
                       </view>
-                      <view class="text-gray content text-df bg-grey light">
-                        <text space="nbsp">{{item.content}}</text>
+                      <view class="text-gray margin-bottom-xs">
+                        <view class="text-gray text-xs">{{item.time}}</view>
+                      </view> 
+                      <view class="content text-df ">
+                        <text space="nbsp"  style="color: #333;">{{item.content}}</text>
                       </view>
-                      <view class="margin-top-sm flex justify-between">
-                        <view class="text-gray text-df">{{item.time}}</view>
+                      <view class="margin-top-xs text-right solid-top">
                         <view>
                           <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                                 data-id="{{item.id}}"
                                 data-index="{{index}}"
-                                bindtap="toCommentGoods">{{item.good}}</text>
+                                bindtap="toCommentGoods">{{item.good}}
+                          </text>
                         </view>
                       </view>
                     </view>

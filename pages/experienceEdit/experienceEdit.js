@@ -32,9 +32,13 @@ Page({
     console.log(this.data);
     //先上传图片，然后拿到图片地址
     let that = this;
-    that.data.imgList.forEach(function (item, index) {//先上传图片
-      that.uploadImage(item);
-    });
+    if(that.data.imgList.length>0){//有图片
+      that.data.imgList.forEach(function (item, index) {//先上传图片
+        that.uploadImage(item);
+      });
+    }else{
+      that.submitExperience();
+    }
   },
   submitExperience: function(){//真正发布修改后的经验
     let that = this;
@@ -111,18 +115,19 @@ Page({
         wx.hideLoading();//将加载icon隐藏
         //服务器返回图片地址，把图片地址给粘贴上去
         let data = JSON.parse(res.data)
-        console.log(data)
+        console.log("后台服务器返回的图片路径",data);
         if (data.code == 1) {
+          console.log("输出imgUrl的长度", that.data.imgUrl.length,that.data.imgUrl);
           if (that.data.imgUrl.length == 0) {//第一次拼接
             that.setData({
               imgUrl: data.data.src,
               uploadImgNum: parseInt(that.data.uploadImgNum) + 1
-            })
+            });
           } else {
             that.setData({
               imgUrl: that.data.imgUrl.concat("&&" + data.data.src),
               uploadImgNum: parseInt(that.data.uploadImgNum) + 1
-            })
+            });
           }
           that.submitExperience();//调用发布经验函数
           console.log("上传图片", data.data.src);
@@ -136,7 +141,7 @@ Page({
       },
       fail: () => {
         wx.hideLoading();//将加载icon隐藏
-        if (that.data.imgUrl == null) {//第一次拼接
+        if (that.data.imgUrl.length==0) {//第一次拼接
           that.setData({
             imgUrl: imgPath,
             uploadImgNum: parseInt(that.data.uploadImgNum) + 1
@@ -177,6 +182,7 @@ Page({
     this.setData({//初始化数据
       shareID: options.shareID
     });
+    console.log("修改经验中心的内容：", this.data);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

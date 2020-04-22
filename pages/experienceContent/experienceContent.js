@@ -239,6 +239,12 @@ Page({
       that.theFailMeg("获取评论列表失败");
     })
   },
+  clickImg: function (e) {//显示图片
+    wx.previewImage({
+      urls: [e.target.dataset.img], //需要预览的图片http链接列表，注意是数组
+      current: '', // 当前显示图片的http链接，默认是第一个
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

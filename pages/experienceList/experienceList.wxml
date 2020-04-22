@@ -5,7 +5,7 @@
   </button>
 
   <view class="mainView02">
-    <view class="cu-card case">
+    <view class="cu-card">
       <view class="cu-item shadow bg-white padding-bottom">
         <view class="cu-bar flex">
           <view class="action sub-title">
@@ -13,16 +13,17 @@
             <text class="bg-cyan" style="width:2rem"></text>
           </view>
           <text
-            class="cuIcon-favor margin-lr-xs {{collectionStatus==0?'':'text-yellow'}}" 
+            class="margin-right-sm cuIcon-favor margin-right-xs {{collectionStatus==0?'':'text-yellow'}}" 
             bindtap="collectionPlate">{{collectionStatus==0?"收藏":"已收藏"}}</text>
         </view>
         <text class="text-Abc text-gray flex-sub  margin-left-sm">{{description}}</text>
       </view>
     </view>
-    <view class="cu-item shadow">
+
+    <view class="cu-item shadow" style="margin-top:-30rpx">
       <view wx:for="{{object10}}" wx:key="index" class="cu-card article">
         <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
-          <view class="content flex align-center margin-left margin-top margin-bottom">
+          <view class="content flex align-center  margin-top margin-bottom">
             <view class="cu-avatar round margin-right" style="background-image:url({{item.avatar}});" 
               data-id="{{authorID}}" 
               bindtap="toPersonCenter"></view>
@@ -30,7 +31,7 @@
               <view>{{item.name}}</view>
               <view class="text-gray text-sm">{{item.time}}</view>
             </view>
-            <view class="text-bold flex-sub align">{{item.title}}</view>
+            <view class="text-bold flex-sub">{{item.title}}</view>
           </view>
 
           <view class="content">

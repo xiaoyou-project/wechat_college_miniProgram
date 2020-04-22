@@ -61,16 +61,19 @@
                   bindtap="deleteComment">
                 删除
             </view>
-            <view class="text-gray content text-df bg-grey light">
-              <text space="nbsp">{{item.content}}</text>
+            <view class="text-gray margin-bottom-xs">
+              <view class="text-gray text-xs">{{item.time}}</view>
+            </view> 
+            <view class="content text-df ">
+              <text space="nbsp"  style="color: #333;">{{item.content}}</text>
             </view>
-            <view class="margin-top-sm flex justify-between">
-              <view class="text-gray text-df">{{item.time}}</view>
+            <view class="margin-top-xs text-right solid-top">
               <view>
                 <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                       data-id="{{item.id}}"
                       data-index="{{index}}"
-                      bindtap="toCommentGoods">{{item.good}}</text>
+                      bindtap="toCommentGoods">{{item.good}}
+                </text>
               </view>
             </view>
           </view>

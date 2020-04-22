@@ -1,23 +1,8 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-card case">
-      <!-- 经验的标题 -->
-      <view class="cu-item shadow">
-        <view class="title padding">
-          <view class="text-cut text-center"><text style="font-weight:bold;font-size:30rpx;">#</text>{{title}}<text style="font-weight:bold;font-size:30rpx;">#</text></view>
-        </view>
-        <button wx:if="{{authorID != userID}}" class="cu-btn round bg-white shadow" 
-              role="button" 
-              style="width: 180rpx;position: absolute;right: 20rpx;top: 40rpx;"
-              bindtap="collectionTopic"
-              aria-disabled="false">
-                {{collectStatus==0?"收藏":"取消收藏"}}
-        </button>
-      </view>
-      <!-- 经验的标题End -->
-
+    <view class=" case">
       <!-- 话题详细介绍 -->
-      <view class="cu-item shadow padding">
+      <view class="cu-item shadow bg-white">
         <!-- 上面的作者栏 -->
         <view class="cu-list menu-avatar">
             <view class="cu-item solids-bottom ">
@@ -32,33 +17,34 @@
                   {{time}}
                 </view>
                 <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: -40rpx; top: -35rpx;" 
+                      style="position: absolute; right: -40rpx; top:-9px" 
                       bindtap="deleteExperience">
                   删除
                 </view>
                 <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: 80rpx; top: -35rpx;" 
+                      style="position: absolute; right: 80rpx; top:-9px" 
                       bindtap="editExperience">
                   修改
                 </view>
+                 <text wx:if="{{authorID != userID}}"
+                  style="position: absolute; right:6rpx;top:4px" 
+                  class="cuIcon-favor margin-lr-xs {{collectStatus==0?'':'text-yellow'}}" 
+                  bindtap="collectionTopic">{{collectStatus==0?"收藏":"已收藏"}}</text>
               </view>
             </view>
           </view>
         <!-- 上面的作者栏End -->
-        <view class="text-content solid-bottom margin-bottom padding-top padding-bottom">
+        <view class="text-content solid-bottom margin-bottom padding-bottom">
+        <view class="solid-bottom text-df padding-sm margin-left-sm">
+          <text class="text-black text-bold">{{title}}</text>
+        </view>
+        <view class="padding-sm">
           <text space="nbsp">{{content}}</text>
-          <!-- <vtu-input
-              border
-              value="{{content}}" 
-              type="textarea" 
-              disabled="true"
-              auto-height="true"
-              >
-            </vtu-input> -->
+        </view>
         </view>
         <!-- 显示图片列表 -->
-        <view wx:if="{{img != ''}}" class="content margin-bottom solid-bottom" >
-          <image wx:for="{{img}}" wx:if="{{item}}" wx:key="index" mode="widthFix" src="{{item}}">
+        <view wx:if="{{img.length>0}}" class="content padding-sm solid-bottom" >
+          <image bindtap='clickImg'  data-img="{{item}}"   class="margin-xs" style="width:300rpx;height:300rpx;border-radius:5%;" wx:for="{{img}}" wx:if="{{item}}" wx:key="index" mode="aspectFill" src="{{item}}">
           </image>
         </view>
         <!-- 显示图片列表End -->
@@ -74,13 +60,14 @@
         </view>
       </view>
       <!-- 下面的评论列表 -->
-      <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment solids-top padding" style="margin-bottom: 80rpx;">
+      <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment solids-top" style="margin-bottom: 80rpx;">
         <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
           <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                 data-id="{{item.userID}}"
                 data-img="{{item.imgUrl}}"
                 bindtap="toPersonCenter"></view>
           <view class="content">
+
             <view class="text-grey">{{item.name}}</view>
             <view wx:if="{{userID == item.userID}}" class="text-grey" 
                   style="position: absolute;right: 0rpx;top: -10rpx;" 
@@ -89,18 +76,24 @@
                   bindtap="deleteComment">
                 删除
             </view>
-            <view class="text-gray content text-df bg-grey light">
-              <text space="nbsp">{{item.content}}</text>
+            <view class="text-gray margin-bottom-xs">
+              <view class="text-gray text-xs">{{item.time}}</view>
+            </view> 
+
+            <view class="content text-df ">
+              <text space="nbsp"  style="color: #333;">{{item.content}}</text>
             </view>
-            <view class="margin-top-sm flex justify-between">
-              <view class="text-gray text-df">{{item.time}}</view>
+            <view class="margin-top-xs text-right solid-top">
               <view>
                 <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                       data-id="{{item.id}}"
                       data-index="{{index}}"
-                      bindtap="toCommentGoods">{{item.good}}</text>
+                      bindtap="toCommentGoods">{{item.good}}
+                </text>
               </view>
             </view>
+
+
           </view>
         </view>
       </view>
