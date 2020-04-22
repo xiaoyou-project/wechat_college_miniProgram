@@ -3,7 +3,7 @@
       <!-- 话题详细介绍 -->
       <view class="cu-item shadow bg-white">
         <!-- 上面的作者栏 -->
-        <view class="cu-list menu-avatar padding-top">
+        <view class="cu-list menu-avatar padding-top padding-bottom">
           
           <view class="content flex margin-left margin-top">
             <view class="cu-avatar round margin-right" wx:if="{{imgUrl}}" style="background-image:url({{imgUrl}});" 
