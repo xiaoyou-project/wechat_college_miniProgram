@@ -1,4 +1,4 @@
-<view class="bg-white cu-card case">
+<view class="bg-white cu-card case" style="position:fixed;width:100%;height:100%;">
   <view class="shadow">
     <vtu-input-group title="">
       <vtu-input border 
@@ -17,7 +17,7 @@
         value="" 
         type="textarea" 
         text-align="left" 
-        text-height="980rpx"
+        text-height="970rpx"
         maxlength="1500"
         bind:input="contentChange"
         adjust-position="true"
