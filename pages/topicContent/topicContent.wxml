@@ -29,7 +29,7 @@
         </view>
 
         <!-- 上面的作者栏End -->
-        <view class="text-content solid-bottom padding">
+        <view class="text-content solid-bottom solid-top padding">
           <text space="nbsp">{{content}}</text>
         </view>
         <view class="text-gray text-sm flex justify-between padding">

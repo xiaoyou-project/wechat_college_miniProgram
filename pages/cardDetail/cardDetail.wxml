@@ -10,13 +10,13 @@
                     data-id="{{userID}}"
                     data-img="{{imgUrl}}" 
                     bindtap="toPersonCenter"></view>
-              <view class="content flex justify-between" style="width: 80%;">
-                <view style="margin-left: -15rpx;">{{name}}</view>
-                <view class="text-gray text-sm">
+              <view style="width: 80%;">
+                <view style="margin-left: 28rpx;">{{name}}</view>
+                <view class="text-gray text-sm" style="margin-top: 8rpx;">
                   {{time}}
                 </view>
                 <view wx:if="{{userId == userID}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: 20rpx; top: -40rpx;" 
+                      style="position: absolute; right: 30rpx; top: 10rpx;" 
                       bindtap="deleteCard">
                   删除
                 </view>

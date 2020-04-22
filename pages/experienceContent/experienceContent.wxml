@@ -26,18 +26,18 @@
                 data-id="{{authorID}}" 
                 data-img="{{avatar}}"
                 bindtap="toPersonCenter"></view>
-              <view class="content flex text-grey" style="width: 70%;">
+              <view class="" style="width: 70%; position:absolute;top:40rpx;left:150rpx;">
                 <view class="flex-treble">{{name}}</view>
-                <view class="text-gray text-sm flex-sub" style="position: absolute;right: 2rpx;">
+                <view class="text-gray text-sm flex-sub" style="position: absolute;top: 50rpx;">
                   {{time}}
                 </view>
                 <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: -40rpx; top: -50rpx;" 
+                      style="position: absolute; right: -40rpx; top: -35rpx;" 
                       bindtap="deleteExperience">
                   删除
                 </view>
                 <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
-                      style="position: absolute; right: 80rpx; top: -50rpx;" 
+                      style="position: absolute; right: 80rpx; top: -35rpx;" 
                       bindtap="editExperience">
                   修改
                 </view>
@@ -45,7 +45,7 @@
             </view>
           </view>
         <!-- 上面的作者栏End -->
-        <view class="text-content solid-bottom margin-bottom">
+        <view class="text-content solid-bottom margin-bottom padding-top padding-bottom">
           <text space="nbsp">{{content}}</text>
           <!-- <vtu-input
               border

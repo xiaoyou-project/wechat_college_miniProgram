@@ -123,9 +123,20 @@ Page({
             shareID: that.data.shareID,
             userID: app.globalData.userID
           }).then((res) => {
-            wx.reLaunch({//删除成功去经验列表界面页面
-              url: '/pages/experienceList/experienceList?plateID='+that.data.options.plateID+'&name='+that.data.options.name+'&description='+that.data.options.description
-            })
+            if(that.data.options.plateID != undefined){//传了数据过来
+              wx.reLaunch({//删除成功去经验列表界面页面
+                url: '/pages/experienceList/experienceList?plateID='+that.data.options.plateID+'&name='+that.data.options.name+'&description='+that.data.options.description
+              });
+            }else{
+              var pages = getCurrentPages(); //当前页面
+              var beforePage = pages[pages.length - 2]; //前一页
+              wx.navigateBack({
+                success: function () {
+                  console.log("返回上一个界面");
+                  //beforePage.onLoad(); // 执行前一个页面的onLoad方法
+                }
+              });
+            }
           }).catch((err) => {
             that.theFailMeg("删除分享失败");
           })
