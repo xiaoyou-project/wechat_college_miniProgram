@@ -1,33 +1,19 @@
 <view class="mainView">
   <view class="mainView02">
-    <view class="cu-card case">
-      <view class="cu-item radius shadow-warp bg-white margin-top">
+      <view class="cu-item shadow-warp bg-white">
         <view class="cu-list padding-xs">
-          <view class="flex p-xs margin-bottom-sm mb-sm" style="border-bottom: solid 2rpx;">
-            <view class="flex-treble padding-xs margin-xs radius viewTitle">
-              所有板块
-            </view>
-          </view>
           <view class="cu-item">
-            <view class="flex" style="flex-wrap: wrap;">
-              <view  wx:for="{{object9}}" wx:key="index" data-value="{{index}}"
-                      bindtap="toExperienceList"
-                      class="flex-sub radius bg-grey margin-xs text-cut"   
-                      style="width: 45%;min-width: 45%;max-width: 45%;">
-                <view class="image">
-                  <image src="{{item.imgUrl}}" style="width:300rpx;height:300rpx;" />
-                  <view class="cu-tag bg-red light sm round">经验数量：{{item.total}}</view>
-                  <view class="cu-bar bg-shadeBottom">
-                    <text class="text-cut">
-                      {{item.name}}
-                    </text>
-                  </view>
+            <view class="grid col-1">
+              <view class="flex solid-bottom"  wx:for="{{object9}}" wx:key="index" data-value="{{index}}" bindtap="toExperienceList">
+                <image class="padding-xs" src="{{item.imgUrl}}" mode="aspectFill" style="height:150rpx; width:150rpx;border-radius:40rpx;" />
+                <view style="width:600rpx" class="grid col-1 margin-left-sm">
+                  <view style="font-weight:800" class="flex text-cut text-black text-df margin-top-xs">{{item.name}}<view class="flex-sub flex justify-end text-grey text-xs margin-right-xs">{{item.total}}条经验</view></view>
+                  <view class="text-cut text-grey text-sm">{{item.description}}</view>
                 </view>
               </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
   </view>
 </view>

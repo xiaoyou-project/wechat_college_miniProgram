@@ -1,6 +1,6 @@
 <!--pages/personCenter/personCenter.wxml-->
 <view class="mainView">
-  <view class="mainView02 grid col-1" style="overflow: scroll;">
+  <view id="mainViewId" class="mainView02 grid col-1" style="overflow: scroll;">
     <!-- 上面显示信息的 -->
       <view class="cu-item radius shadow-warp padding-top-xl padding-bottom bg-white" style="height:28%;">
         <view class="flex margin-left">
@@ -50,7 +50,7 @@
       </view>
     
     <!-- 下面显示个人经验，话题，打卡 -->
-      <view class="cu-item solid-top" bindtap="funTest" style="position:relative;">
+      <view class="cu-item solid-top" style="position:relative;">
         <scroll-view scroll-x class="bg-white nav text-center">
           <view class="cu-item {{0==myShare?'text-cyan cur':''}}" bindtap="myExperience" data-id="0">
             <text class="cuIcon-creative"></text> 经验
@@ -66,7 +66,7 @@
         <view wx:if="{{myShare==0}}"><!--显示个人经验界面-->
           <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object1.length > 0}}"><!--object1不是是空的-->
-              <view wx:for="{{object1}}" wx:key="index" class="cu-card article">
+              <view wx:for="{{object1}}" wx:key="index" class="cu-card article" catchtouchstart='touchStart' catchtouchend="touchEnd">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
                   <view class="cu-tag bg-blue" style="position: absolute;right: 0rpx;">{{item.plate}}</view>
                   <view class="title">
@@ -90,7 +90,7 @@
                 </view>
               </view>
             </view>
-            <view wx:else><!--object1是空的-->
+            <view wx:else catchtouchstart='touchStart' catchtouchend="touchEnd"><!--object1是空的-->
               <view
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;">
@@ -98,7 +98,7 @@
               </view>
             </view>
           </view>
-          <view wx:else><!--用户没有登录-->
+          <view wx:else catchtouchstart='touchStart' catchtouchend="touchEnd"><!--用户没有登录-->
             <view bindtap="toLogin" 
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;text-decoration:underline;">
@@ -111,7 +111,7 @@
         <view wx:if="{{myShare == 1}}"><!--显示个人话题界面-->
           <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object2.length > 0}}"><!--object2不是是空的-->
-              <view wx:for="{{object2}}" wx:key="index" class="cu-card article">
+              <view wx:for="{{object2}}" wx:key="index" class="cu-card article" catchtouchstart='touchStart' catchtouchend="touchEnd">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
                   <view class="title">
                     <view class="text-cut">{{item.name}}</view>
@@ -133,7 +133,7 @@
                 </view>
               </view>
             </view>
-            <view wx:else><!--object2是空的-->
+            <view wx:else catchtouchstart='touchStart' catchtouchend="touchEnd"><!--object2是空的-->
               <view
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;">
@@ -141,7 +141,7 @@
               </view>
             </view>
           </view>
-          <view wx:else><!--用户还没有登录-->
+          <view wx:else catchtouchstart='touchStart' catchtouchend="touchEnd"><!--用户还没有登录-->
             <view bindtap="toLogin" 
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;text-decoration:underline;">
@@ -154,7 +154,7 @@
         <view wx:if="{{myShare == 2}}"><!--显示个人打卡界面-->
           <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object3.length > 0}}"><!--object3不是是空的-->
-              <view wx:for="{{object3}}" wx:key="index" class="cu-card article">
+              <view wx:for="{{object3}}" wx:key="index" class="cu-card article" catchtouchstart='touchStart' catchtouchend="touchEnd">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="cardDetail">
                   <view class="title">
                     <view class="text-cut">{{item.title}}</view>
@@ -172,7 +172,7 @@
                 </view>
               </view>
             </view>
-            <view wx:else><!--object3是空的-->
+            <view wx:else catchtouchstart='touchStart' catchtouchend="touchEnd"><!--object3是空的-->
               <view
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;">
@@ -180,7 +180,7 @@
               </view>
             </view>
           </view>
-          <view wx:else><!--用户还没有登录-->
+          <view wx:else catchtouchstart='touchStart' catchtouchend="touchEnd"><!--用户还没有登录-->
             <view bindtap="toLogin" 
                   class="padding text-center text-gray" 
                   style="background: #EFF8FE;text-decoration:underline;">
@@ -191,5 +191,10 @@
         <!--333-->
       </view>
 
+    <!-- 下面是填充的view -->
+      <view catchtouchstart='touchStart' catchtouchend="touchEnd" style="position:static; height:{{autoHeight==-1?'auto':autoHeight+'px'}};">
+        <text> </text>
+      </view>
+    <!-- 下面是填充的viewEnd -->
   </view>
 </view>

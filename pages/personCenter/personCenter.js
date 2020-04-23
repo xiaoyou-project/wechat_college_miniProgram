@@ -1,11 +1,13 @@
 // pages/personCenter/personCenter.js
 import api from '../../utils/api.js';
+import { getDomHeight, getTouchData } from '../../utils/util.js'
 var app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    autoHeight: -1,//dom节点调节高度
     options: null,//保存传过来的数据
     isLogin: false,//判断是否登录
     name: '请您先登录呢~',
@@ -149,22 +151,33 @@ Page({
     })
   },
   myExperience: function(){//个人经验
+    let that = this;
     console.log("个人经验：", this.data);
     this.setData({
       myShare: 0
+    }, () => {
+      that.adjustHeight();
     });
   },
   myTopic: function(){//个人话题
+    let that = this;
     console.log("个人话题：", this.data);
     this.setData({
       myShare: 1
+    }, () => {
+      that.adjustHeight();
     });
+    
   },
   myCard: function(){//个人打卡
+    let that = this;
     console.log("个人打卡：", this.data);
     this.setData({
       myShare: 2
+    }, () => {
+      that.adjustHeight();
     });
+    
   },
   experienceArticle: function(e){//点击经验去经验页面
     let index = e.currentTarget.dataset.value;
@@ -188,7 +201,50 @@ Page({
     app.toLoginPage();
   },
   funTest: function(){//测试函数
+    getDomHeight("mainViewId").then((res)=>{
+      console.log("输出高度", res);
+    });
     console.log("测试点击");
+  },
+  adjustHeight: function(){//调节板块的高度
+    let that = this;
+    getDomHeight("mainViewId").then((res) => {
+      if(parseInt(res.height)>parseInt(app.globalData.screenHeight)){//Dom节点的高度大于屏幕高度
+        that.setData({
+          autoHeight: -1
+        });
+      }else{//dom节点高度小于屏幕高度
+        that.setData({
+          autoHeight: parseInt(app.globalData.screenHeight)-parseInt(res.height)
+        });
+      }
+      console.log("调节高度", res);
+    });
+  },
+  touchStart(e) {
+    // console.log(e)
+    let x = e.changedTouches[0].clientX;
+    let y = e.changedTouches[0].clientY;
+    this.setData({
+      startX: x,
+      startY: y
+    });
+  },
+  touchEnd(e) {
+    let that = this;
+    let x = e.changedTouches[0].clientX;
+    let y = e.changedTouches[0].clientY;
+    if (getTouchData(x, y, that.data.startX, that.data.startY) == 'left' && that.data.myShare !=0){//左滑
+      this.setData({
+        myShare: parseInt(this.data.myShare)-1
+      })
+    }
+    if (getTouchData(x, y, that.data.startX, that.data.startY) == 'right' && that.data.myShare != 2){
+      this.setData({
+        myShare: parseInt(this.data.myShare) + 1
+      })
+    }
+    console.log(getTouchData(x, y,that.data.startX, that.data.startY));
   },
   /**
    * 生命周期函数--监听页面加载
@@ -308,6 +364,7 @@ Page({
       }
     //这里还要调用接口获取用户的信息
     }
+    this.adjustHeight();//调节高度
   },
 
   /**

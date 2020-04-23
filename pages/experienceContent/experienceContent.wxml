@@ -5,7 +5,7 @@
       <view class="cu-item shadow bg-white">
         <!-- 上面的作者栏 -->
         <view class="cu-list menu-avatar">
-            <view class="cu-item solids-bottom ">
+            <view class="cu-item">
               <view class="cu-avatar round lg"
                 style="background-image:url({{avatar}});" 
                 data-id="{{authorID}}" 
@@ -34,17 +34,17 @@
             </view>
           </view>
         <!-- 上面的作者栏End -->
-        <view class="text-content solid-bottom margin-bottom padding-bottom">
-        <view class="solid-bottom text-df padding-sm margin-left-sm">
+        <view class="text-content" style="margin-top:-30rpx">
+        <view class="text-df margin-sm">
           <text class="text-black text-bold">{{title}}</text>
         </view>
-        <view class="padding-sm">
+        <view class="padding-sm" style="margin-top:-30rpx">
           <text space="nbsp">{{content}}</text>
         </view>
         </view>
         <!-- 显示图片列表 -->
-        <view wx:if="{{img.length>0}}" class="content padding-sm solid-bottom" >
-          <image bindtap='clickImg'  data-img="{{item}}"   class="margin-xs" style="width:300rpx;height:300rpx;border-radius:5%;" wx:for="{{img}}" wx:if="{{item}}" wx:key="index" mode="aspectFill" src="{{item}}">
+        <view wx:if="{{img.length>0}}" class="content padding-sm text-center" style="margin-top:-6rpx">
+          <image bindtap='clickImg'  data-img="{{item}}" class="margin-xs" style="width:300rpx;height:300rpx;border-radius:5%;" wx:for="{{img}}" wx:if="{{item}}" wx:key="index" mode="aspectFill" src="{{item}}">
           </image>
         </view>
         <!-- 显示图片列表End -->
@@ -52,7 +52,7 @@
           <view class="text-gray text-sm flex justify-between padding">
             <view class="text-gray text-sm text-right" style="width: 100%;">
               <text class="cuIcon-attentionfill margin-lr-xs" ></text>{{view}}
-              <text class="cuIcon-appreciatefill margin-lr-xs {{goodStatus==0?'':'text-red'}}" 
+              <text class="cuIcon-appreciatefill  {{goodStatus==0?'':'text-red'}}" 
                     bindtap="toExperienceGoods" 
                     data-id="{{shareID}}">{{good}}</text>
             </view>
@@ -67,7 +67,6 @@
                 data-img="{{item.imgUrl}}"
                 bindtap="toPersonCenter"></view>
           <view class="content">
-
             <view class="text-grey">{{item.name}}</view>
             <view wx:if="{{userID == item.userID}}" class="text-grey" 
                   style="position: absolute;right: 0rpx;top: -10rpx;" 
@@ -79,11 +78,10 @@
             <view class="text-gray margin-bottom-xs">
               <view class="text-gray text-xs">{{item.time}}</view>
             </view> 
-
             <view class="content text-df ">
               <text space="nbsp"  style="color: #333;">{{item.content}}</text>
             </view>
-            <view class="margin-top-xs text-right solid-top">
+            <view class="margin-top-xs text-right">
               <view>
                 <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                       data-id="{{item.id}}"
