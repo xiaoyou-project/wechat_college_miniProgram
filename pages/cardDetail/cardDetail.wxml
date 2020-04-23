@@ -5,17 +5,17 @@
         <!-- 上面的打卡内容 -->
         <view class="cu-item radius shadow-warp">
           <view class="cu-list menu-avatar">
-            <view class="cu-item solids-bottom padding-top padding-bottom">
+            <view class="cu-item padding-top padding-bottom">
               <view class="cu-avatar round lg" style="background-image:url({{imgUrl}});" 
                     data-id="{{userID}}"
                     data-img="{{imgUrl}}" 
                     bindtap="toPersonCenter"></view>
-              <view style="width: 80%;">
-                <view style="margin-left: 28rpx;">{{name}}</view>
+              <view style="width:80%;">
+                <view style="margin-left: 8rpx;">{{name}}</view>
                 <view class="text-gray text-sm" style="margin-top: 8rpx;">
                   {{time}}
                 </view>
-                <view wx:if="{{userId == userID}}" class="text-gray flex-sub" 
+                <view wx:if="{{userId == userID}}" class="text-red flex-sub" 
                       style="position: absolute; right: 30rpx; top: 10rpx;" 
                       bindtap="deleteCard">
                   删除
@@ -28,19 +28,19 @@
               </view>
             </view>
           </view>
-          <view class="text-center solid-bottom">
-            <view class="text-cut padding-sm" style="font-weight:bold;font-size:30rpx;">{{title}}</view>
+          <view>
+            <view class="text-cut margin-left" style="font-weight:bold;font-size:30rpx;">{{title}}</view>
           </view>
           <view class="content">
             <view class="desc">
-              <view class="content margin-bottom solid-bottom " style="padding-left:0rpx;"><text class="padding-sm" space="nbsp">{{description}}</text></view>
+              <view class="text-grey content margin-bottom-sm" style="padding-left:0rpx;"><text class="padding-sm" space="nbsp">{{description}}</text></view>
               <view>
-                <view class="text-gray text-sm flex justify-between">
+                <view class="text-gray text-xs flex justify-between">
                   <view wx:if="{{cardStatus==0}}" class="flex-treble text-black text-bold text-xl">需坚持 {{totalDay}} 天</view>
                   <view wx:if="{{cardStatus==1}}" class="flex-treble text-black text-bold text-xl">
                     已坚持 {{keepDay}}/{{totalDay}}天
                   </view>
-                  <view class="flex-sub cu-tag bg-blue light lg">已加入{{peoples}}人</view>
+                  <view class="flex-sub margin-top-xs text-sm text-cyan light lg">已加入{{peoples}}人</view>
                 </view>
               </view>
             </view>
@@ -95,15 +95,15 @@
               </view>
               <view class="cu-item">
                 <!-- 记录 -->
-                <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment padding">
-                  <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
+                <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment">
+                  <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-bottom">
                     <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                           data-id="{{item.userID}}"
                           data-img="{{item.imgUrl}}"
                           bindtap="toPersonCenter"></view>
                     <view class="content">
                       <view class="text-grey">{{item.name}}</view>
-                      <view wx:if="{{userID == item.userID}}" class="text-grey" 
+                      <view wx:if="{{userID == item.userID}}" class="text-red" 
                             style="position: absolute;right: 0rpx;top: -10rpx;" 
                             data-id="{{item.id}}" 
                             bindtap="deleteComment">
@@ -115,7 +115,7 @@
                       <view class="content text-df ">
                         <text space="nbsp"  style="color: #333;">{{item.content}}</text>
                       </view>
-                      <view class="margin-top-xs text-right solid-top">
+                      <view class="margin-top-xs text-right">
                         <view>
                           <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
                                 data-id="{{item.id}}"

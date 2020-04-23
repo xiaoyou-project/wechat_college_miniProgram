@@ -1,6 +1,10 @@
 /* pages/experienceList/experienceList.wxss */
+@import "../../colorui/animation.wxss";
 .add-button{
   position: fixed;
   right: 27px;
   bottom: 49px;
+}
+button[disabled]{
+  background: #DCDCDC !important;
 }

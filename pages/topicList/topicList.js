@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    animation: '',
+    buttonName: 'fade',
     isLogin: false,//判断是否登录
     object7: [//话题列表
       // {
@@ -24,6 +26,23 @@ Page({
     wx.navigateTo({
       url: '/pages/topicContent/topicContent?topicalID=' + this.data.object7[index].id + '&userId=' + userId
     });
+  },
+  toPublishTopic: function (e) {//去发布话题界面
+    console.log(e);
+    let that = this;
+    var anmiaton = e.currentTarget.dataset.class;
+    that.setData({
+      animation: anmiaton
+    })
+    setTimeout(function () {
+      that.setData({
+        animation: ''
+      }, () => {
+        wx.navigateTo({
+          url: '/pages/publishTopic/publishTopic'
+        });
+      })
+    }, 500);
   },
   /**
    * 生命周期函数--监听页面加载

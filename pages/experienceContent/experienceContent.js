@@ -13,17 +13,17 @@ Page({
     commentContent: '',//发表评论的内容
     shareID: '',//存储这篇经验的id
     userID: '',//存储观看这篇经验的用户id
-    title: "经验的标题",
-    content: "经验的内容",
+    title: "不存在这篇经验",
+    content: "不存在这篇经验",
     view: 66,
     good: 66,
-    name: "作者名字",
-    avatar: "https://img.xiaoyou66.com/images/2020/01/21/nNUi.png",//作者头像
+    name: "不存在这篇经验",
+    avatar: 'https://img.xiaoyou66.com/images/2020/04/23/YbIq.png',//作者头像
     goodStatus: 0,//判断是否点赞
     collectStatus: 0,//判断是否收藏
     time: "2020-2-29",
     authorID: 5,//作者id
-    imgs: "https://img.xiaoyou66.com/images/2020/01/21/nNUi.png&&https://img.xiaoyou66.com/images/2020/01/21/nNUi.png&&https://img.xiaoyou66.com/images/2020/01/21/nNUi.png",//很多图像
+    imgs: "",//很多图像
     img: '',
     object8: [//评论列表
       // {
@@ -123,20 +123,20 @@ Page({
             shareID: that.data.shareID,
             userID: app.globalData.userID
           }).then((res) => {
-            if(that.data.options.plateID != undefined){//传了数据过来
-              wx.reLaunch({//删除成功去经验列表界面页面
-                url: '/pages/experienceList/experienceList?plateID='+that.data.options.plateID+'&name='+that.data.options.name+'&description='+that.data.options.description
-              });
-            }else{
+            // if(that.data.options.plateID != undefined){//传了数据过来
+            //   wx.reLaunch({//删除成功去经验列表界面页面
+            //     url: '/pages/experienceList/experienceList?plateID='+that.data.options.plateID+'&name='+that.data.options.name+'&description='+that.data.options.description
+            //   });
+            // }else{
               var pages = getCurrentPages(); //当前页面
               var beforePage = pages[pages.length - 2]; //前一页
               wx.navigateBack({
                 success: function () {
                   console.log("返回上一个界面");
-                  //beforePage.onLoad(); // 执行前一个页面的onLoad方法
+                  beforePage.onLoad(beforePage.data.options); // 执行前一个页面的onLoad方法
                 }
               });
-            }
+            // }
           }).catch((err) => {
             that.theFailMeg("删除分享失败");
           })
@@ -263,23 +263,42 @@ Page({
         userID: options.userID
       }).then((res) => {
         let data = res.data;
-        that.setData({
-          content: data.content,
-          title: data.title,
-          time: data.time,
-          avatar: data.avatar,
-          name: data.name,
-          img: data.img.split("&&"),//字符串分割
-          view: data.view,
-          good: data.good,
-          goodStatus: data.goodStatus,
-          collectStatus: data.collectStatus,
-          authorID: data.authorID
-        });
+        if(data.length == 0){//不存在这篇经验
+          wx.showToast({
+            title: "该分享已被删除",
+            image: '../../image/登录失败.png',
+            duration: 1000,
+            success: () => {
+              var timeOut = setTimeout(function () {
+                var pages = getCurrentPages(); //当前页面
+                var beforePage = pages[pages.length - 2]; //前一页
+                wx.navigateBack({
+                  success: function () {
+                    //beforePage.onLoad(); // 执行前一个页面的onLoad方法
+                  }
+                });
+              }, 1000);
+            }
+          });
+        }else{
+          that.setData({
+            content: data.content,
+            title: data.title,
+            time: data.time,
+            avatar: data.avatar,
+            name: data.name,
+            img: data.img.split("&&"),//字符串分割
+            view: data.view,
+            good: data.good,
+            goodStatus: data.goodStatus,
+            collectStatus: data.collectStatus,
+            authorID: data.authorID
+          });
+          this.getCommentList(options.shareID, app.globalData.userID);//获取评论列表
+        }
       }).catch((err) => {
         that.theFailMeg("获取经验分享信息失败");
       });
-      this.getCommentList(options.shareID, app.globalData.userID);//获取评论列表
     }
   },
   /**

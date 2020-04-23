@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    options: null,
     isLogin: false,//判断是否登录
     myCardName: '',//存储发起打卡的内容
     myCardContent: '',//存储发起打卡的内容

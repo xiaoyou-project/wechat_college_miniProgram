@@ -50,9 +50,16 @@ Page({
         imgUrl: that.data.imgUrl,
         shareID: that.data.shareID
       }).then((res) => {
-        wx.switchTab({//分享成功去板块页面
-          url: '/pages/plate/plate'
-        })
+        // wx.switchTab({//分享成功去板块页面
+        //   url: '/pages/plate/plate'
+        // })
+        var pages = getCurrentPages(); //当前页面
+        var beforePage = pages[pages.length - 2]; //前一页
+        wx.navigateBack({
+          success: function () {
+            beforePage.onLoad(beforePage.data.options); // 执行前一个页面的onLoad方法
+          }
+        });
       }).catch((err) => {
         wx.showToast({
           title: "发布失败",

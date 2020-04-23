@@ -12,7 +12,7 @@ Page({
     cardID: -1,
     userId: 0,//进入这个打卡的用户的id
     name: "用户名",
-    imgUrl: "https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg",
+    imgUrl: "https://img.xiaoyou66.com/images/2020/04/23/YbIq.png",
     title: "打卡标题",
     userID: 1,//发起打卡的人的id
     time: "2020-2-29",
@@ -103,9 +103,16 @@ Page({
             cardID: that.data.cardID,
             userID: app.globalData.userID
           }).then((res) => {
-            wx.reLaunch({//删除打卡成功后去card界面
-              url: '/pages/card/card'
-            })
+            // wx.reLaunch({//删除打卡成功后去card界面
+            //   url: '/pages/card/card'
+            // })
+            var pages = getCurrentPages(); //当前页面
+            var beforePage = pages[pages.length - 2]; //前一页
+            wx.navigateBack({
+              success: function () {
+                beforePage.onLoad(beforePage.data.options); // 执行前一个页面的onLoad方法
+              }
+            });
           }).catch((err) => {
             that.theFailMeg("删除失败");
           })

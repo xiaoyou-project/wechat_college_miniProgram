@@ -1,4 +1,8 @@
 <view class="mainView">
+    <!-- 发布话题的按钮 -->
+  <button class="cu-btn icon add-button lg bg-cyan animation-{{animation==buttonName?buttonName:''}}" bindtap="toPublishTopic" style="z-index:1;" data-class="fade" disabled="{{animation==buttonName?true:false}}">
+    <text class="cuIcon-add text-white"></text>
+  </button>
   <view class="mainView02">
     <view class="cu-item shadow ">
       <view>

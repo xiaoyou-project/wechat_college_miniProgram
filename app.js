@@ -12,10 +12,6 @@ App({
     if (this.globalData.isLogin == true){//用户已经登录了的
       this.wxLogin();
     }
-    //存储屏幕高度和宽度
-    this.globalData.screenWidth=wx.getSystemInfoSync().windowWidth;
-    this.globalData.screenHeight=wx.getSystemInfoSync().windowHeight;
-
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -198,8 +194,6 @@ App({
     });
   },
   globalData: {
-    screenWidth: '',//屏幕宽度
-    screenHeight: '',//屏幕高度
     userInfo: null,
     openid: '',//用户的openid
     userID: 0,//用户的id

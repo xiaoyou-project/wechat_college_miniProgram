@@ -12,12 +12,12 @@ Page({
     commentContent: '',//发表评论的内容
     topicalID: '',//存储这篇话题的id
     userId: 0,//存储观看这篇话题的用户id
-    title: "话题的标题",
-    content: "话题的内容",
+    title: "不存在这个话题",
+    content: "不存在这个话题",
     view: -1,
     good: -1,
     name: "未知",
-    imgUrl: null,//作者头像
+    imgUrl: 'https://img.xiaoyou66.com/images/2020/04/23/YbIq.png',//作者头像
     goodStatus: 0,//判断是否点赞
     collectStatus: 0,//判断是否收藏
     time: "2000-2-29",
@@ -219,8 +219,15 @@ Page({
             method: 'post',
             success: (res) => {
               if (res.data.code == 1) {//成功
-                wx.reLaunch({
-                  url: '/pages/topicList/topicList',
+                // wx.reLaunch({
+                //   url: '/pages/topicList/topicList',
+                // });
+                var pages = getCurrentPages(); //当前页面
+                var beforePage = pages[pages.length - 2]; //前一页
+                wx.navigateBack({
+                  success: function () {
+                    beforePage.onLoad(beforePage.data.options); // 执行前一个页面的onLoad方法
+                  }
                 });
               } else {
                 that.theFailMeg("删除话题失败");
@@ -375,19 +382,39 @@ Page({
         method: 'get',
         success: (res) => {
           if (res.data.code == 1) {//获取成功
-            let data = res.data.data;
-            that.setData({//保存数据
-              title: data.title,
-              content: data.content,
-              view: data.view,
-              good: data.good,
-              name: data.name,
-              imgUrl: data.imgUrl,
-              goodStatus: data.goodStatus,
-              collectStatus: data.collectStatus,
-              time: data.time,
-              authorID: data.authorID
-            });
+            if(res.data.data.length == 0){//空数据，没有这个话题了，被删了
+              wx.showToast({
+                title: "该话题已被删除",
+                image: '../../image/登录失败.png',
+                duration: 1000,
+                success: () => {
+                  var timeOut = setTimeout(function () {
+                    var pages = getCurrentPages(); //当前页面
+                    var beforePage = pages[pages.length - 2]; //前一页
+                    wx.navigateBack({
+                      success: function () {
+                        //beforePage.onLoad(); // 执行前一个页面的onLoad方法
+                      }
+                    });
+                  }, 1000);
+                }
+              });
+            }else{
+              let data = res.data.data;
+              that.setData({//保存数据
+                title: data.title,
+                content: data.content,
+                view: data.view,
+                good: data.good,
+                name: data.name,
+                imgUrl: data.imgUrl,
+                goodStatus: data.goodStatus,
+                collectStatus: data.collectStatus,
+                time: data.time,
+                authorID: data.authorID
+              });
+              that.getCommentList(options.topicalID, options.userId);//获取评论列表
+            }
           } else {
             that.theFailMeg('获取话题内容失败');
           }
@@ -396,7 +423,6 @@ Page({
           that.theFailMeg('获取话题内容失败');
         }
       });
-      this.getCommentList(options.topicalID, options.userId);//获取评论列表
     }
   },
 

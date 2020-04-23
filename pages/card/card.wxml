@@ -20,10 +20,10 @@
           <view wx:if="{{isLogin==true}}">
             <view wx:if="{{myObject11.length > 0}}"><!--myObject11不是是空的-->
 
-              <view wx:for="{{myObject11}}" wx:key="index" class="cu-card article">
+              <view wx:for="{{myObject11}}" wx:key="index" class="cu-card article" style="margin-top: {{index==0?'-1%':'-4%'}};margin-bottom: 1%;">
                 <view class="cu-item radius shadow-warp" data-value="{{item.id}}" bindtap="cardDetail">
 
-                  <view class="cu-list margin-top margin-bottom">
+                  <view class="cu-list margin-top-sm">
                     <view class="content flex justify-start align-center">
                       <view class="cu-avatar round margin-right" style="background-image:url({{item.imgUrl}});"></view>
                       <view class="flex-sub">
@@ -33,14 +33,12 @@
                       <view class="text-bold flex-sub align">{{item.title}}</view>
                     </view>
                   </view> 
-                  <view class="content margin">
+                  <view class="content">
                     <view class="desc">
-                      <view class="text-content text-shadow">{{item.description}}</view>
-                      <view>
-                        <view class="text-gray flex justify-between">
-                          <view class="light lg">已坚持 <text class="text-black text-lg">{{item.keepDay}}</text>/{{item.totalDay}}天</view>
-                          <view class="light lg text-sm text-cyan">已加入{{item.peoples}}人</view>
-                        </view>
+                      <view class="text-content text-shadow margin-top-sm">{{item.description}}</view>
+                      <view class="text-gray flex justify-between">
+                        <view class="light lg">已坚持 <text class="text-black text-lg">{{item.keepDay}}</text>/{{item.totalDay}}天</view>
+                        <view class="light lg text-sm text-cyan">已加入{{item.peoples}}人</view>
                       </view>
                     </view>
                   </view>
@@ -69,10 +67,10 @@
         <!--所有打卡-->
         <view wx:if="{{1 == myCard}}">
           <view wx:if="{{object11.length > 0}}"><!--object11不是是空的-->
-            <view wx:for="{{object11}}" wx:key="index" class="cu-card article">
+            <view wx:for="{{object11}}" wx:key="index" class="cu-card article" style="margin-top: {{index==0?'-1%':'-4%'}};margin-bottom: 1%;">
               <view class="cu-item radius shadow-warp" data-value="{{item.id}}" bindtap="cardDetail">
 
-                  <view class="cu-list margin-top margin-bottom">
+                  <view class="cu-list margin-top-sm">
                     <view class="content flex justify-start align-center">
                       <view class="cu-avatar round margin-right" style="background-image:url({{item.imgUrl}});"></view>
                       <view class="flex-sub">
@@ -82,9 +80,9 @@
                       <view class="text-bold flex-sub align">{{item.title}}</view>
                     </view>
                   </view> 
-                  <view class="content margin">
+                  <view class="content">
                     <view class="desc">
-                      <view class="text-content text-shadow">{{item.description}}</view>
+                      <view class="text-content text-shadow margin-top-sm">{{item.description}}</view>
                       <view>
                         <view class="text-gray flex justify-between">
                           <view wx:if="{{item.keepDay!=-1}}" class="light lg">已坚持 <text class="text-black text-lg">{{item.keepDay}}</text>/{{item.totalDay}}天</view>

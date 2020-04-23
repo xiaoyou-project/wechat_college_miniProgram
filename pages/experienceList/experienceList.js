@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    animation: '',
+    buttonName: 'fade',
     isLogin: false,//存储登录信息
     userID: 0,//存储进入这个页面的用户id
     options: '',//存一下别的页面传过来的options
@@ -47,11 +49,22 @@ Page({
       url: '/pages/experienceContent/experienceContent?shareID=' + this.data.object10[index].id + '&userID=' + app.globalData.userID + '&plateID='+this.data.plateID+'&name='+this.data.name+'&description='+this.data.description
     });
   },
-  toReleaseExperience: function(){//去分享经验界面
+  toReleaseExperience: function(e){//去分享经验界面
+    console.log(e);
     let that = this;
-    wx.navigateTo({
-      url: '/pages/releaseExperience/releaseExperience?plateID=' + that.data.plateID + '&name='+that.data.name+'&description='+that.data.description
-    });
+    var anmiaton = e.currentTarget.dataset.class;
+    that.setData({
+      animation: anmiaton
+    })
+    setTimeout(function () {
+      that.setData({
+        animation: ''
+      }, () => {
+        wx.navigateTo({
+          url: '/pages/releaseExperience/releaseExperience?plateID=' + that.data.plateID + '&name=' + that.data.name + '&description=' + that.data.description
+        });
+      })
+    }, 500);
   },
   collectionPlate: function(){//收藏这个版块或者取消收藏这个版块
     if(app.globalData.isLogin == true){

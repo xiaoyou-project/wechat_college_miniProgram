@@ -3,10 +3,10 @@
       <!-- 话题详细介绍 -->
       <view class="cu-item shadow bg-white">
         <!-- 上面的作者栏 -->
-        <view class="cu-list menu-avatar padding-top padding-bottom">
+        <view class="cu-list menu-avatar padding-bottom">
           
           <view class="content flex margin-left margin-top">
-            <view class="cu-avatar round margin-right" wx:if="{{imgUrl}}" style="background-image:url({{imgUrl}});" 
+            <view class="cu-avatar round margin-right" style="background-image:url({{imgUrl}});" 
               data-id="{{authorID}}" 
               bindtap="toPersonCenter"></view>
             <view class="flex-sub">
@@ -15,26 +15,17 @@
             </view>
             <view class="text-bold flex-sub align">#{{title}}#</view>
           </view>
-
-          <view wx:if="{{authorID == userId}}" class="text-gray flex-sub" 
-                  style="position: absolute; right: 20rpx; top: 20rpx;" 
-                  bindtap="deleteTopic">删除</view>
-              <!-- <button wx:if="{{authorID != userId}}" class="cu-btn round bg-white shadow" 
-                role="button" 
-                style="width:180rpx;position:absolute;right:20rpx;"
-                bindtap="collectionTopic"
-                aria-disabled="false">
-                {{collectStatus==0?"收藏":"取消收藏"}}
-              </button> -->
         </view>
 
         <!-- 上面的作者栏End -->
-        <view class="text-content solid-bottom solid-top padding">
+        <view class="text-content padding-sm" style="margin-top:-30rpx;">
           <text space="nbsp">{{content}}</text>
         </view>
-        <view class="text-gray text-sm flex justify-between padding">
-          <view class="text-gray text-df text-right" style="width: 100%;">
-            <text class="cuIcon-attentionfill margin-lr-xs" ></text>{{view}}
+        <view class="text-gray text-sm flex justify-between padding-sm">
+          <view class="text-gray text-df flex justify-end" style="width: 100%;">
+            <text wx:if="{{authorID == userId}}" class="text-red flex flex-sub jusify-start"  
+          bindtap="deleteTopic">删除</text>
+            <text class="cuIcon-attentionfill margin-lr-xs" >{{view}}</text>
             <text class="cuIcon-appreciatefill margin-lr-xs {{goodStatus==0?'':'text-red'}}" 
                   bindtap="toTopicGoods" 
                   data-id="{{topicalID}}">{{good}}</text>
@@ -54,27 +45,25 @@
                 bindtap="toPersonCenter"></view>
           <view class="content">
             <view class="text-grey">{{item.name}}</view>
-            <view wx:if="{{userId == item.userID}}" class="text-grey" 
+            <view wx:if="{{userId == item.userID}}" class="text-red" 
                   style="position: absolute;right: 0rpx;top: -10rpx;" 
                   data-id="{{item.id}}"
                   data-index="{{index}}" 
                   bindtap="deleteComment">
                 删除
             </view>
-            <view class="text-gray margin-bottom-xs">
+            <view class="text-gray">
               <view class="text-gray text-xs">{{item.time}}</view>
             </view> 
-            <view class="content text-df ">
+            <view class="content text-df">
               <text space="nbsp"  style="color: #333;">{{item.content}}</text>
             </view>
-            <view class="margin-top-xs text-right solid-top">
-              <view>
-                <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
-                      data-id="{{item.id}}"
-                      data-index="{{index}}"
-                      bindtap="toCommentGoods">{{item.good}}
-                </text>
-              </view>
+            <view class="text-right" style="margin-bottom:-20rpx">
+              <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
+                    data-id="{{item.id}}"
+                    data-index="{{index}}"
+                    bindtap="toCommentGoods">{{item.good}}
+              </text>
             </view>
           </view>
         </view>
