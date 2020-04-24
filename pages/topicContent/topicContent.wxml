@@ -7,7 +7,8 @@
           
           <view class="content flex margin-left margin-top">
             <view class="cu-avatar round margin-right" style="background-image:url({{imgUrl}});" 
-              data-id="{{authorID}}" 
+              data-id="{{authorID}}"
+              data-img="{{imgUrl}}" 
               bindtap="toPersonCenter"></view>
             <view class="flex-sub">
               <view>{{name}}</view>
@@ -42,6 +43,7 @@
         <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
           <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                 data-id="{{item.userID}}"
+                data-img="{{item.imgUrl}}"
                 bindtap="toPersonCenter"></view>
           <view class="content">
             <view class="text-grey">{{item.name}}</view>
