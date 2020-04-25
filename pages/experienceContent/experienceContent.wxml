@@ -34,7 +34,7 @@
             </view>
           </view>
         <!-- 上面的作者栏End -->
-        <view class="text-content" style="margin-top:-30rpx">
+        <view class="text-content" style="margin-top:-25rpx">
         <view class="text-df margin-sm">
           <text class="text-black text-bold">{{title}}</text>
         </view>

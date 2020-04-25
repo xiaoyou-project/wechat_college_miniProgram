@@ -14,7 +14,7 @@ Page({
     college: '保密',
     isSelf: false,//判断是不是本人
     isEdit: false,//判断是不是修改模式
-    imgUrl: 'https://img.xiaoyou66.com/images/2020/01/21/nNUi.png',
+    imgUrl: 'https://img.xiaoyou66.com/images/2020/04/23/YbIq.png',
     sexIndex: 0, //选择性别时
     collegeIndex: 0, //选择学院的时候
     myShare: 0,//显示经验还是话题还是打卡,0为经验，1为话题，2为打卡

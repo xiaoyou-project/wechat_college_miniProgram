@@ -181,7 +181,7 @@ Page({
       that.setData({
         content: data.content,
         title: data.title,
-        imgList: data.img.split("&&"),//字符串分割
+        imgList: data.img.length==0?[]:data.img.split("&&"),//字符串分割
       });
     }).catch((err) => {
       that.theFailMeg("获取经验分享信息失败");

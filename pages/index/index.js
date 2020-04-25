@@ -8,7 +8,7 @@ Page({
    */
   data: {
     isLogin: '',
-    imgUrl: 'https://img.xiaoyou66.com/images/2020/01/21/nNUi.png',
+    imgUrl: 'https://img.xiaoyou66.com/images/2020/04/23/YbIq.png',
     nickName: '点击登录',
   },
 

@@ -22,11 +22,11 @@
                 bindtouchstart="ListTouchStart"
                 bindtouchmove="ListTouchMove"
                 bindtouchend="ListTouchEnd" 
+                data-value="{{index}}"
+                bindtap="{{item.type=='topical'?'toTopicArticle':item.type=='card'?'toCard':'toExperienceArticle'}}"
                 data-target="move-box-{{index}}">
                 <view class="contents" 
-                      style="margin-top:-45rpx;width:70%"
-                      data-value="{{index}}"
-                      bindtap="{{item.type=='topical'?'toTopicArticle':item.type=='card'?'toCard':'toExperienceArticle'}}">
+                      style="margin-top:-45rpx;width:70%">
                   <view class="text-content text-grey text-cut flex">
                     <text class="text-grey">
                       你的{{item.type=='topical'?'话题':item.type=='share'?'经验':'打卡'}}：
@@ -78,11 +78,10 @@
                 bindtouchstart="ListTouchStart"
                 bindtouchmove="ListTouchMove"
                 bindtouchend="ListTouchEnd" 
+                data-value="{{index}}"
+                bindtap="{{item.type=='topical'?'goodToTopicArticle':item.type=='comment'?'toComment':'goodToExperienceArticle'}}"
                 data-target="move-box-{{index}}">
-                <view class="contents" 
-                      data-value="{{index}}"
-                      style="margin-top:-45rpx;width:70%"
-                      bindtap="{{item.type=='topical'?'goodToTopicArticle':item.type=='comment'?'toComment':'goodToExperienceArticle'}}">
+                <view class="contents" style="margin-top:-45rpx;width:70%">
                   <view class="text-content text-grey text-cut flex">
                     <text class="text-grey">
                       你的{{item.type == 'topical'?'话题':item.type=='share'?'经验':'评论'}}：
