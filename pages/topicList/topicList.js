@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    newTopicIndex: 0,//最新话题
+    hotTopicIndex: 0,//热门话题索引
     myTopic: 0,//切换为热门话题或者最新话题
     animation: '',
     buttonName: 'fade',
@@ -16,7 +18,9 @@ Page({
       //   title: "话题1的标题",
       //   view: 66
       // }
-    ]
+    ],
+    hotTopic: [],//热门话题
+    newTopic: [],//最新话题
   },
   toMyTopic: function (e) {////切换为热门话题或者最新话题
     this.setData({
@@ -50,11 +54,83 @@ Page({
       })
     }, 500);
   },
+  changeTopic: function(){
+    console.log("换一换话题",this.data);
+    let that = this;
+    let topic = [];
+    let object7 = that.data.object7;
+    let hotTopicIndex = parseInt(that.data.hotTopicIndex);
+    let newTopicIndex = parseInt(that.data.newTopicIndex);
+
+    if(that.data.myTopic==1){//是热门话题
+        if(object7.length <= 8){//小于8条话题记录
+          topic = object7;
+        }else{
+          for(let i = 0;i < 8;i ++){
+            topic.push(object7[hotTopicIndex]);
+            hotTopicIndex = (hotTopicIndex + 1) % object7.length;
+          }
+        }
+        that.setData({//存到data中
+          hotTopic: topic,
+          hotTopicIndex: hotTopicIndex
+        })
+    }else{//是最新话题
+      if (object7.length <= 8) {//小于8条话题记录
+        topic = object7;
+      } else {
+        for (let i = 0; i < 8; i++) {
+          topic.push(object7[newTopicIndex]);
+          console.log("newTopicIndex", newTopicIndex);
+          newTopicIndex = (newTopicIndex - 1) == -1 ? (object7.length - 1) : (newTopicIndex - 1);
+        }
+      }
+      that.setData({//存到data中
+        newTopic: topic,
+        newTopicIndex: newTopicIndex
+      })
+    }
+  },
+  intTopicList: function(){
+    let that = this;
+    let topic = [];
+    let topic2 = [];
+    let object7 = that.data.object7;
+    let hotTopicIndex = parseInt(that.data.hotTopicIndex);
+    let newTopicIndex = parseInt(that.data.newTopicIndex);
+
+
+    if (object7.length <= 8) {//小于8条话题记录
+      topic = object7;
+    } else {
+      for (let i = 0; i < 8; i++) {
+        hotTopicIndex = (hotTopicIndex + 1) % object7.length;
+        topic.push(object7[hotTopicIndex]);
+      }
+    }
+    console.log("热门话题",topic);
+    that.setData({//存到data中
+      hotTopic: topic
+    })
+    if (object7.length <= 8) {//小于8条话题记录
+      topic = object7;
+    } else {
+      for (let i = 0; i < 8; i++) {
+        newTopicIndex = (newTopicIndex - 1) == -1 ? object7.length : (newTopicIndex - 1)
+        topic2.push(object7[hotTopicIndex]);
+      }
+    }
+    console.log("最新话题", topic);
+    that.setData({//存到data中
+      newTopic: topic2
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log("话题列表页面");
+    let that = this;
     this.setData({//存储登录信息
       isLogin: app.globalData.isLogin
     });
@@ -68,7 +144,10 @@ Page({
       success: (res) => {
         if (res.data.code == 1) {//获取成功
           this.setData({
-            object7: res.data.data
+            object7: res.data.data,
+            newTopicIndex: res.data.data.length-1//初始化索引
+          }, () => {
+            that.intTopicList();
           });
         } else {
           wx.showToast({

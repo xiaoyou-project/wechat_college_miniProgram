@@ -4,11 +4,14 @@
     <text class="cuIcon-add text-white"></text>
   </button>
 
-  <scroll-view scroll-x class="bg-white nav text-center">
+  <scroll-view scroll-x class="bg-white nav text-center solid-bottom">
     <view class="cu-item {{0==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="0">
-      <text class="cuIcon-hot"></text> 热门话题
+      <text class="cuIcon-hot"></text> 所有话题
     </view>
     <view class="cu-item {{1==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="1">
+      <text class="cuIcon-hot"></text> 热门话题
+    </view>
+    <view class="cu-item {{2==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="2">
       <text class="cuIcon-message"></text> 最新话题
     </view>
   </scroll-view>
@@ -16,7 +19,10 @@
   <view class="mainView02">
     <view class="cu-item shadow ">
       <view>
-        <view wx:for="{{object7}}" wx:key="index" class="article">
+        <view wx:if="{{myTopic != 0}}" class="bg-white">
+          <text bindtap="changeTopic" class="cuIcon-refresh lg text-gray" style="margin-left: 620rpx;">换一换</text>
+        </view>
+        <view wx:for="{{myTopic==0?object7:myTopic==1?hotTopic:newTopic}}" wx:key="index" class="article">
           <view class="cu-list menu solid-top solid-bottom">
             <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
 
