@@ -103,7 +103,7 @@
                           bindtap="toPersonCenter"></view>
                     <view class="content">
                       <view class="text-grey">{{item.name}}</view>
-                      <view wx:if="{{userID == item.userID}}" class="text-red" 
+                      <view wx:if="{{userId == item.userID}}" class="text-red" 
                             style="position: absolute;right: 0rpx;top: -10rpx;" 
                             data-id="{{item.id}}" 
                             bindtap="deleteComment">

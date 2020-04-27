@@ -1,10 +1,10 @@
 <view wx:if="{{canIUse}}">
     <view class='header'>
-        <image src='https://img.xiaoyou66.com/images/2020/03/17/rWTe.png'></image>
+        <image src='https://img.xiaoyou66.com/images/2020/04/27/Y2ee.png'></image>
     </view>
  
     <view class='content'>
-        <view>申请获取以下权限</view>
+        <view>知享园申请获取以下权限</view>
         <text>获得你的公开信息(昵称，头像等)</text>
     </view>
  
