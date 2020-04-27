@@ -112,8 +112,8 @@
                       <view class="text-gray margin-bottom-xs">
                         <view class="text-gray text-xs">{{item.time}}</view>
                       </view> 
-                      <view class="content text-df ">
-                        <text space="nbsp"  style="color: #333;">{{item.content}}</text>
+                      <view class="content text-df " style="width: 500rpx;">
+                        <text space="nbsp"  style="color: #333;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
                       </view>
                       <view class="margin-top-xs text-right">
                         <view>

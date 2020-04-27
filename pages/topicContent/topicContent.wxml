@@ -39,7 +39,7 @@
       </view>
       
       <!-- 下面的评论列表 -->
-      <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment solids-top" style="margin-bottom: 80rpx;">
+      <view wx:if="{{object8.length > 0}}" class="cu-list menu-avatar comment solids-top" style="margin-bottom: 20%;">
         <view wx:for="{{object8}}" wx:key="index" class="cu-item solids-top">
           <view class="cu-avatar round" style="background-image:url({{item.imgUrl}});" 
                 data-id="{{item.userID}}"
@@ -57,8 +57,8 @@
             <view class="text-gray">
               <view class="text-gray text-xs">{{item.time}}</view>
             </view> 
-            <view class="content text-df">
-              <text space="nbsp"  style="color: #333;">{{item.content}}</text>
+            <view class="content text-df" style="width: 500rpx;">
+              <text space="nbsp"  style="color: #333;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
             </view>
             <view class="text-right" style="margin-bottom:-20rpx">
               <text class="cuIcon-appreciatefill padding {{item.state==0?'text-grey':'text-red'}}" 

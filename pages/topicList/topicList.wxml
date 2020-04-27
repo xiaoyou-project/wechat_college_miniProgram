@@ -3,6 +3,16 @@
   <button class="cu-btn icon add-button lg bg-cyan animation-{{animation==buttonName?buttonName:''}}" bindtap="toPublishTopic" style="z-index:1;" data-class="fade" disabled="{{animation==buttonName?true:false}}">
     <text class="cuIcon-add text-white"></text>
   </button>
+
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{0==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="0">
+      <text class="cuIcon-hot"></text> 热门话题
+    </view>
+    <view class="cu-item {{1==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="1">
+      <text class="cuIcon-message"></text> 最新话题
+    </view>
+  </scroll-view>
+  
   <view class="mainView02">
     <view class="cu-item shadow ">
       <view>

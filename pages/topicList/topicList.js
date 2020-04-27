@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    myTopic: 0,//切换为热门话题或者最新话题
     animation: '',
     buttonName: 'fade',
     isLogin: false,//判断是否登录
@@ -17,10 +18,15 @@ Page({
       // }
     ]
   },
+  toMyTopic: function (e) {////切换为热门话题或者最新话题
+    this.setData({
+      myTopic: e.currentTarget.dataset.id
+    })
+  },
   topicArticle: function (e) {//点击话题去话题页面
     let index = e.currentTarget.dataset.value;
     let userId = 0;//用户没有登录就传0过去
-    if(this.data.isLogin==true){//这个用户登录了
+    if (this.data.isLogin == true) {//这个用户登录了
       userId = app.globalData.userID;
     }
     wx.navigateTo({
@@ -56,7 +62,7 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       url: app.globalData.sameUrl + app.globalData.topicalTopicalList,
       data: {
-        
+
       },
       method: 'get',
       success: (res) => {
