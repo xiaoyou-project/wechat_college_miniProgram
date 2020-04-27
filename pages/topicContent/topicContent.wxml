@@ -10,16 +10,16 @@
               data-id="{{authorID}}"
               data-img="{{imgUrl}}" 
               bindtap="toPersonCenter"></view>
-            <view class="flex-sub">
+            <view class="margin-right-sm">
               <view>{{name}}</view>
               <view class="text-gray text-sm">{{time}}</view>
             </view>
-            <view class="text-bold flex-sub align">#{{title}}#</view>
           </view>
         </view>
 
         <!-- 上面的作者栏End -->
         <view class="text-content padding-sm" style="margin-top:-30rpx;">
+        <view class="text-bold text-df flex-sub align solid-bottom padding-bottom-sm">#{{title}}#</view>
           <text space="nbsp">{{content}}</text>
         </view>
         <view class="text-gray text-sm flex justify-between padding-sm">
@@ -61,7 +61,7 @@
               <text space="nbsp"  style="color: #333;">{{item.content}}</text>
             </view>
             <view class="text-right" style="margin-bottom:-20rpx">
-              <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
+              <text class="cuIcon-appreciatefill padding {{item.state==0?'text-grey':'text-red'}}" 
                     data-id="{{item.id}}"
                     data-index="{{index}}"
                     bindtap="toCommentGoods">{{item.good}}

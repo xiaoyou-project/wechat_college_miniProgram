@@ -68,7 +68,7 @@
             <view wx:if="{{object1.length > 0}}"><!--object1不是是空的-->
               <view wx:for="{{object1}}" wx:key="index" class="cu-card article" >
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
-                  <view class="cu-tag bg-blue" style="position: absolute;right: 0rpx;">{{item.plate}}</view>
+                  <view class="cu-tag bg-cyan" style="position: absolute;right: 0rpx;">{{item.plate}}</view>
                   <view class="title">
                     <view class="text-cut">{{item.title}}</view>
                   </view>
@@ -119,13 +119,11 @@
                   <view class="content">
                     <view class="desc">
                       <view class="text-content">{{item.description}}</view>
-                      <view>
-                        <view class="text-gray text-sm flex justify-between">
-                          <text class="cuIcon-time margin-lr-xs">{{item.time}}</text>
-                          <view class="text-gray text-sm">
-                            <text class="cuIcon-attentionfill margin-lr-xs">{{item.view}}</text>
-                            <text class="cuIcon-appreciatefill margin-lr-xs">{{item.good}}</text> 
-                          </view>
+                      <view style="margin-top:-50rpx" class="text-gray text-sm flex justify-between">
+                        <text class="cuIcon-time margin-lr-xs">{{item.time}}</text>
+                        <view class="text-gray text-sm">
+                          <text class="cuIcon-attentionfill margin-lr-xs">{{item.view}}</text>
+                          <text class="cuIcon-appreciatefill margin-lr-xs">{{item.good}}</text> 
                         </view>
                       </view>
                     </view>
@@ -159,13 +157,11 @@
                   <view class="title">
                     <view class="text-cut">{{item.title}}</view>
                   </view>
-                  <view class="content">
+                  <view class="padding-sm" style="margin-top:-30rpx">
                     <view class="desc">
                       <view class="text-content">{{item.description}}</view>
                       <view>
-                        <view class="text-gray text-sm flex justify-between">
-                          <view class="cu-tag bg-red light lg">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
-                        </view>
+                        <view class="text-cyan light lg flex justify-end">已坚持 {{item.keepDay}}/{{item.totalDay}}天</view>
                       </view>
                     </view>
                   </view>

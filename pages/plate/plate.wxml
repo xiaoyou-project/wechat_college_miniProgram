@@ -42,9 +42,9 @@
 
           <view class="cu-item">
             <view class="grid col-1">
-              <view class="flex margin-bottom-sm margin-left-sm solid-bottom"  wx:for="{{object9}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}" bindtap="toExperienceList">
+              <view class="flex solid-bottom"  wx:for="{{object9}}" wx:if="{{index < 5}}" wx:key="index" data-value="{{index}}" bindtap="toExperienceList">
 
-                <image src="{{item.imgUrl}}" mode="aspectFill" style="height:130rpx; width:130rpx;border-radius:10%;" />
+                <image class="padding-xs" src="{{item.imgUrl}}" mode="aspectFill" style="height:130rpx; width:130rpx;border-radius:15%;" />
                 <view style="width:500rpx" class="grid col-1 margin-left-sm">
                   <view style="font-weight:800" class="flex text-cut text-black text-df margin-top-xs">{{item.name}}<view class="flex-sub flex justify-end text-grey text-xs margin-right-xs">{{item.total}}条经验</view></view>
                   <view class="text-cut text-grey text-sm">{{item.description}}</view>
@@ -76,8 +76,8 @@
             <view class="flex" style="flex-wrap: wrap;">
               <view wx:if="{{isLogin == true}}" style="width: 100%;"><!--是登录了的用户-->
                 <view wx:if="{{myObject9.length > 0}}" class="flex" style="flex-wrap: wrap;"><!--myObject9不是是空的-->
-                  <view class="flex margin-bottom-sm margin-left-sm solid-bottom"  wx:for="{{myObject9}}" wx:key="index" data-value="{{index}}" bindtap="toExperienceList">
-                    <image src="{{item.imgUrl}}" mode="aspectFill" style="height:130rpx; width:130rpx;border-radius:10%;" />
+                  <view class="flex solid-bottom"  wx:for="{{myObject9}}" wx:key="index" data-value="{{index}}" bindtap="toExperienceList">
+                    <image class="padding-xs" src="{{item.imgUrl}}" mode="aspectFill" style="height:130rpx; width:130rpx;border-radius:10%;" />
                     <view style="width:500rpx" class="grid col-1 margin-left-sm">
                       <view style="font-weight:800" class="flex text-cut text-black text-df margin-top-xs">{{item.name}}</view>
                       <view class="text-cut text-grey text-sm">{{item.description}}</view>

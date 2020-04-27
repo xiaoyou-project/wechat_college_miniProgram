@@ -50,6 +50,13 @@ Page({
           // wx.reLaunch({//分享成功去经验列表页面
           //   url: '/pages/experienceList/experienceList?plateID='+that.data.plateID+'&name='+that.data.name+'&description='+that.data.description
           // });
+          // var pages = getCurrentPages(); //当前页面
+          // var beforePage = pages[pages.length - 2]; //前一页
+          // wx.navigateBack({
+          //   success: function () {
+          //     beforePage.onLoad(beforePage.data.options); // 执行前一个页面的onLoad方法
+          //   }
+          // });
           var pages = getCurrentPages(); //当前页面
           var beforePage = pages[pages.length - 2]; //前一页
           wx.navigateBack({

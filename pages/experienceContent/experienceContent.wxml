@@ -16,12 +16,12 @@
                 <view class="text-gray text-sm flex-sub" style="position: absolute;top: 50rpx;">
                   {{time}}
                 </view>
-                <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
+                <view wx:if="{{authorID == userID}}" class="text-red flex-sub" 
                       style="position: absolute; right: -40rpx; top:-9px" 
                       bindtap="deleteExperience">
                   删除
                 </view>
-                <view wx:if="{{authorID == userID}}" class="text-gray flex-sub" 
+                <view wx:if="{{authorID == userID}}" class="text-green flex-sub" 
                       style="position: absolute; right: 80rpx; top:-9px" 
                       bindtap="editExperience">
                   修改
@@ -68,7 +68,7 @@
                 bindtap="toPersonCenter"></view>
           <view class="content">
             <view class="text-grey">{{item.name}}</view>
-            <view wx:if="{{userID == item.userID}}" class="text-grey" 
+            <view wx:if="{{userID == item.userID}}" class="text-red" 
                   style="position: absolute;right: 0rpx;top: -10rpx;" 
                   data-id="{{item.id}}" 
                   data-index="{{index}}"
@@ -83,7 +83,7 @@
             </view>
             <view class="margin-top-xs text-right">
               <view>
-                <text class="cuIcon-appreciatefill {{item.state==0?'text-grey':'text-red'}}" 
+                <text class="cuIcon-appreciatefill text-sm padding {{item.state==0?'text-grey':'text-red'}}" 
                       data-id="{{item.id}}"
                       data-index="{{index}}"
                       bindtap="toCommentGoods">{{item.good}}
