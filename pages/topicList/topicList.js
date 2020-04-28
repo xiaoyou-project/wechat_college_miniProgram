@@ -119,8 +119,8 @@ Page({
       topic = object7;
     } else {
       for (let i = 0; i < 8; i++) {
-        hotTopicIndex = (hotTopicIndex + 1) % object7.length;
         topic.push(object7[hotTopicIndex]);
+        hotTopicIndex = (hotTopicIndex + 1) % object7.length;
       }
     }
     console.log("热门话题",topic);
@@ -131,8 +131,8 @@ Page({
       topic = object7;
     } else {
       for (let i = 0; i < 8; i++) {
-        newTopicIndex = (newTopicIndex - 1) == -1 ? object7.length : (newTopicIndex - 1)
         topic2.push(object7[newTopicIndex]);
+        newTopicIndex = (newTopicIndex - 1) == -1 ? object7.length : (newTopicIndex - 1)
       }
     }
     console.log("最新话题", topic);

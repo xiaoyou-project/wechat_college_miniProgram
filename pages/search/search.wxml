@@ -2,18 +2,25 @@
   <!-- 发布话题的按钮 -->
   <view class="mainView02">
     <view class="cu-item shadow ">
-      <view>
-        <view wx:for="{{object7}}" wx:key="index" class="article">
-          <view class="cu-list menu solid-top solid-bottom">
-            <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
-              <view class="content">
-                <text class="text-grey text-cut" style="width:60%">{{item.title}}</text>
-              </view>
-              <text class="cuIcon-attentionfill lg text-gray text-cut">{{item.view}}</text>
+
+      <view wx:for="{{object7}}" wx:key="index" class="article">
+        <view class="cu-list menu solid-top solid-bottom">
+          <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
+            <view class="content">
+              <text class="text-grey text-cut" style="width:60%">{{item.title}}</text>
             </view>
+            <text class="cuIcon-attentionfill lg text-gray text-cut">{{item.view}}</text>
           </view>
         </view>
       </view>
+     
+      <view wx:if='{{object7.length==0}}'>
+        <view class="padding text-center text-gray" 
+            style="background: #EFF8FE;">
+            搜索结果为空~
+        </view>
+      </view>
+
     </view>
   </view>
 </view>
