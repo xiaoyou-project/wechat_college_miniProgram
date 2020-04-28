@@ -21,7 +21,8 @@
     "pages/card/card",
     "pages/cardDetail/cardDetail",
     
-    "pages/test/test"
+    "pages/test/test",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "dark",

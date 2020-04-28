@@ -4,6 +4,14 @@
     <text class="cuIcon-add text-white"></text>
   </button>
 
+    <view class="cu-bar bg-white search">
+      <view class="search-form radius">
+        <text class="cuIcon-search"></text>
+        <input type="text" placeholder="搜索图片、文章、视频" bindconfirm="onSearch" confirm-type="search"></input>
+      </view>
+    </view>
+
+
   <scroll-view scroll-x class="bg-white nav text-center">
     <view class="cu-item {{0==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="0">
       <text class="cuIcon-hot"></text> 热门话题
@@ -24,7 +32,7 @@
                     style="background-color:{{index==0?'#f54545':index==1?'#ff8547':index==2?'#ffac38':'#8eb9f5'}};position:absolute;width:60rpx;text-align:center;border-radius:50%;left:10rpx; height:60rpx;line-height:60rpx;">{{index + 1}}</text>
               <view class="content">
                 <text class="text-grey text-cut" 
-                      style="position: absolute;top: 30rpx;width:65%; left: 80rpx;">{{item.title}}</text>
+                    style="position: absolute;top: 30rpx;width:65%; left: 80rpx;">{{item.title}}</text>
               </view>
               <text class="cuIcon-attentionfill lg text-gray text-cut" 
                     style="width:20%;right: 60rpx;position: absolute;">{{item.view}}</text>

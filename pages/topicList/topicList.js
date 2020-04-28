@@ -50,6 +50,11 @@ Page({
       })
     }, 500);
   },
+  onSearch(e) {//搜索事件
+    wx.navigateTo({
+      url: '/pages/search/search?key=' + e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
