@@ -1,27 +1,8 @@
+<!--pages/plateSearch/plateSearch.wxml-->
 <view class="mainView">
     <!-- 分享经验的按钮 -->
-  <button class="cu-btn icon add-button lg bg-cyan animation-{{animation==buttonName?buttonName:''}}" bindtap="toReleaseExperience" style="z-index:1;" data-class="fade" disabled="{{animation==buttonName?true:false}}">
-    <text class="cuIcon-add text-white"></text>
-  </button>
-
-  <view class="mainView02">
-    <view class="cu-card">
-      <view class="cu-item shadow bg-white padding-bottom">
-        <view class="cu-bar flex">
-          <view class="action sub-title">
-            <text class="text-xl text-bold text-green">{{name}}</text>
-            <text class="bg-cyan" style="width:2rem"></text>
-          </view>
-          <text
-            class="margin-right-sm cuIcon-favor margin-right-xs {{collectionStatus==0?'':'text-yellow'}}" 
-            bindtap="collectionPlate">{{collectionStatus==0?"收藏":"已收藏"}}</text>
-        </view>
-        <text class="text-Abc text-gray flex-sub  margin-left-sm">{{description}}</text>
-      </view>
-    </view>
-
-    <view class="cu-item shadow" style="margin-top:-30rpx">
-      <view wx:for="{{object10}}" style="margin-top:-30rpx" wx:key="index" class="cu-card article">
+    <view class="cu-item shadow">
+      <view wx:for="{{object10}}" wx:key="index" class="cu-card article">
         <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
           <view class="content flex align-center  margin-top margin-bottom">
             <view class="cu-avatar round margin-right" style="background-image:url({{item.avatar}});" 
@@ -52,6 +33,4 @@
         </view>
       </view>
     </view>
-    
-  </view>
 </view>

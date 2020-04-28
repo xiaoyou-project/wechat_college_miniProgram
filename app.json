@@ -18,7 +18,8 @@
     "pages/card/card",
     "pages/cardDetail/cardDetail",
     "pages/test/test",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/plateSearch/plateSearch"
   ],
   "window": {
     "backgroundTextStyle": "dark",

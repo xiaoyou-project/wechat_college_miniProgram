@@ -247,5 +247,6 @@ App({
     releaseExperience: '/api/plate/release/share',//43、发布新经验
     userPlateStatus: '/api/plate/status/collect',//44、判断用户是否收藏板块
     serachTopicalList: '/api/topical/get/search/topicalList',//45、搜索话题列表
+    serachShareList: '/api/plate/get/search/shareList',//46、搜索经验列表
   }
 })
