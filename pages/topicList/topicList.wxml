@@ -1,18 +1,18 @@
-<view class="mainView">
+<view class="mainView" style="background: white;">
     <!-- 发布话题的按钮 -->
   <button class="cu-btn icon add-button lg bg-cyan animation-{{animation==buttonName?buttonName:''}}" bindtap="toPublishTopic" style="z-index:1;" data-class="fade" disabled="{{animation==buttonName?true:false}}">
     <text class="cuIcon-add text-white"></text>
   </button>
 
-  <scroll-view scroll-x class="bg-white nav text-center solid-bottom">
+  <scroll-view scroll-x class="bg-white nav text-center">
     <view class="cu-item {{0==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="0">
-      <text class="cuIcon-hot"></text> 所有话题
+      <text class="cuIcon-message {{0==myTopic?'activeNav':''}}"></text> 所有话题
     </view>
     <view class="cu-item {{1==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="1">
-      <text class="cuIcon-hot"></text> 热门话题
+      <text class="cuIcon-hot {{1==myTopic?'activeNav':''}}"></text> 热门话题
     </view>
     <view class="cu-item {{2==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="2">
-      <text class="cuIcon-message"></text> 最新话题
+      <text class="cuIcon-new {{2==myTopic?'activeNav':''}}"></text> 最新话题
     </view>
   </scroll-view>
   
@@ -20,14 +20,15 @@
     <view class="cu-item shadow ">
       <view>
         <view wx:if="{{myTopic != 0}}" class="bg-white">
-          <text bindtap="changeTopic" class="cuIcon-refresh lg text-gray" style="margin-left: 620rpx;">换一换</text>
+          <text bindtap="changeTopic" class="cuIcon-refresh lg text-gray animation-{{animation==changeBtn?buttonName:''}}" data-class="scale-down" style="margin-left: 620rpx;">换一换</text>
         </view>
-        <view wx:for="{{myTopic==0?object7:myTopic==1?hotTopic:newTopic}}" wx:key="index" class="article">
+        <!-- 所有话题 -->
+        <view wx:if="{{myTopic==0}}" wx:for="{{object7}}" wx:key="index" class="article">
           <view class="cu-list menu solid-top solid-bottom">
             <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
 
               <text class="text-white text-cut" 
-                    style="background-color:{{index==0?'#f54545':index==1?'#ff8547':index==2?'#ffac38':'#8eb9f5'}};position:absolute;width:60rpx;text-align:center;border-radius:50%;left:10rpx; height:60rpx;line-height:60rpx;">{{index + 1}}</text>
+                    style="background-color:{{index==0?'#f54545':index==1?'#ff8547':index==2?'#ffac38':'#8eb9f5'}};position:absolute;width:50rpx;text-align:center;border-radius:50%;left:10rpx; height:50rpx;line-height:50rpx;">{{index + 1}}</text>
               <view class="content">
                 <text class="text-grey text-cut" 
                       style="position: absolute;top: 30rpx;width:65%; left: 80rpx;">{{item.title}}</text>
@@ -38,6 +39,42 @@
             </view>
           </view>
         </view>
+        <!-- 所有话题END -->
+        <!-- 热门话题 -->
+        <view wx:if="{{myTopic==1}}" wx:for="{{hotTopic}}" wx:key="index" class="article">
+          <view class="cu-list menu solid-top solid-bottom">
+            <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
+
+              <text class="text-cut cuIcon-hotfill text-center" 
+                    style="color:{{index==0?'#f54545':index==1?'#ff8547':index==2?'#ffac38':'#8eb9f5'}};position:absolute;width:60rpx;left:10rpx; height:60rpx;line-height:60rpx;"></text>
+              <view class="content">
+                <text class="text-grey text-cut" 
+                      style="position: absolute;top: 30rpx;width:65%; left: 80rpx;">{{item.title}}</text>
+              </view>
+              <text class="cuIcon-attentionfill lg text-gray text-cut" 
+                    style="width:20%;right: 60rpx;position: absolute;">{{item.view}}</text>
+
+            </view>
+          </view>
+        </view>
+        <!-- 热门话题END -->
+        <!-- 最新话题 -->
+        <view wx:if="{{myTopic==2}}" wx:for="{{newTopic}}" wx:key="index" class="article">
+          <view class="cu-list menu solid-top solid-bottom">
+            <view class="cu-item arrow" data-value="{{index}}" bindtap="topicArticle">
+
+              <text class="text-cut cuIcon-newshotfill text-center" 
+                    style="color:{{index==0?'#f54545':index==1?'#ff8547':index==2?'#ffac38':'#8eb9f5'}};position:absolute;width:60rpx;left:10rpx; height:60rpx;line-height:60rpx;"></text>
+              <view class="content">
+                <text class="text-grey text-cut" 
+                      style="position: absolute;top: 30rpx;width:65%; left: 80rpx;">{{item.title}}</text>
+              </view>
+              <text class="cuIcon-attentionfill lg text-gray text-cut" 
+                    style="width:20%;right: 60rpx;position: absolute;">{{item.view}}</text>
+            </view>
+          </view>
+        </view>
+        <!-- 最新话题END -->
       </view>
     </view>
   </view>

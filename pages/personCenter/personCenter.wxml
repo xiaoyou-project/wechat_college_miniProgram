@@ -66,7 +66,7 @@
         <view wx:if="{{myShare==0}}"><!--显示个人经验界面-->
           <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object1.length > 0}}"><!--object1不是是空的-->
-              <view wx:for="{{object1}}" wx:key="index" class="cu-card article" >
+              <view wx:for="{{object1}}" wx:key="index" class="cu-card article" style="margin-bottom: {{index==(object1.length-1)?'0':'-20rpx'}}" >
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="experienceArticle">
                   <view class="cu-tag bg-cyan" style="position: absolute;right: 0rpx;">{{item.plate}}</view>
                   <view class="title">
@@ -111,7 +111,7 @@
         <view wx:if="{{myShare == 1}}"><!--显示个人话题界面-->
           <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object2.length > 0}}"><!--object2不是是空的-->
-              <view wx:for="{{object2}}" wx:key="index" class="cu-card article">
+              <view wx:for="{{object2}}" wx:key="index" class="cu-card article" style="margin-bottom: {{index==(object2.length-1)?'0':'-20rpx'}}">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="topicArticle">
                   <view class="title">
                     <view class="text-cut">{{item.name}}</view>
@@ -152,7 +152,7 @@
         <view wx:if="{{myShare == 2}}"><!--显示个人打卡界面-->
           <view wx:if="{{isLogin == true}}"><!--是登录了的用户-->
             <view wx:if="{{object3.length > 0}}"><!--object3不是是空的-->
-              <view wx:for="{{object3}}" wx:key="index" class="cu-card article">
+              <view wx:for="{{object3}}" wx:key="index" class="cu-card article" style="margin-bottom: {{index==(object3.length-1)?'0':'-20rpx'}}">
                 <view class="cu-item radius shadow-warp" data-value="{{index}}" bindtap="cardDetail">
                   <view class="title">
                     <view class="text-cut">{{item.title}}</view>

@@ -11,6 +11,7 @@ Page({
     myTopic: 0,//切换为热门话题或者最新话题
     animation: '',
     buttonName: 'fade',
+    changeBtn: "scale-down",
     isLogin: false,//判断是否登录
     object7: [//话题列表
       // {
@@ -51,47 +52,56 @@ Page({
         wx.navigateTo({
           url: '/pages/publishTopic/publishTopic'
         });
-      })
+      });
     }, 500);
   },
-  changeTopic: function(){
-    console.log("换一换话题",this.data);
+  changeTopic: function(e){//换一换话题
+    console.log("换一换话题", e);
     let that = this;
     let topic = [];
     let object7 = that.data.object7;
     let hotTopicIndex = parseInt(that.data.hotTopicIndex);
     let newTopicIndex = parseInt(that.data.newTopicIndex);
-
-    if(that.data.myTopic==1){//是热门话题
-        if(object7.length <= 8){//小于8条话题记录
-          topic = object7;
-        }else{
-          for(let i = 0;i < 8;i ++){
-            topic.push(object7[hotTopicIndex]);
-            hotTopicIndex = (hotTopicIndex + 1) % object7.length;
+    var anmiaton = e.currentTarget.dataset.class;
+    that.setData({
+      animation: anmiaton
+    });
+    setTimeout(function () {
+      that.setData({
+        animation: ''
+      }, () => {
+        if (that.data.myTopic == 1) {//是热门话题
+          if (object7.length <= 8) {//小于8条话题记录
+            topic = object7;
+          } else {
+            for (let i = 0; i < 8; i++) {
+              topic.push(object7[hotTopicIndex]);
+              hotTopicIndex = (hotTopicIndex + 1) % object7.length;
+            }
           }
+          that.setData({//存到data中
+            hotTopic: topic,
+            hotTopicIndex: hotTopicIndex
+          })
+        } else {//是最新话题
+          if (object7.length <= 8) {//小于8条话题记录
+            topic = object7;
+          } else {
+            for (let i = 0; i < 8; i++) {
+              topic.push(object7[newTopicIndex]);
+              console.log("newTopicIndex", newTopicIndex);
+              newTopicIndex = (newTopicIndex - 1) == -1 ? (object7.length - 1) : (newTopicIndex - 1);
+            }
+          }
+          that.setData({//存到data中
+            newTopic: topic,
+            newTopicIndex: newTopicIndex
+          })
         }
-        that.setData({//存到data中
-          hotTopic: topic,
-          hotTopicIndex: hotTopicIndex
-        })
-    }else{//是最新话题
-      if (object7.length <= 8) {//小于8条话题记录
-        topic = object7;
-      } else {
-        for (let i = 0; i < 8; i++) {
-          topic.push(object7[newTopicIndex]);
-          console.log("newTopicIndex", newTopicIndex);
-          newTopicIndex = (newTopicIndex - 1) == -1 ? (object7.length - 1) : (newTopicIndex - 1);
-        }
-      }
-      that.setData({//存到data中
-        newTopic: topic,
-        newTopicIndex: newTopicIndex
-      })
-    }
+      });
+    }, 500);
   },
-  intTopicList: function(){
+  intTopicList: function(){//初始化列表
     let that = this;
     let topic = [];
     let topic2 = [];
@@ -117,13 +127,13 @@ Page({
     } else {
       for (let i = 0; i < 8; i++) {
         newTopicIndex = (newTopicIndex - 1) == -1 ? object7.length : (newTopicIndex - 1)
-        topic2.push(object7[hotTopicIndex]);
+        topic2.push(object7[newTopicIndex]);
       }
     }
     console.log("最新话题", topic);
     that.setData({//存到data中
       newTopic: topic2
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载

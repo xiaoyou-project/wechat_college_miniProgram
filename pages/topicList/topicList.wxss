@@ -8,3 +8,6 @@
 button[disabled]{
   background: #DCDCDC !important;
 }
+.activeNav{
+  font-size: 50rpx;
+}
