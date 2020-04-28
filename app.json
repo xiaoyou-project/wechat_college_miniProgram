@@ -10,18 +10,15 @@
     "pages/experienceContent/experienceContent",
     "pages/experienceEdit/experienceEdit",
     "pages/releaseExperience/releaseExperience",
-
     "pages/index/index",
     "pages/personCenter/personCenter",
     "pages/myCollection/myCollection",
     "pages/myMessage/myMessage",
-
     "pages/login/login",
-
     "pages/card/card",
     "pages/cardDetail/cardDetail",
-    
-    "pages/test/test"
+    "pages/test/test",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "dark",

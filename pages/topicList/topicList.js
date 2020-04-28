@@ -23,6 +23,11 @@ Page({
     hotTopic: [],//热门话题
     newTopic: [],//最新话题
   },
+  onSearch(e) {//搜索事件
+    wx.navigateTo({
+      url: '/pages/search/search?key=' + e.detail.value
+    })
+  },
   toMyTopic: function (e) {////切换为热门话题或者最新话题
     this.setData({
       myTopic: e.currentTarget.dataset.id

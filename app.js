@@ -246,5 +246,6 @@ App({
     cardAbort: '/api/card/abort',//42、退出打卡
     releaseExperience: '/api/plate/release/share',//43、发布新经验
     userPlateStatus: '/api/plate/status/collect',//44、判断用户是否收藏板块
+    serachTopicalList: '/api/topical/get/search/topicalList',//45、搜索话题列表
   }
 })

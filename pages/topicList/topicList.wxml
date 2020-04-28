@@ -4,6 +4,13 @@
     <text class="cuIcon-add text-white"></text>
   </button>
 
+    <view class="cu-bar bg-white search">
+      <view class="search-form radius">
+        <text class="cuIcon-search"></text>
+        <input type="text" placeholder="输入话题的关键词" bindconfirm="onSearch" confirm-type="search"></input>
+      </view>
+    </view>
+
   <scroll-view scroll-x class="bg-white nav text-center">
     <view class="cu-item {{0==myTopic?'text-cyan cur':''}}" bindtap="toMyTopic" data-id="0">
       <text class="cuIcon-message {{0==myTopic?'activeNav':''}}"></text> 所有话题
