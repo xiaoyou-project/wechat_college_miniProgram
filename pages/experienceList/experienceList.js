@@ -43,6 +43,11 @@ Page({
       })
     }
   },
+  onSearch(e) {//搜索事件
+    wx.navigateTo({
+      url: '/pages/plateSearch/plateSearch?key=' + e.detail.value
+    })
+  },
   experienceArticle: function (e) {//点击经验去经验页面
     let index = e.currentTarget.dataset.value;
     wx.navigateTo({

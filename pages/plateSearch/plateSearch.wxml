@@ -32,5 +32,12 @@
           </view>
         </view>
       </view>
+
+      <view wx:if='{{object10.length==0}}'>
+        <view class="padding text-center text-gray" 
+            style="background: #EFF8FE;">
+            搜索结果为空~
+        </view>
+      </view>
     </view>
 </view>

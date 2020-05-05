@@ -23,11 +23,6 @@ Page({
       url: '/pages/experienceList/experienceList?plateID=' + this.data.object9[index].id + '&description=' + this.data.object9[index].description + '&name=' + this.data.object9[index].name
     });
   },
-  onSearch(e) {//搜索事件
-    wx.navigateTo({
-      url: '/pages/plateSearch/plateSearch?key=' + e.detail.value
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
