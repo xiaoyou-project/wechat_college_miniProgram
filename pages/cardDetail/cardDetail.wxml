@@ -33,7 +33,7 @@
           </view>
           <view class="content">
             <view class="desc">
-              <view class="text-grey content margin-bottom-sm" style="padding-left:0rpx;"><text class="padding-sm" space="nbsp">{{description}}</text></view>
+              <view class="text-df content margin-bottom-sm" style="padding-left:0rpx;width: 630rpx;"><text class="padding-sm" space="nbsp" style="word-break: keep-all;word-wrap: break-word;white-space: pre-line;width: 100%;">{{description}}</text></view>
               <view>
                 <view class="text-gray text-xs flex justify-between">
                   <view wx:if="{{cardStatus==0}}" class="flex-treble text-black text-bold text-xl">需坚持 {{totalDay}} 天</view>
