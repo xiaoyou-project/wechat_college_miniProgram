@@ -42,7 +42,7 @@ App({
   },
   getUserInfo: function (id) {//初始化用户信息，获取college，name，sex
     wx.request({
-      url: 'https://college.xiaoyou66.com/api/user/get/userInfo',
+      url: this.globalData.sameUrl+'/api/user/get/userInfo',
       data: {
         userId: id
       },
@@ -85,7 +85,7 @@ App({
           // console.log(res);
           wx.request({
             //和获取oepnid
-            url: 'https://college.xiaoyou66.com/api/user/get/openid',
+            url: this.globalData.sameUrl+'/api/user/get/openid',
             data: {
               code: res.code
             },
@@ -114,7 +114,7 @@ App({
                           wx.request({
                             //注册用户信息
                             header: { "Content-Type": "application/x-www-form-urlencoded" },
-                            url: 'https://college.xiaoyou66.com/api/user/registered',
+                            url: this.globalData.sameUrl+'/api/user/registered',
                             data: {
                               openid: this.globalData.openid,
                               nickname: res.userInfo.nickName,
@@ -201,7 +201,7 @@ App({
     name: '错误',//个人中心的存用户自己填的名字
     college: '保密',//个人中心的学院
     sex: '保密',//个人中心的用户自己填的性别
-    sameUrl: 'https://college.xiaoyou66.com',//域名前面的那些相同的部分
+    sameUrl: 'http://127.0.0.1:2333',//域名前面的那些相同的部分
     userOpenId: '/api/user/get/openid',//1、获取用户openid
     userRegistered: '/api/user/registered',//2、用户注册
     userUserInfo: '/api/user/get/userInfo',//3、进入个人中心，获取用户信息
