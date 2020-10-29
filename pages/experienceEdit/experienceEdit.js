@@ -115,7 +115,7 @@ Page({
     let that = this;
     //上传图片到自己服务器
     wx.uploadFile({
-      url: 'https://college.xiaoyou66.com/api/img/upload',
+      url: 'http://127.0.0.1:2333/api/img/upload',
       filePath: imgPath,
       name: 'file',
       success(res) {
